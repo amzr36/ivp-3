@@ -153,24 +153,10 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
         }
 
         if(isValid){
-            idSegmento();
             registrarSegmento();
         }
     }
 
-    private void idSegmento() {
-        Cursor cursor1 = baseDatos.getSegmentoFlex();
-        if (cursor1.moveToNext()) {
-
-            do {
-                id_segmento = Integer.parseInt(cursor1.getString(cursor1.getColumnIndex(Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO)));
-            }while(cursor1.moveToNext());
-        }else{
-            id_segmento=0;
-        }
-        id_segmento = id_segmento+1;
-        id_seg_flex=(id_segmento+"");
-    }
 
     private void cargarSegmentosFlex() {
 
@@ -206,10 +192,10 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
         SQLiteDatabase db=bd.getWritableDatabase();
 
         String insert="INSERT INTO "+ Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO
-                +" ( "+Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_NOMBRE_CARRETERA_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_CALZADAS_SEGMENTO+","
+                +" ( "+Utilidades.SEGMENTOFLEX.CAMPO_NOMBRE_CARRETERA_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_CALZADAS_SEGMENTO+","
                 +Utilidades.SEGMENTOFLEX.CAMPO_CARRILES_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_ANCHO_CARRIL+","+Utilidades.SEGMENTOFLEX.CAMPO_ANCHO_BERMA+","+Utilidades.SEGMENTOFLEX.CAMPO_PRI_SEGMENTO+","
                 +Utilidades.SEGMENTOFLEX.CAMPO_PRF_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_COMENTARIOS+","+Utilidades.SEGMENTOFLEX.CAMPO_FECHA+")" +
-                " VALUES ('"+id_seg_flex+"' , '"+tvNombre_Carretera_SegmentoFlex.getText().toString()+"' , '"
+                " VALUES ('"+tvNombre_Carretera_SegmentoFlex.getText().toString()+"' , '"
                 +campoNCalzadas.getText().toString()+"' , '"+campoNCarriles.getText().toString()+"' , '"+campoAnchoCarril.getText().toString()+"' , '"
                 +campoAnchoBerma.getText().toString()+"' , '"+campoPRI.getText().toString()+"' , '"+campoPRF.getText().toString()+"' , '"
                 +campoComentarios.getText().toString()+"' , '"+campoFecha.getText().toString()+"')";

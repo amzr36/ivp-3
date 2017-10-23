@@ -10,11 +10,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.Carretera;
 import com.alejo_zr.exceldb.entidades.SegmentoFlex;
+import com.alejo_zr.exceldb.entidades.SegmentoRigi;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
     private ArrayList<String> listaInformacion;
     private ArrayList<Carretera> listaCarreteras;
     private ArrayList<SegmentoFlex> listaSegmentosF;
+    private ArrayList<SegmentoRigi> listaSegmentosR;
 
 
     BaseDatos baseDatos;
@@ -65,7 +68,10 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             }
         });
 
+        editarId();
+
     }
+
 
     protected void onStart() {
         super.onStart();
@@ -74,7 +80,7 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
         listViewCarreteras= (ListView) findViewById(R.id.listViewCarretera);
 
         consultarListaCarreteras();
-        cargarSegmentosFlex();
+
 
         ArrayAdapter adaptador=new ArrayAdapter(this,android.R.layout.simple_list_item_1,listaInformacion);
         listViewCarreteras.setAdapter(adaptador);
@@ -97,7 +103,7 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             }
         });
 
-
+        editarId();
     }
 
     private void consultarListaCarreteras() {
@@ -119,8 +125,15 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
 
             listaCarreteras.add(carretera);
         }
-        editarIdCarreteras();
+
         obtenerLista();
+    }
+
+    private void editarId() {
+
+        editarIdCarreteras();
+        cargarSegmentosFlex();
+        cargarSegmentosRigi();
     }
 
     private void editarIdCarreteras() {
@@ -178,7 +191,82 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
 
             listaSegmentosF.add(segmento);
         }
-        //editarIdSegFlex();
+        editarIdSegFlex();
+    }
+    private void editarIdSegFlex() {
+
+        SQLiteDatabase dbSF = baseDatos.getWritableDatabase();
+
+        int id=1;
+        for (int i=0; i<listaSegmentosF.size();i++) {
+
+            double idCarretera = listaSegmentosF.get(i).getId_segmento();
+            double modulo = idCarretera / id;
+            String idS = new String("" + idCarretera);
+            if (modulo != 1) {
+                ContentValues values = new ContentValues();
+                Toast.makeText(getApplicationContext(),"id"+id+"idS"+idCarretera+"M"+modulo,Toast.LENGTH_SHORT).show();
+                String[] parametros={idS};
+                String carreteraId;
+                carreteraId = ("" + id);
+                values.put(Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO,carreteraId);
+                dbSF.update(Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO,values,Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+"=?",parametros);
+            }
+            id = id + 1;
+
+        }
+
+        dbSF.close();
+    }
+
+    private void cargarSegmentosRigi() {
+        SQLiteDatabase db=baseDatos.getReadableDatabase();
+
+        SegmentoRigi segmento=null;
+        listaSegmentosR= new ArrayList<SegmentoRigi>();
+        //select * from carretera
+        Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.SEGMENTORIGI.TABLA_SEGMENTO,null);
+        while(cursor.moveToNext()){
+            segmento = new SegmentoRigi();
+            segmento.setId_segmento(cursor.getInt(0));
+            segmento.setNombre_carretera(cursor.getString(1));
+            segmento.setnCalzadas(cursor.getString(2));
+            segmento.setnCarriles(cursor.getString(3));
+            segmento.setEspesorLosa(cursor.getString(4));
+            segmento.setAnchoBerma(cursor.getString(5));
+            segmento.setPri(cursor.getString(6));
+            segmento.setPrf(cursor.getString(7));
+            segmento.setComentarios(cursor.getString(8));
+
+            listaSegmentosR.add(segmento);
+        }
+        editarIdSegmentoRigi();
+        obtenerLista();
+    }
+
+    private void editarIdSegmentoRigi() {
+        SQLiteDatabase dbSR = baseDatos.getWritableDatabase();
+
+        int id = 1;
+        for (int i = 0; i < listaSegmentosR.size(); i++) {
+
+            double idCarretera = listaSegmentosR.get(i).getId_segmento();
+            double modulo = idCarretera / id;
+            String idS = new String("" + idCarretera);
+            if (modulo != 1) {
+                ContentValues values = new ContentValues();
+                Toast.makeText(getApplicationContext(), "id" + id + "idS" + idCarretera + "M" + modulo, Toast.LENGTH_SHORT).show();
+                String[] parametros = {idS};
+                String carreteraId;
+                carreteraId = ("" + id);
+                values.put(Utilidades.SEGMENTORIGI.CAMPO_ID_SEGMENTO, carreteraId);
+                dbSR.update(Utilidades.SEGMENTORIGI.TABLA_SEGMENTO, values, Utilidades.SEGMENTORIGI.CAMPO_ID_SEGMENTO + "=?", parametros);
+            }
+            id = id + 1;
+
+        }
+
+        dbSR.close();
     }
 
 

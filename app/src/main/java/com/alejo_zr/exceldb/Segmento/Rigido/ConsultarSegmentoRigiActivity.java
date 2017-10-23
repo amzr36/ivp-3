@@ -1,5 +1,6 @@
 package com.alejo_zr.exceldb.Segmento.Rigido;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
 import com.alejo_zr.exceldb.R;
@@ -103,8 +105,6 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
 
     }
 
-
-
     private void consultarListaSegmentos() {
 
         SQLiteDatabase db=baseDatos.getReadableDatabase();
@@ -127,7 +127,7 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
 
             listaSegmentos.add(segmento);
         }
-
+        editarIdSegmento();
         obtenerLista();
     }
 
@@ -144,6 +144,32 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    private void editarIdSegmento() {
+
+        SQLiteDatabase dbSR = baseDatos.getWritableDatabase();
+
+        int id = 1;
+        for (int i = 0; i < listaSegmentos.size(); i++) {
+
+            double idCarretera = listaSegmentos.get(i).getId_segmento();
+            double modulo = idCarretera / id;
+            String idS = new String("" + idCarretera);
+            if (modulo != 1) {
+                ContentValues values = new ContentValues();
+                Toast.makeText(getApplicationContext(), "id" + id + "idS" + idCarretera + "M" + modulo, Toast.LENGTH_SHORT).show();
+                String[] parametros = {idS};
+                String carreteraId;
+                carreteraId = ("" + id);
+                values.put(Utilidades.SEGMENTORIGI.CAMPO_ID_SEGMENTO, carreteraId);
+                dbSR.update(Utilidades.SEGMENTORIGI.TABLA_SEGMENTO, values, Utilidades.SEGMENTORIGI.CAMPO_ID_SEGMENTO + "=?", parametros);
+            }
+            id = id + 1;
+
+        }
+
+        dbSR.close();
     }
 
     public void onClick(View view) {

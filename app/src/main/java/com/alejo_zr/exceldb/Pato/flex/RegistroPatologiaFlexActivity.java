@@ -406,6 +406,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
     }
 
     private void tomarFotografia() {
+
         File fileImagen=new File(Environment.getExternalStorageDirectory(),RUTA_IMAGEN);
         boolean isCreada=fileImagen.exists();
         String nombreImagen="";

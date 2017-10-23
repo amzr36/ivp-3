@@ -135,9 +135,24 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
 
     }
 
+
+    private void obtenerLista() {
+
+        listaInformacionSegmentos = new ArrayList<String>();
+        listaIdSegmentos = new ArrayList<Integer>();
+
+        for (int i=0; i<listaSegmentos.size();i++){
+            boolean nomCarretera = tvnomCarretera_consultar_segmentoFlex.getText().toString().equals(listaSegmentos.get(i).getNombre_carretera());
+            if(nomCarretera==true){
+                listaInformacionSegmentos.add("Carretera: "+listaSegmentos.get(i).getNombre_carretera()+" - PRI: "+listaSegmentos.get(i).getPri());
+                listaIdSegmentos.add(listaSegmentos.get(i).getId_segmento()-1);
+            }
+        }
+    }
+
     private void editarIdSegmento() {
 
-        SQLiteDatabase dbC = baseDatos.getWritableDatabase();
+        SQLiteDatabase dbS = baseDatos.getWritableDatabase();
 
         int id=1;
         for (int i=0; i<listaSegmentos.size();i++) {
@@ -152,27 +167,13 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
                 String carreteraId;
                 carreteraId = ("" + id);
                 values.put(Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO,carreteraId);
-                dbC.update(Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO,values,Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+"=?",parametros);
+                dbS.update(Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO,values,Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+"=?",parametros);
             }
             id = id + 1;
 
         }
 
-        dbC.close();
-    }
-
-    private void obtenerLista() {
-
-        listaInformacionSegmentos = new ArrayList<String>();
-        listaIdSegmentos = new ArrayList<Integer>();
-
-        for (int i=0; i<listaSegmentos.size();i++){
-            boolean nomCarretera = tvnomCarretera_consultar_segmentoFlex.getText().toString().equals(listaSegmentos.get(i).getNombre_carretera());
-            if(nomCarretera==true){
-                listaInformacionSegmentos.add("Carretera: "+listaSegmentos.get(i).getNombre_carretera()+" - PRI: "+listaSegmentos.get(i).getPri());
-                listaIdSegmentos.add(listaSegmentos.get(i).getId_segmento()-1);
-            }
-        }
+        dbS.close();
     }
 
     public void onClick(View view) {

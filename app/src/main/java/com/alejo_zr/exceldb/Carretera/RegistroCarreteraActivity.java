@@ -35,7 +35,6 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
         campoNombre = (EditText) findViewById(R.id.campoNombre);
         campoCodigo = (EditText) findViewById(R.id.campoCodigo);
         campoTerrito = (EditText) findViewById(R.id.campoTerritorial);
-        //campoAdmon = (EditText) findViewById(R.id.campoAdmon);
         campoLevantado = (EditText) findViewById(R.id.campoLevantado);
 
         inputLayoutNombre= (TextInputLayout) findViewById(R.id.input_layout_nombre);

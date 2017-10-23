@@ -23,7 +23,7 @@ import jxl.write.WritableWorkbook;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private final String CARPETA_RAIZ="InventarioVial/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
         final Cursor cursor3 = baseDatos.getPatoFlex();
 
         File sd = Environment.getExternalStorageDirectory();
-        String csvFile = "prueba3.xls";
+        String csvFile = "IVP.xls";
 
-        File directory = new File(sd.getAbsolutePath());
+        File directory = new File(sd.getAbsolutePath(),CARPETA_RAIZ);
         //create directory if not exist
         if (!directory.isDirectory()) {
             directory.mkdirs();
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         try {
 
             //file path
-            File file = new File(directory, csvFile);
+            File file = new File(directory,csvFile);
             WorkbookSettings wbSettings = new WorkbookSettings();
             wbSettings.setLocale(new Locale("en", "EN"));
             WritableWorkbook workbook;
@@ -307,8 +307,9 @@ public class MainActivity extends AppCompatActivity {
             cursor3.close();
             workbook.write();
             workbook.close();
-            //Toast.makeText(getApplicationContext(),"ANTES TOAST EXCEL",Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplication(), "Data Exported in a Excel Sheet", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(getApplication(), "Se exporto los datos a IVP.xls", Toast.LENGTH_SHORT).show();
+
 
         } catch (Exception e) {
             e.printStackTrace();
