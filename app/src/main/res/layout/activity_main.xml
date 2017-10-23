@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    tools:context="com.alejo_zr.exceldb.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name_complete"
+            android:textSize="@dimen/titulo"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btnRegistroCarretera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/regis"
+            android:onClick="onClick"
+            android:layout_marginTop="@dimen/marginTop"
+            />
+        <Button
+            android:id="@+id/btnConsultarCarretera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/consul"
+            android:onClick="onClick"
+            android:layout_marginTop="@dimen/marginTop"
+            />
+
+        <Button
+            android:id="@+id/btnExportar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:text="@string/exportar"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btnManual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ABRIR EL MANUAL"
+            android:onClick="onClick"/>
+
+    </LinearLayout>
+
+</ScrollView>

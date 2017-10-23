@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    tools:context="com.alejo_zr.exceldb.Pato.rigi.ConsultaPatologiaRigiActivity">
+
+    <TextView
+        android:id="@+id/tvnomCarretera_consultar_patoRigi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nombre"
+        android:textSize="@dimen/titulo"/>
+    <LinearLayout
+        android:id="@+id/llsegRigi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/tvnomCarretera_consultar_patoRigi">
+        <TextView
+            android:id="@+id/tvIdSegmento_consultarRigi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_below="@+id/tvnomCarretera_consultar_patoFlex"
+            android:text="@string/segmento"
+            android:textSize="@dimen/subTitulo"/>
+        <TextView
+            android:id="@+id/tvIdSegmento_consultar_patoRigi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/id"
+            android:textSize="@dimen/subTitulo"
+            />
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/listViewPatologiaRigi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llsegRigi"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floabtnAddPatoRigi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/add"
+        android:onClick="onClick"
+        />
+
+</RelativeLayout>

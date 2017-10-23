@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.alejo_zr.exceldb.Pato.flex.RegistroPatologiaFlexEjemploActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ejemplo Registro Daño en Pavimento Flexible"
+            android:textSize="@dimen/titulo"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/marginTopTV">
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHighlight="@color/colorAccent">
+                <EditText
+                    android:id="@+id/campoAbscisaFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="K0+120"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/coordenadas"
+                android:textStyle="italic"
+                android:textSize="15dp"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHighlight="@color/colorAccent">
+
+                <EditText
+                    android:id="@+id/campoLatitudPatoFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Se Botienen mediante"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHighlight="@color/colorAccent">
+
+                <EditText
+                    android:id="@+id/campolongitudPatoFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="el GPS o se diligencian"
+                    />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHighlight="@color/colorAccent">
+
+                <EditText
+                    android:id="@+id/campoCarrilPatoFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dependiendo de la configuraciion de calzadas y carriles,
+                     se pone la ubicación dondes se encuentra el daño "/>
+
+
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/patologia"
+            android:textSize="@dimen/subTitulo"
+            android:textStyle="bold"/>
+
+        <EditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Piel de Cocodrilo"
+            />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHighlight="@color/colorAccent">
+            <EditText
+                android:id="@+id/campoDanioPatoFlex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PC"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHighlight="@color/colorAccent">
+
+            <EditText
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Media" />
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <TextView
+            android:id="@+id/tvDimenDanio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/danio"
+            android:textSize="@dimen/subTitulo"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHighlight="@color/colorAccent">
+                <EditText
+                    android:id="@+id/campoLargoDanioFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1,2"/>
+
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHighlight="@color/colorAccent">
+
+                <EditText
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0,95"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+
+        </LinearLayout>
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reparacion"
+            android:textSize="@dimen/subTitulo"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHighlight="@color/colorAccent">
+
+                <EditText
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Conforme lo indica el manual, este campo se puede diligenciar, agrupando las dimensiones de varios daños, en los cuales se puedan considerar para realizar una sola reparación"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHighlight="@color/colorAccent">
+                <EditText
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Conforme lo indica el manual, este campo se puede diligenciar, agrupando las dimensiones de varios daños, en los cuales se puedan considerar para realizar una sola reparación"/>
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHighlight="@color/colorAccent">
+
+            <EditText
+                android:id="@+id/campoAclaracionesFlex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="En caso de ser necesario especificar el tipo de daño, o porque se debe este, se debe escribir en este campo" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/tvidfo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="ID FOTO"
+            android:textStyle="bold"/>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_campoidFotoFlex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHighlight="@color/colorAccent">
+            <TextView
+                android:id="@+id/tv_idFotoFlex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Id de la foto tomada"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
+
+        <ImageButton
+            android:id="@+id/btnDanio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/photo"
+            android:onClick="onClick"
+            />
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/img_base"
+            android:id="@+id/imagemId"
+            android:layout_marginTop="@dimen/marginTopTV"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:id="@+id/btnRegistroPatologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:text="@string/registroPato"
+            />
+
+
+    </LinearLayout>
+
+</ScrollView>

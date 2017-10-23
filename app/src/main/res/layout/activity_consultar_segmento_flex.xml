@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    tools:context="com.alejo_zr.exceldb.Segmento.Flexible.ConsultarSegmentoFlexActivity">
+
+    <TextView
+        android:id="@+id/idCarreteraSegFlexConsulta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/id"/>
+
+
+    <TextView
+        android:id="@+id/tvnomCarretera_consultar_segmentoFlex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nombre"
+        android:textSize="@dimen/titulo"
+        android:layout_centerHorizontal="true"/>
+
+
+    <ListView
+        android:id="@+id/listViewSegmentoFlex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvnomCarretera_consultar_segmentoFlex"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floabtnAddSegFlex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/add"
+        android:onClick="onClick"
+        />
+
+</RelativeLayout>

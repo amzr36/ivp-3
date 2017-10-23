@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">20dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="corner_radius_cardview">4dp</dimen>
+    <dimen name="titulo">35dp</dimen>
+    <dimen name="subTitulo">20dp</dimen>
+    <dimen name="marginTop">30dp</dimen>
+    <dimen name="margenBoton">20dp</dimen>
+    <dimen name="boton">160dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="marginLeftTV">25dp</dimen>
+    <dimen name="marginTopTV">15dp</dimen>
+    <dimen name="marginTopBtn">45dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="explicacion">16dp</dimen>
+</resources>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/cvCarretera"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/corner_radius_cardview"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/idImagen"
+        android:layout_marginTop="11dp"
+        android:layout_gravity="top"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margenBoton">
+
+        <LinearLayout
+            android:id="@+id/llCVNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvCVId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="@string/id"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/tvCVNomCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/nombre"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llCV1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/llCVNombre">
+
+            <TextView
+                android:id="@+id/tvCVCod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/codigo"/>
+
+            <TextView
+                android:id="@+id/tvCVTerrito"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/territorial"/>
+
+            <TextView
+                android:id="@+id/tvCVAdmon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/admon"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvCVLevan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/levantado"
+            android:layout_below="@id/llCV1"/>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/idImagen"
+        android:layout_marginTop="11dp"
+        android:layout_gravity="bottom"/>
+
+
+</android.support.v7.widget.CardView>

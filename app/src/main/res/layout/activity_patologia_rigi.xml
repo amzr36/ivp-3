@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    tools:context="com.alejo_zr.exceldb.Pato.rigi.PatologiaRigiActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvNombreCarreteraPatologiaRigiActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre"
+            android:textSize="@dimen/titulo"
+            android:textStyle="bold|italic"
+            />
+        <TextView
+            android:id="@+id/tvIdsegpatoRigiAct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/segmento"
+            android:textSize="@dimen/subTitulo"
+            android:textStyle="bold|italic"
+            android:layout_below="@+id/tvNombreCarreteraPatologiaRigiActivity"/>
+        <TextView
+            android:id="@+id/tvIdSegmentoPatologiaRigiActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id"
+            android:textSize="@dimen/subTitulo"
+            android:textStyle="italic"
+            android:layout_marginLeft="@dimen/marginLeftTV"
+            android:layout_toRightOf="@+id/tvIdsegpatoRigiAct"
+            android:layout_alignBottom="@+id/tvIdsegpatoRigiAct"
+            />
+
+        <TextView
+            android:id="@+id/tv_id_danio_pato_Rigi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/danio_activity"
+            android:textStyle="bold|italic"
+            android:textSize="@dimen/subTitulo"
+            android:layout_marginLeft="@dimen/marginLeftTV"
+            android:layout_toRightOf="@+id/tvIdSegmentoPatologiaRigiActivity"
+            android:layout_alignBottom="@+id/tvIdsegpatoRigiAct"/>
+
+        <TextView
+            android:id="@+id/tvIdDañoPatoRigi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id"
+            android:textSize="@dimen/subTitulo"
+            android:textStyle="italic"
+            android:layout_marginLeft="@dimen/marginLeftTV"
+            android:layout_toRightOf="@+id/tv_id_danio_pato_Rigi"
+            android:layout_alignBottom="@+id/tvIdsegpatoRigiAct"/>
+
+        <ImageButton
+            android:id="@+id/btnEditarPatologiaRigi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit"
+            android:layout_alignParentRight="true"/>
+
+        <LinearLayout
+            android:id="@+id/llabsRigi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvIdSegmentoPatologiaRigiActivity">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/abscisa"
+                android:textSize="@dimen/subTitulo"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvAbscisaPatoRigiActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/vacio"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llLatRigi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llabsRigi"
+            android:layout_marginTop="@dimen/marginTopTV">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/latitud"
+                    android:textSize="@dimen/subTitulo"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvLatPatoRigiActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/vacio"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/longitud"
+                    android:textSize="@dimen/subTitulo"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvLongRigiActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/vacio"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/No_placa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_placa"
+            android:textSize="@dimen/subTitulo"
+            android:textStyle="bold"
+            android:layout_below="@id/llLatRigi"/>
+
+        <LinearLayout
+            android:id="@+id/llCariilRigi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/No_placa">
+            <TextView
+                android:id="@+id/numero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="numero"
+                android:layout_weight="1
+"
+                />
+
+                <TextView
+                    android:id="@+id/tvnumero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/vacio"
+                    android:layout_weight="1"                    />
+
+                <TextView
+                    android:id="@+id/letra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="letra"
+                    android:layout_weight="1
+"
+                    />
+                <TextView
+                    android:id="@+id/tvletra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/vacio"
+                    android:layout_weight="1"                    />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/dimensionlosa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/losa_dimen"
+            android:textSize="@dimen/subTitulo"
+            android:textStyle="bold"
+            android:layout_below="@id/llCariilRigi"/>
+
+        <LinearLayout
+            android:id="@+id/lldanionombreRigi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/dimensionlosa"
+            android:layout_marginTop="@dimen/marginTopTV"
+            >
+
+            <TextView
+                android:id="@+id/tvLarLosa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/largo"/>
+
+            <TextView
+                android:id="@+id/tvLargoLosa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/vacio" />
+
+            <TextView
+                android:id="@+id/tvanclosa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/anchoD" />
+
+            <TextView
+                android:id="@+id/tvancholosa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/vacio"/>
+
+            </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/llPatoRigiActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/lldanionombreRigi">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvnombredanioRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/patologia"
+                    android:textSize="@dimen/subTitulo"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/lldanionombreRigi"
+                    />
+
+                <TextView
+                    android:id="@+id/tvdanionombrePatoRigiActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/vacio"
+                    android:layout_below="@+id/tvnombredanioRigi"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/severidad"
+                    android:textSize="@dimen/subTitulo"
+
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/tvSeveridadPatoRigiActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="vacio"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvDanioDimensionesRigi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/danio"
+            android:textSize="@dimen/subTitulo"
+            android:textStyle="bold"
+            android:layout_below="@+id/llPatoRigiActivity"
+             />
+        <LinearLayout
+            android:id="@+id/lldimendanioRigi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/tvDanioDimensionesRigi">
+
+            <TextView
+                android:id="@+id/tvlargodanioRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/largo" />
+
+            <TextView
+                android:id="@+id/tvlarDanioPatoRigiActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/vacio"
+                />
+
+            <TextView
+                android:id="@+id/tvanchodanioRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/anchoD" />
+
+            <TextView
+                android:id="@+id/tvanchDanioPatoRigiActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/vacio"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvRepacionRigi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reparacion"
+            android:textSize="@dimen/subTitulo"
+            android:textStyle="bold"
+            android:layout_below="@id/lldimendanioRigi"
+            android:layout_marginTop="@dimen/marginTopTV"/>
+
+        <LinearLayout
+            android:id="@+id/lldimenrepaRigi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/tvRepacionRigi">
+            <TextView
+                android:id="@+id/tvlargorepaRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/largo"/>
+            <TextView
+                android:id="@+id/tvlarRepaPatoRigiActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/vacio"
+                />
+            <TextView
+                android:id="@+id/tvanchrepaRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/anchoD"
+                />
+            <TextView
+                android:id="@+id/tvanchoRepaPatoRigiActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/vacio"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/aclaraciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/aclaraciones"
+            android:textSize="@dimen/subTitulo"
+            android:textStyle="bold"
+            android:layout_below="@+id/lldimenrepaRigi"
+            android:layout_marginTop="@dimen/marginTopTV"/>
+        <TextView
+            android:id="@+id/tvAclaracionesPatoRigiActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vacio"
+            android:layout_below="@id/aclaraciones"/>
+
+        <TextView
+            android:id="@+id/tvDireccionPatoRigi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvAclaracionesPatoRigiActivity"
+            android:text="@string/nombre"
+            android:visibility="visible"/>
+        <TextView
+            android:id="@+id/tvNoombreFoto_patoRigiActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDireccionPatoRigi"
+            android:text="@string/nombre"/>
+
+        <ImageView
+            android:id="@+id/imgDanio_PatoRigi"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/img_base"
+            android:layout_below="@+id/tvDireccionPatoRigi"
+            />
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

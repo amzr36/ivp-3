@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    tools:context="com.alejo_zr.exceldb.Segmento.Flexible.RegistroSegmentoFlexActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llRegistroSegmentoFlex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTipoPavFlex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pavFlex"
+                android:textSize="@dimen/titulo"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/tvNombre_Carretera_SegmentoFlex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre"
+                android:textSize="@dimen/subTitulo"
+                android:textStyle="bold|italic"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/ej_Segmento_Flex"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/ejemplo"
+                android:textColor="@color/colorAccent"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/marginLeftTV"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:id="@+id/tvNumeroFlex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/numero"
+                android:textSize="@dimen/subTitulo"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/marginTop"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_camponCalzadasFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+                    <EditText
+                        android:id="@+id/campoNCalzadasFlex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nCalzadas"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoNCarrilesFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+                    <EditText
+                        android:id="@+id/campoNCarrilesFlex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nCarriles"/>
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvAnchoFlex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ancho"
+                android:textSize="@dimen/subTitulo"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoAnchoCarrilFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+                    <EditText
+                        android:id="@+id/campoAnchoCarrilFlex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/anchoCarril"/>
+                </android.support.design.widget.TextInputLayout>
+
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoAnchoBermaFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+                    <EditText
+                        android:id="@+id/campoAnchoBermaFlex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/anchoBerma"/>
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/puntoReferencia"
+                android:textSize="@dimen/subTitulo"
+                android:textStyle="bold"/>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoPRIFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+                    <EditText
+                        android:id="@+id/campoPRIFlex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/pri"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoPRFFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+                    <EditText
+                        android:id="@+id/campoPRFFlex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prf"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_campoComentariosFlex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHighlight="@color/colorAccent">
+                <EditText
+                    android:id="@+id/campoComentariosFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/comentarios"/>
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/fecha"
+                android:onClick="onClick" />
+
+            <EditText
+                android:id="@+id/campoFechaSegmentoFlexRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/fecha"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnRegistroSegmentoFlex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:text="@string/regisSeg"
+            android:layout_below="@+id/llRegistroSegmentoFlex"
+            android:onClick="onClick"/>
+
+    </LinearLayout>
+
+
+
+
+
+</ScrollView>
