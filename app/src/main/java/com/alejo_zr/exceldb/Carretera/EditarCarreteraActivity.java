@@ -84,7 +84,7 @@ public class EditarCarreteraActivity extends AppCompatActivity {
         while(cursor.moveToNext()){
             patoFlex = new PatoFlex();
             patoFlex.setId_patoFlex(cursor.getInt(0));
-            patoFlex.setId_segmento_patoFlex(cursor.getString(1));
+            patoFlex.setId_segmento_patoFlex(cursor.getInt(1));
             patoFlex.setNombre_carretera_patoFlex(cursor.getString(2));
             patoFlex.setAbscisa(cursor.getString(3));
             patoFlex.setLatitud(cursor.getString(4));
@@ -97,6 +97,7 @@ public class EditarCarreteraActivity extends AppCompatActivity {
             patoFlex.setAnchoRepa(cursor.getString(11));
             patoFlex.setAclaraciones(cursor.getString(12));
             patoFlex.setFoto(cursor.getString(13));
+            patoFlex.setIs(cursor.getString(14));
 
             listaPatologiasFlex.add(patoFlex);
 

@@ -1,6 +1,8 @@
 package com.alejo_zr.exceldb.Segmento.Flexible;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +14,7 @@ import com.alejo_zr.exceldb.Pato.flex.ConsultaPatologiaFlexActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.PatoFlex;
 import com.alejo_zr.exceldb.entidades.SegmentoFlex;
+import com.alejo_zr.exceldb.utilidades.Utilidades;
 
 import java.util.ArrayList;
 
@@ -23,6 +26,7 @@ public class SegmentoFlexActivity extends AppCompatActivity {
     private ArrayList<PatoFlex> listaPatologiasFlex;
     private ArrayList<Integer> listaIdPatoFlex;
     private BaseDatos baseDatos;
+    private String campoIS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +63,19 @@ public class SegmentoFlexActivity extends AppCompatActivity {
         }
 
 
+        agregarIS();
     }
 
+    private void agregarIS() {
+        SQLiteDatabase db = baseDatos.getWritableDatabase();
+        String[] parametros={tv_id_segmento.getText().toString()};
+        campoIS=new String(tv_nombre_carretera_segmento.getText().toString()+tv_id_segmento.getText().toString());
+
+        ContentValues values = new ContentValues();
+        values.put(Utilidades.SEGMENTOFLEX.CAMPO_IS , campoIS);
+        db.update(Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO,values,Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+"=?",parametros);
+        db.close();
+    }
 
 
     public void onClick(View view) {
@@ -73,6 +88,7 @@ public class SegmentoFlexActivity extends AppCompatActivity {
                 intent = new Intent(SegmentoFlexActivity.this, ConsultaPatologiaFlexActivity.class);
                 intent.putExtra("tv_id_segmento",tv_id_segmento.getText().toString());
                 intent.putExtra("tv_nombre_carretera_segmento",tv_nombre_carretera_segmento.getText().toString());
+                intent.putExtra("campoIS",campoIS);
                 startActivity(intent);
                 break;
 

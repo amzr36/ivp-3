@@ -18,9 +18,10 @@ public class SegmentoRigi implements Serializable {
     private String prf;
     private String comentarios;
     private String fecha;
+    private String is;
 
-    public SegmentoRigi(Integer id_segmento, String nombre_carretera, String nCalzadas, String nCarriles, String anchoBerma,
-                        String espesorLosa, String pri, String prf, String comentarios, String fecha) {
+    public SegmentoRigi(Integer id_segmento, String nombre_carretera, String nCalzadas, String nCarriles, String anchoBerma, String espesorLosa, String pri,
+                        String prf, String comentarios, String fecha, String is) {
         this.id_segmento = id_segmento;
         this.nombre_carretera = nombre_carretera;
         this.nCalzadas = nCalzadas;
@@ -31,6 +32,7 @@ public class SegmentoRigi implements Serializable {
         this.prf = prf;
         this.comentarios = comentarios;
         this.fecha = fecha;
+        this.is = is;
     }
 
     public SegmentoRigi() {
@@ -115,5 +117,13 @@ public class SegmentoRigi implements Serializable {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getIs() {
+        return is;
+    }
+
+    public void setIs(String is) {
+        this.is = is;
     }
 }

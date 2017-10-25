@@ -104,7 +104,6 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
 
         SQLiteDatabase db=baseDatos.getWritableDatabase();
 
-
         String insert="INSERT INTO "+Utilidades.CARRETERA.TABLA_CARRETERA
                 +" ( " +Utilidades.CARRETERA.CAMPO_NOMBRE_CARRETERA+","+Utilidades.CARRETERA.CAMPO_CODIGO_CARRETERA+","+Utilidades.CARRETERA.CAMPO_TERRITO_CARRETERA+","
                 +Utilidades.CARRETERA.CAMPO_ADMON_CARRETERA+","+Utilidades.CARRETERA.CAMPO_LEVANTADO_CARRETERA+")" +

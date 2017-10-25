@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.alejo_zr.exceldb.BaseDatos;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.Carretera;
+import com.alejo_zr.exceldb.entidades.PatoFlex;
+import com.alejo_zr.exceldb.entidades.PatoRigi;
 import com.alejo_zr.exceldb.entidades.SegmentoFlex;
 import com.alejo_zr.exceldb.entidades.SegmentoRigi;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
@@ -28,6 +30,8 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
     private ArrayList<Carretera> listaCarreteras;
     private ArrayList<SegmentoFlex> listaSegmentosF;
     private ArrayList<SegmentoRigi> listaSegmentosR;
+    private ArrayList<PatoFlex> listaPatologiasFlex;
+    private ArrayList<PatoRigi> listaPatologiasRigi;
 
 
     BaseDatos baseDatos;
@@ -134,6 +138,8 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
         editarIdCarreteras();
         cargarSegmentosFlex();
         cargarSegmentosRigi();
+        cargarPatoFlex();
+        cargarPatoRigi();
     }
 
     private void editarIdCarreteras() {
@@ -148,12 +154,9 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             String idS = new String("" + idCarretera);
             if (modulo != 1) {
                 ContentValues values = new ContentValues();
-
                 String[] parametros={idS};
-
                 String carreteraId;
                 carreteraId = ("" + id);
-
                 values.put(Utilidades.CARRETERA.CAMPO_ID_CARRETERA,carreteraId);
 
                 dbC.update(Utilidades.CARRETERA.TABLA_CARRETERA,values,Utilidades.CARRETERA.CAMPO_ID_CARRETERA+"=?",parametros);
@@ -188,6 +191,7 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             segmento.setPrf(cursor.getString(7));
             segmento.setComentarios(cursor.getString(8));
             segmento.setFecha(cursor.getString(9));
+            segmento.setIs(cursor.getString(10));
 
             listaSegmentosF.add(segmento);
         }
@@ -205,7 +209,6 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             String idS = new String("" + idCarretera);
             if (modulo != 1) {
                 ContentValues values = new ContentValues();
-                Toast.makeText(getApplicationContext(),"id"+id+"idS"+idCarretera+"M"+modulo,Toast.LENGTH_SHORT).show();
                 String[] parametros={idS};
                 String carreteraId;
                 carreteraId = ("" + id);
@@ -215,6 +218,7 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             id = id + 1;
 
         }
+
 
         dbSF.close();
     }
@@ -241,7 +245,6 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             listaSegmentosR.add(segmento);
         }
         editarIdSegmentoRigi();
-        obtenerLista();
     }
 
     private void editarIdSegmentoRigi() {
@@ -255,7 +258,6 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             String idS = new String("" + idCarretera);
             if (modulo != 1) {
                 ContentValues values = new ContentValues();
-                Toast.makeText(getApplicationContext(), "id" + id + "idS" + idCarretera + "M" + modulo, Toast.LENGTH_SHORT).show();
                 String[] parametros = {idS};
                 String carreteraId;
                 carreteraId = ("" + id);
@@ -267,6 +269,139 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
         }
 
         dbSR.close();
+    }
+
+    private void cargarPatoFlex() {
+
+        SQLiteDatabase db=baseDatos.getReadableDatabase();
+
+        PatoFlex patoFlex=null;
+        listaPatologiasFlex= new ArrayList<PatoFlex>();
+        //select * from carretera
+        Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.PATOLOGIAFLEX.TABLA_PATOLOGIA,null);
+
+        while(cursor.moveToNext()){
+            patoFlex = new PatoFlex();
+            patoFlex.setId_patoFlex(cursor.getInt(0));
+            patoFlex.setId_segmento_patoFlex(cursor.getInt(1));
+            patoFlex.setNombre_carretera_patoFlex(cursor.getString(2));
+            patoFlex.setAbscisa(cursor.getString(3));
+            patoFlex.setLatitud(cursor.getString(4));
+            patoFlex.setLongitud(cursor.getString(5));
+            patoFlex.setDanio(cursor.getString(6));
+            patoFlex.setCarril(cursor.getString(7));
+            patoFlex.setSeveridad(cursor.getString(8));
+            patoFlex.setLargoDanio(cursor.getString(9));
+            patoFlex.setAnchoDanio(cursor.getString(10));
+            patoFlex.setLargoRepa(cursor.getString(11));
+            patoFlex.setAnchoRepa(cursor.getString(12));
+            patoFlex.setAclaraciones(cursor.getString(13));
+            patoFlex.setNombreFoto(cursor.getString(14));
+            patoFlex.setFoto(cursor.getString(15));
+            patoFlex.setIs(cursor.getString(16));
+
+            listaPatologiasFlex.add(patoFlex);
+        }
+        editarIdPatoFlex();
+    }
+
+    private void editarIdPatoFlex() {
+
+        SQLiteDatabase dbPF = baseDatos.getWritableDatabase();
+        Toast.makeText(getApplicationContext(),"editarPatoFlex",Toast.LENGTH_SHORT).show();
+        int id = 1;
+        for (int i = 0; i < listaPatologiasFlex.size(); i++) {
+
+            double idSegFlex = listaPatologiasFlex.get(i).getId_patoFlex();
+            double modulo = idSegFlex / id;
+            String idS = new String("" + idSegFlex);
+            String iS= new String(""+listaPatologiasFlex.get(i).getIs());
+            Toast.makeText(getApplicationContext(),listaPatologiasFlex.get(i).getIs(),Toast.LENGTH_SHORT).show();
+            for(int l =0;l<listaSegmentosF.size();l++)
+            {
+                boolean isegmento = iS.equals(listaSegmentosF.get(l).getIs());
+                String idSegmento = new String(""+listaSegmentosF.get(l).getId_segmento());
+                Toast.makeText(getApplicationContext(),"iS"+iS,Toast.LENGTH_SHORT).show();
+                if(isegmento==true){
+                    Toast.makeText(getApplicationContext(),"entra IF",Toast.LENGTH_SHORT).show();
+                    if (modulo != 1) {
+                        Toast.makeText(getApplicationContext(),"Edita PATOFLEX",Toast.LENGTH_SHORT).show();
+                        ContentValues values = new ContentValues();
+                        String[] parametros = {idS};
+                        String patoflexId = (""+id);
+                        values.put(Utilidades.PATOLOGIAFLEX.CAMPO_ID_PATOLOGIA, patoflexId);
+                        values.put(Utilidades.PATOLOGIAFLEX.CAMPO_ID_SEGMENTO_PATOLOGIA,idSegmento);
+                        dbPF.update(Utilidades.PATOLOGIAFLEX.TABLA_PATOLOGIA, values, Utilidades.PATOLOGIAFLEX.CAMPO_ID_PATOLOGIA + "=?", parametros);
+                    }
+                }
+            }
+
+            id = id + 1;
+
+        }
+
+        dbPF.close();
+    }
+
+    private void cargarPatoRigi() {
+        SQLiteDatabase db=baseDatos.getReadableDatabase();
+
+        PatoRigi patoRigi=null;
+        listaPatologiasRigi= new ArrayList<PatoRigi>();
+        //select * from carretera
+        Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA,null);
+
+        while(cursor.moveToNext()){
+            patoRigi = new PatoRigi();
+            patoRigi.setId_patoRigi(cursor.getInt(0));
+            patoRigi.setId_segmento_patoRigi(cursor.getString(1));
+            patoRigi.setNombre_carretera_patoRigi(cursor.getString(2));
+            patoRigi.setAbscisa(cursor.getString(3));
+            patoRigi.setLatitud(cursor.getString(4));
+            patoRigi.setLongitud(cursor.getString(5));
+            patoRigi.setNo_placa(cursor.getString(6));
+            patoRigi.setLetra(cursor.getString(7));
+            patoRigi.setLargoLoza(cursor.getString(8));
+            patoRigi.setAnchoLoza(cursor.getString(9));
+            patoRigi.setDanio(cursor.getString(10));
+            patoRigi.setSeveridad(cursor.getString(11));
+            patoRigi.setLargoDanio(cursor.getString(12));
+            patoRigi.setAnchoDanio(cursor.getString(13));
+            patoRigi.setLargoRepa(cursor.getString(14));
+            patoRigi.setAnchoRepa(cursor.getString(15));
+            patoRigi.setAclaraciones(cursor.getString(16));
+            patoRigi.setNombreFoto(cursor.getString(17));
+            patoRigi.setFoto(cursor.getString(18));
+            patoRigi.setIs(cursor.getString(19));
+
+            listaPatologiasRigi.add(patoRigi);
+
+        }
+        editarIdPatoRigi();
+    }
+
+    private void editarIdPatoRigi() {
+
+        SQLiteDatabase dbPR = baseDatos.getWritableDatabase();
+
+        int id = 1;
+        for (int i = 0; i < listaPatologiasRigi.size(); i++) {
+
+            double idSegFlex = listaPatologiasRigi.get(i).getId_patoRigi();
+            double modulo = idSegFlex / id;
+            String idS = new String("" + idSegFlex);
+            if (modulo != 1) {
+                ContentValues values = new ContentValues();
+                String[] parametros = {idS};
+                String patoflexId = (""+id);
+                values.put(Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA, patoflexId);
+                dbPR.update(Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA, values, Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA + "=?", parametros);
+            }
+            id = id + 1;
+
+        }
+
+        dbPR.close();
     }
 
 

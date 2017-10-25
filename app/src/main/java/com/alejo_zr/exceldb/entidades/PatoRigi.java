@@ -26,10 +26,11 @@ public class PatoRigi implements Serializable {
     private String aclaraciones;
     private String nombreFoto;
     private String foto;
+    private String is;
 
     public PatoRigi(Integer id_patoRigi, String nombre_carretera_patoRigi, String id_segmento_patoRigi, String abscisa, String latitud, String longitud,
                     String no_placa, String letra, String largoLoza, String anchoLoza, String danio, String severidad, String largoDanio, String anchoDanio,
-                    String largoRepa, String anchoRepa, String aclaraciones, String nombreFoto, String foto) {
+                    String largoRepa, String anchoRepa, String aclaraciones, String nombreFoto, String foto, String is) {
         this.id_patoRigi = id_patoRigi;
         this.nombre_carretera_patoRigi = nombre_carretera_patoRigi;
         this.id_segmento_patoRigi = id_segmento_patoRigi;
@@ -49,6 +50,7 @@ public class PatoRigi implements Serializable {
         this.aclaraciones = aclaraciones;
         this.nombreFoto = nombreFoto;
         this.foto = foto;
+        this.is = is;
     }
 
     public PatoRigi() {
@@ -205,6 +207,14 @@ public class PatoRigi implements Serializable {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getIs() {
+        return is;
+    }
+
+    public void setIs(String is) {
+        this.is = is;
     }
 }
 

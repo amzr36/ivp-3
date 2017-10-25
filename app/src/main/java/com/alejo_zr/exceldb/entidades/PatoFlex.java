@@ -10,7 +10,7 @@ public class PatoFlex implements Serializable {
 
     private Integer id_patoFlex;
     private String nombre_carretera_patoFlex;
-    private String id_segmento_patoFlex;
+    private Integer id_segmento_patoFlex;
     private String abscisa;
     private String latitud;
     private String longitud;
@@ -24,9 +24,11 @@ public class PatoFlex implements Serializable {
     private String aclaraciones;
     private String nombreFoto;
     private String foto;
+    private String is;
 
-    public PatoFlex(Integer id_patoFlex, String nombre_carretera_patoFlex, String id_segmento_patoFlex, String abscisa, String latitud, String longitud, String carril,
-                    String danio, String severidad, String largoDanio, String anchoDanio, String largoRepa, String anchoRepa, String aclaraciones, String nombreFoto, String foto) {
+    public PatoFlex(Integer id_patoFlex, String nombre_carretera_patoFlex, Integer id_segmento_patoFlex, String abscisa, String latitud, String longitud,
+                    String carril, String danio, String severidad, String largoDanio, String anchoDanio, String largoRepa, String anchoRepa,
+                    String aclaraciones, String nombreFoto, String foto, String is) {
         this.id_patoFlex = id_patoFlex;
         this.nombre_carretera_patoFlex = nombre_carretera_patoFlex;
         this.id_segmento_patoFlex = id_segmento_patoFlex;
@@ -43,6 +45,7 @@ public class PatoFlex implements Serializable {
         this.aclaraciones = aclaraciones;
         this.nombreFoto = nombreFoto;
         this.foto = foto;
+        this.is = is;
     }
 
     public PatoFlex() {
@@ -65,11 +68,11 @@ public class PatoFlex implements Serializable {
         this.nombre_carretera_patoFlex = nombre_carretera_patoFlex;
     }
 
-    public String getId_segmento_patoFlex() {
+    public Integer getId_segmento_patoFlex() {
         return id_segmento_patoFlex;
     }
 
-    public void setId_segmento_patoFlex(String id_segmento_patoFlex) {
+    public void setId_segmento_patoFlex(Integer id_segmento_patoFlex) {
         this.id_segmento_patoFlex = id_segmento_patoFlex;
     }
 
@@ -175,5 +178,13 @@ public class PatoFlex implements Serializable {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getIs() {
+        return is;
+    }
+
+    public void setIs(String is) {
+        this.is = is;
     }
 }

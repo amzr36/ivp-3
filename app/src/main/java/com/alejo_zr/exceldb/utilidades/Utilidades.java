@@ -39,12 +39,13 @@ public class Utilidades {
         public static final String CAMPO_PRF_SEGMENTO = "prf";
         public static final String CAMPO_COMENTARIOS = "comentarios";
         public static final String CAMPO_FECHA="fecha";
+        public static final String CAMPO_IS="idseg";
 
 
         public static final String CREAR_TABLA_SEGMENTO = "CREATE TABLE " +
                 "" + TABLA_SEGMENTO + " (" + CAMPO_ID_SEGMENTO + " INTEGER PRIMARY KEY AUTOINCREMENT, "+ CAMPO_NOMBRE_CARRETERA_SEGMENTO + " TEXT,"+
                 CAMPO_CALZADAS_SEGMENTO +" TEXT," + CAMPO_CARRILES_SEGMENTO + " TEXT," + CAMPO_ANCHO_CARRIL + " TEXT," + CAMPO_ANCHO_BERMA +" TEXT," +
-                CAMPO_PRI_SEGMENTO + " TEXT,"+ CAMPO_PRF_SEGMENTO + " TEXT," + CAMPO_COMENTARIOS +" TEXT,"+CAMPO_FECHA +  " TEXT)";
+                CAMPO_PRI_SEGMENTO + " TEXT,"+ CAMPO_PRF_SEGMENTO + " TEXT," + CAMPO_COMENTARIOS + " TEXT,"+ CAMPO_FECHA + " TEXT,"+CAMPO_IS +" TEXT)";
     }
 
     public static abstract class SEGMENTORIGI implements BaseColumns {
@@ -59,12 +60,13 @@ public class Utilidades {
         public static final String CAMPO_PRF_SEGMENTO = "prf";
         public static final String CAMPO_COMENTARIOS = "comentarios";
         public static final String CAMPO_FECHA="fecha";
+        public static final String CAMPO_IS="idseg";
 
 
         public static final String CREAR_TABLA_SEGMENTO = "CREATE TABLE " +
                 "" + TABLA_SEGMENTO + " (" + CAMPO_ID_SEGMENTO + " INTEGER PRIMARY KEY AUTOINCREMENT, " + CAMPO_NOMBRE_CARRETERA_SEGMENTO + " TEXT,"+
                 CAMPO_CALZADAS_SEGMENTO +" TEXT," + CAMPO_CARRILES_SEGMENTO + " TEXT,"+ CAMPO_ESPESOR_LOSA+" TEXT,"  + CAMPO_ANCHO_BERMA +" TEXT," + CAMPO_PRI_SEGMENTO+" TEXT,"
-                + CAMPO_PRF_SEGMENTO + " TEXT," + CAMPO_COMENTARIOS + " TEXT,"+CAMPO_FECHA +" TEXT)";
+                + CAMPO_PRF_SEGMENTO + " TEXT," + CAMPO_COMENTARIOS + " TEXT,"+CAMPO_FECHA +" TEXT," + CAMPO_IS +" TEXT)";
 
     }
 
@@ -88,32 +90,17 @@ public class Utilidades {
         public static final String CAMPO_ACLARACIONES = "aclaraciones";
         public static final String CAMPO_NOMBRE_FOTO = "nombre_foto";
         public static final String CAMPO_FOTO_DANIO = "foto_daño";
+        public static final String CAMPO_IS="idseg";
 
 
         // Sentencia SQL para la creación de una tabla
         public static final String CREAR_TABLA_PATOLOGIA = "CREATE TABLE " + TABLA_PATOLOGIA +
-                " (" + CAMPO_ID_PATOLOGIA + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ CAMPO_ID_SEGMENTO_PATOLOGIA + " TEXT," + CAMPO_NOMBRE_CARRETERA_PATOLOGIA + " TEXT,"+ CAMPO_ABSCISA_PATOLOGIA + " TEXT,"+
+                " (" + CAMPO_ID_PATOLOGIA + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ CAMPO_ID_SEGMENTO_PATOLOGIA + " INTEGER," + CAMPO_NOMBRE_CARRETERA_PATOLOGIA + " TEXT,"+ CAMPO_ABSCISA_PATOLOGIA + " TEXT,"+
                 CAMPO_LATITUD + " TEXT,"+ CAMPO_LONGITUD+ " TEXT," + CAMPO_DANIO_PATOLOGIA + " TEXT ,"+CAMPO_CARRIL_PATOLOGIA + " TEXT ,"
                 + CAMPO_SEVERIDAD + " TEXT," +CAMPO_LARGO_PATOLOGIA + " TEXT," + CAMPO_ANCHO_PATOLOGIA + " TEXT,"+ CAMPO_LARGO_REPARACION + " TEXT," +
-                CAMPO_ANCHO_REPARACION + " TEXT," + CAMPO_ACLARACIONES + " TEXT,"+ CAMPO_NOMBRE_FOTO + " TEXT," + CAMPO_FOTO_DANIO + " TEXT)";
+                CAMPO_ANCHO_REPARACION + " TEXT," + CAMPO_ACLARACIONES + " TEXT,"+ CAMPO_NOMBRE_FOTO + " TEXT," + CAMPO_FOTO_DANIO +
+                " TEXT," + CAMPO_IS +" TEXT)";
     }
-
-
-    public static abstract class FOTOFLEX implements BaseColumns {
-        public static final String TABLA_FOTO = "fotos";
-        public static final String CAMPO_ID_FOTO = "id_foto";
-        public static final String CAMPO_NOMBRE_CARRETERA_FOTO = "nombreCarretera_foto";
-        public static final String CAMPO_ID_SEGMENTO_FOTO = "segmento_foto";
-        public static final String CAMPO_ID_PATOLOGIA_FOTO = "patologia_foto";
-
-
-        // Sentencia SQL para la creación de una tabla
-        public static final String CREAR_TABLA_FOTO = "CREATE TABLE " + TABLA_FOTO +
-                " (" + CAMPO_ID_FOTO + " INTEGER PRIMARY KEY AUTOINCREMENT, " + CAMPO_NOMBRE_CARRETERA_FOTO + " TEXT ," + CAMPO_ID_SEGMENTO_FOTO + " TEXT,"
-                + CAMPO_ID_PATOLOGIA_FOTO + " TEXT)";
-    }
-
-
     public static abstract class PATOLOGIARIGI implements BaseColumns {
 
         //Constantes tabla patologia
@@ -137,6 +124,7 @@ public class Utilidades {
         public static final String CAMPO_ACLARACIONES = "aclaraciones";
         public static final String CAMPO_NOMBRE_FOTO = "nombre_foto";
         public static final String CAMPO_FOTO_DANIO = "foto_daño";
+        public static final String CAMPO_IS="idseg";
 
 
         // Sentencia SQL para la creación de una tabla
@@ -145,7 +133,23 @@ public class Utilidades {
                 CAMPO_LATITUD + " TEXT,"+ CAMPO_LONGITUD+ " TEXT,"+CAMPO_NUMERO_LOSA + " TEXT ,"+CAMPO_LETRA_LOSA + " TEXT ,"
                 +CAMPO_LARGO_LOSA + " TEXT ,"+CAMPO_ANCHO_LOSA+ " TEXT ," + CAMPO_DANIO_PATOLOGIA + " TEXT ,"
                 + CAMPO_SEVERIDAD + " TEXT," +CAMPO_LARGO_PATOLOGIA + " TEXT," + CAMPO_ANCHO_PATOLOGIA + " TEXT,"+ CAMPO_LARGO_REPARACION + " TEXT," +
-                CAMPO_ANCHO_REPARACION + " TEXT," + CAMPO_ACLARACIONES + " TEXT,"+ CAMPO_NOMBRE_FOTO + " TEXT," + CAMPO_FOTO_DANIO + " TEXT)";
+                CAMPO_ANCHO_REPARACION + " TEXT," + CAMPO_ACLARACIONES + " TEXT,"+ CAMPO_NOMBRE_FOTO + " TEXT," + CAMPO_FOTO_DANIO +
+                " TEXT," + CAMPO_IS +" TEXT)";
+    }
+
+
+    public static abstract class FOTOFLEX implements BaseColumns {
+        public static final String TABLA_FOTO = "fotos";
+        public static final String CAMPO_ID_FOTO = "id_foto";
+        public static final String CAMPO_NOMBRE_CARRETERA_FOTO = "nombreCarretera_foto";
+        public static final String CAMPO_ID_SEGMENTO_FOTO = "segmento_foto";
+        public static final String CAMPO_ID_PATOLOGIA_FOTO = "patologia_foto";
+
+
+        // Sentencia SQL para la creación de una tabla
+        public static final String CREAR_TABLA_FOTO = "CREATE TABLE " + TABLA_FOTO +
+                " (" + CAMPO_ID_FOTO + " INTEGER PRIMARY KEY AUTOINCREMENT, " + CAMPO_NOMBRE_CARRETERA_FOTO + " TEXT ," + CAMPO_ID_SEGMENTO_FOTO + " TEXT,"
+                + CAMPO_ID_PATOLOGIA_FOTO + " TEXT)";
     }
 
 

@@ -24,6 +24,7 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
     private ArrayList<String> listaInformacionPatologiasFlex;
     private ArrayList<PatoFlex> listaPatologiasFlex;
     private ArrayList<Integer> listaIdPatoFlex;
+    private String campoIS;
 
     private BaseDatos baseDatos;
     private TextView tvnomCarretera_consultar_patoFlex,tvIdSegmento_consultar_patoflex;
@@ -41,8 +42,10 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String dato_nom = bundle.getString("tv_nombre_carretera_segmento").toString();
         String id_segmento = bundle.getString("tv_id_segmento").toString();
+        String dato_is= bundle.getString("campoIS".toString());
         tvnomCarretera_consultar_patoFlex.setText(dato_nom);
         tvIdSegmento_consultar_patoflex.setText(id_segmento);
+        campoIS = dato_is;
 
 
         consultarListaPatologias();
@@ -120,7 +123,7 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
         while(cursor.moveToNext()){
             patoFlex = new PatoFlex();
             patoFlex.setId_patoFlex(cursor.getInt(0));
-            patoFlex.setId_segmento_patoFlex(cursor.getString(1));
+            patoFlex.setId_segmento_patoFlex(cursor.getInt(1));
             patoFlex.setNombre_carretera_patoFlex(cursor.getString(2));
             patoFlex.setAbscisa(cursor.getString(3));
             patoFlex.setLatitud(cursor.getString(4));
@@ -152,9 +155,10 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
             boolean nomCarretera = tvnomCarretera_consultar_patoFlex.getText().toString().equals(listaPatologiasFlex.get(i).getNombre_carretera_patoFlex());
 
             if (nomCarretera == true) {
-                boolean idSeg = tvIdSegmento_consultar_patoflex.getText().toString().equals(listaPatologiasFlex.get(i).getId_segmento_patoFlex());
+                int idSegmento = Integer.parseInt(tvIdSegmento_consultar_patoflex.getText().toString());
+                //boolean idSeg = tvIdSegmento_consultar_patoflex.getText().toString().equals(listaPatologiasFlex.get(i).getId_segmento_patoFlex());
 
-                if (idSeg == true) {
+                if (idSegmento == listaPatologiasFlex.get(i).getId_segmento_patoFlex()) {
                     listaInformacionPatologiasFlex.add("Carretera: " + listaPatologiasFlex.get(i).getNombre_carretera_patoFlex() +"-Segmento "
                             +listaPatologiasFlex.get(i).getId_segmento_patoFlex()+ " - Daño: " + listaPatologiasFlex.get(i).getDanio()
                             +"- ABS "+ listaPatologiasFlex.get(i).getAbscisa()+"- Severidad "+listaPatologiasFlex.get(i).getSeveridad());
@@ -174,6 +178,7 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
                 intent = new Intent(ConsultaPatologiaFlexActivity.this, RegistroPatologiaFlexActivity.class);
                 intent.putExtra("id_segmento",tvIdSegmento_consultar_patoflex.getText().toString());
                 intent.putExtra("nom_carretera_segmento",tvnomCarretera_consultar_patoFlex.getText().toString());
+                intent.putExtra("campoIS",campoIS);
                 startActivity(intent);
                 break;
         }
