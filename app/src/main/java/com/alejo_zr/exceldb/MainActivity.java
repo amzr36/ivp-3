@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         final Cursor cursor1 = baseDatos.getSegmentoFlex();
         final Cursor cursor2 = baseDatos.getSegmentoRigi();
         final Cursor cursor3 = baseDatos.getPatoFlex();
+        final Cursor cursor4 = baseDatos.getPatoRigi();
 
         File sd = Environment.getExternalStorageDirectory();
         String csvFile = "IVP.xls";
@@ -143,6 +144,30 @@ public class MainActivity extends AppCompatActivity {
             sheet3.addCell(new Label(12,0,"Ancho Reparación(m)"));
             sheet3.addCell(new Label(13,0,"Aclaracion"));
             sheet3.addCell(new Label(14,0,"Foto"));
+
+
+
+            //Hoja Pato. Rigi
+            sheet4.addCell(new Label(0,0,"ID"));
+            sheet4.addCell(new Label(1,0,"ID Segmento"));
+            sheet4.addCell(new Label(2,0,"Nom Carretera"));
+            sheet4.addCell(new Label(3,0,"Abscisa"));
+            sheet4.addCell(new Label(4,0,"Latitud"));
+            sheet4.addCell(new Label(5,0,"Longitud"));
+            sheet4.addCell(new Label(6,0,"No Losa"));
+            sheet4.addCell(new Label(7,0,"Letra Losa"));
+            sheet4.addCell(new Label(8,0,"Largo Losa"));
+            sheet4.addCell(new Label(9,0,"Ancho Losa"));
+            sheet4.addCell(new Label(10,0,"Daño"));
+            sheet4.addCell(new Label(11,0,"Severidad"));
+            sheet4.addCell(new Label(12,0,"Largo Daño"));
+            sheet4.addCell(new Label(13,0,"Ancho Daño"));
+            sheet4.addCell(new Label(14,0,"Largo Reparacion"));
+            sheet4.addCell(new Label(15,0,"Ancho Reparacion"));
+            sheet4.addCell(new Label(16,0,"Aclaraciones"));
+            sheet4.addCell(new Label(17,0,"Nombre Foto"));
+
+
 
 
             if (cursor.moveToNext()) {
@@ -298,6 +323,58 @@ public class MainActivity extends AppCompatActivity {
 
                 }while(cursor3.moveToNext());
             }
+            if (cursor4.moveToNext()) {
+
+                do {
+
+                    int iPF = cursor4.getPosition();
+                    int ilPF = iPF + 1;
+
+                    String id_pato_Rigi = cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA));
+                    String id_segmento_Rigi = cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_ID_SEGMENTO_PATOLOGIA));
+                    String nom_carretera_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_NOMBRE_CARRETERA_PATOLOGIA));
+                    String abscisa_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_ABSCISA_PATOLOGIA));
+                    String latitud_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_LATITUD));
+                    String longitud_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_LONGITUD));
+                    String Nolosa_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_NUMERO_LOSA));
+                    String letralosa_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_LETRA_LOSA));
+                    String largoLosa_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_LARGO_LOSA));
+                    String ancholosa_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_LOSA));
+                    String daño_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_DANIO_PATOLOGIA));
+                    String severidad_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_SEVERIDAD));
+                    String largo_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_LARGO_PATOLOGIA));
+                    String ancho_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_PATOLOGIA));
+                    String largorepa_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_LARGO_REPARACION));
+                    String anchorepa_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_REPARACION));
+                    String aclaraciones_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_ACLARACIONES));
+                    String nombrefoto_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_NOMBRE_FOTO));
+
+
+                    sheet4.addCell(new Label(0, ilPF, id_pato_Rigi));
+                    sheet4.addCell(new Label(1, ilPF, id_segmento_Rigi));
+                    sheet4.addCell(new Label(2, ilPF, nom_carretera_Rigi));
+                    sheet4.addCell(new Label(3, ilPF, abscisa_Rigi));
+                    sheet4.addCell(new Label(4, ilPF, latitud_Rigi));
+                    sheet4.addCell(new Label(5, ilPF, longitud_Rigi));
+                    sheet4.addCell(new Label(6, ilPF, Nolosa_Rigi));
+                    sheet4.addCell(new Label(7, ilPF, letralosa_Rigi));
+                    sheet4.addCell(new Label(8, ilPF, largoLosa_Rigi));
+                    sheet4.addCell(new Label(9, ilPF, ancholosa_Rigi));
+                    sheet4.addCell(new Label(10, ilPF, daño_Rigi));
+                    sheet4.addCell(new Label(11, ilPF, severidad_Rigi));
+                    sheet4.addCell(new Label(12, ilPF, largo_Rigi));
+                    sheet4.addCell(new Label(13, ilPF, ancho_Rigi));
+                    sheet4.addCell(new Label(14, ilPF, largorepa_Rigi));
+                    sheet4.addCell(new Label(15, ilPF, anchorepa_Rigi));
+                    sheet4.addCell(new Label(16, ilPF, aclaraciones_Rigi));
+                    sheet4.addCell(new Label(17, ilPF, nombrefoto_Rigi));
+
+
+                    Toast.makeText(getApplicationContext(),"id Pato"+id_pato_Rigi,Toast.LENGTH_SHORT).show();
+
+
+                }while(cursor4.moveToNext());
+            }
 
 
             //closing cursor
@@ -305,6 +382,7 @@ public class MainActivity extends AppCompatActivity {
             cursor1.close();
             cursor2.close();
             cursor3.close();
+            cursor4.close();
             workbook.write();
             workbook.close();
 

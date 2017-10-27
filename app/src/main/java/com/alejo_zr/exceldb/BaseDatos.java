@@ -34,6 +34,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         db.execSQL(Utilidades.PATOLOGIARIGI.CREAR_TABLA_PATOLOGIA);
         db.execSQL (Utilidades.SEGMENTORIGI.CREAR_TABLA_SEGMENTO);
         db.execSQL(Utilidades.FOTOFLEX.CREAR_TABLA_FOTO);
+        db.execSQL(Utilidades.FOTORIGI.CREAR_TABLA_FOTORIGI);
 
     }
 
@@ -45,6 +46,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA);
         db.execSQL("DROP TABLE IF EXISTS " + Utilidades.SEGMENTORIGI.TABLA_SEGMENTO);
         db.execSQL("DROP TABLE IF EXISTS "+Utilidades.FOTOFLEX.TABLA_FOTO);
+        db.execSQL("DROP TABLE IF EXISTS "+Utilidades.FOTORIGI.TABLA_FOTORIGI);
         onCreate(db);
     }
 
@@ -68,6 +70,15 @@ public class BaseDatos extends SQLiteOpenHelper {
         return res;
     }
 
+
+    public Cursor getPatoRigi () {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from " + Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA + " ",
+                null);
+        return res;
+    }
+
+
     public Cursor getPatoFlex() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select * from " + Utilidades.PATOLOGIAFLEX.TABLA_PATOLOGIA + " ",
@@ -81,6 +92,13 @@ public class BaseDatos extends SQLiteOpenHelper {
                 null);
         return res;
     }
+    public Cursor getfotoRigi() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from " + Utilidades.FOTORIGI.TABLA_FOTORIGI + " ",
+                null);
+        return res;
+    }
+
 
 
 

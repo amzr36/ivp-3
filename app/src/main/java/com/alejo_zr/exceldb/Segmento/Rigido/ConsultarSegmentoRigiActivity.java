@@ -45,7 +45,6 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
         tvnomCarretera_consultar_segmentoRigi = (TextView) findViewById(R.id.tvnomCarretera_consultar_segmentoRigi);
 
         Bundle bundle = getIntent().getExtras();
-        String dato_id = bundle.getString("id_carretera").toString();
         String dato_nom = bundle.getString("nom_carretera").toString();
         tvnomCarretera_consultar_segmentoRigi.setText(dato_nom);
 
@@ -78,7 +77,6 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
         tvnomCarretera_consultar_segmentoRigi = (TextView) findViewById(R.id.tvnomCarretera_consultar_segmentoRigi);
 
         Bundle bundle = getIntent().getExtras();
-        String dato_id = bundle.getString("id_carretera").toString();
         String dato_nom = bundle.getString("nom_carretera").toString();
         tvnomCarretera_consultar_segmentoRigi.setText(dato_nom);
 
@@ -124,6 +122,8 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
             segmento.setPri(cursor.getString(6));
             segmento.setPrf(cursor.getString(7));
             segmento.setComentarios(cursor.getString(8));
+            segmento.setFecha(cursor.getString(9));
+            segmento.setIs(cursor.getString(10));
 
             listaSegmentos.add(segmento);
         }

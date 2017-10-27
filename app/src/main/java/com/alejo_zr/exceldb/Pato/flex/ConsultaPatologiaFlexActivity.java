@@ -82,8 +82,11 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String dato_nom = bundle.getString("tv_nombre_carretera_segmento").toString();
         String id_segmento = bundle.getString("tv_id_segmento").toString();
+        String dato_is= bundle.getString("campoIS".toString());
         tvnomCarretera_consultar_patoFlex.setText(dato_nom);
         tvIdSegmento_consultar_patoflex.setText(id_segmento);
+        campoIS = dato_is;
+
 
 
         consultarListaPatologias();
@@ -156,12 +159,10 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
 
             if (nomCarretera == true) {
                 int idSegmento = Integer.parseInt(tvIdSegmento_consultar_patoflex.getText().toString());
-                //boolean idSeg = tvIdSegmento_consultar_patoflex.getText().toString().equals(listaPatologiasFlex.get(i).getId_segmento_patoFlex());
 
                 if (idSegmento == listaPatologiasFlex.get(i).getId_segmento_patoFlex()) {
-                    listaInformacionPatologiasFlex.add("Carretera: " + listaPatologiasFlex.get(i).getNombre_carretera_patoFlex() +"-Segmento "
-                            +listaPatologiasFlex.get(i).getId_segmento_patoFlex()+ " - Daño: " + listaPatologiasFlex.get(i).getDanio()
-                            +"- ABS "+ listaPatologiasFlex.get(i).getAbscisa()+"- Severidad "+listaPatologiasFlex.get(i).getSeveridad());
+                    listaInformacionPatologiasFlex.add(" ABS "+ listaPatologiasFlex.get(i).getAbscisa()+" -Daño: " + listaPatologiasFlex.get(i).getDanio()
+                            +"- Severidad "+listaPatologiasFlex.get(i).getSeveridad());
                     listaIdPatoFlex.add(listaPatologiasFlex.get(i).getId_patoFlex()-1);
                 }
 

@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
 import com.alejo_zr.exceldb.R;
@@ -158,7 +157,6 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
                 String carreteraId;
                 carreteraId = ("" + id);
                 values.put(Utilidades.CARRETERA.CAMPO_ID_CARRETERA,carreteraId);
-
                 dbC.update(Utilidades.CARRETERA.TABLA_CARRETERA,values,Utilidades.CARRETERA.CAMPO_ID_CARRETERA+"=?",parametros);
             }
             id = id + 1;
@@ -218,8 +216,6 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             id = id + 1;
 
         }
-
-
         dbSF.close();
     }
 
@@ -241,6 +237,8 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             segmento.setPri(cursor.getString(6));
             segmento.setPrf(cursor.getString(7));
             segmento.setComentarios(cursor.getString(8));
+            segmento.setFecha(cursor.getString(9));
+            segmento.setIs(cursor.getString(10));
 
             listaSegmentosR.add(segmento);
         }
@@ -308,7 +306,6 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
     private void editarIdPatoFlex() {
 
         SQLiteDatabase dbPF = baseDatos.getWritableDatabase();
-        Toast.makeText(getApplicationContext(),"editarPatoFlex",Toast.LENGTH_SHORT).show();
         int id = 1;
         for (int i = 0; i < listaPatologiasFlex.size(); i++) {
 
@@ -316,16 +313,12 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             double modulo = idSegFlex / id;
             String idS = new String("" + idSegFlex);
             String iS= new String(""+listaPatologiasFlex.get(i).getIs());
-            Toast.makeText(getApplicationContext(),listaPatologiasFlex.get(i).getIs(),Toast.LENGTH_SHORT).show();
             for(int l =0;l<listaSegmentosF.size();l++)
             {
                 boolean isegmento = iS.equals(listaSegmentosF.get(l).getIs());
                 String idSegmento = new String(""+listaSegmentosF.get(l).getId_segmento());
-                Toast.makeText(getApplicationContext(),"iS"+iS,Toast.LENGTH_SHORT).show();
                 if(isegmento==true){
-                    Toast.makeText(getApplicationContext(),"entra IF",Toast.LENGTH_SHORT).show();
                     if (modulo != 1) {
-                        Toast.makeText(getApplicationContext(),"Edita PATOFLEX",Toast.LENGTH_SHORT).show();
                         ContentValues values = new ContentValues();
                         String[] parametros = {idS};
                         String patoflexId = (""+id);
@@ -383,20 +376,33 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
     private void editarIdPatoRigi() {
 
         SQLiteDatabase dbPR = baseDatos.getWritableDatabase();
-
+        //Toast.makeText(getApplicationContext(),"editgarIdPatoRigi",Toast.LENGTH_SHORT).show();
         int id = 1;
         for (int i = 0; i < listaPatologiasRigi.size(); i++) {
 
-            double idSegFlex = listaPatologiasRigi.get(i).getId_patoRigi();
-            double modulo = idSegFlex / id;
-            String idS = new String("" + idSegFlex);
-            if (modulo != 1) {
-                ContentValues values = new ContentValues();
-                String[] parametros = {idS};
-                String patoflexId = (""+id);
-                values.put(Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA, patoflexId);
-                dbPR.update(Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA, values, Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA + "=?", parametros);
+            double idPatoRigi = listaPatologiasRigi.get(i).getId_patoRigi();
+            double modulo = idPatoRigi / id;
+            String idS = new String("" + idPatoRigi);
+            String iS= new String(""+listaPatologiasRigi.get(i).getIs());
+            //Toast.makeText(getApplicationContext(),"idPatoRigi "+idPatoRigi+" -id "+id+" -M "+modulo,Toast.LENGTH_SHORT).show();
+            for(int l =0;l<listaSegmentosR.size();l++)
+            {
+                //Toast.makeText(getApplicationContext(),"ENTRA 2 FOR-"+" iS "+iS+" -listaSEgmentosR "+listaSegmentosR.get(l).getIs(),Toast.LENGTH_SHORT).show();
+                boolean isegmento = iS.equals(listaSegmentosR.get(l).getIs());
+                String idSegmento = new String(""+listaSegmentosR.get(l).getId_segmento());
+                if(isegmento==true){
+                    if (modulo != 1) {
+                        //Toast.makeText(getApplicationContext(),"EDITA PATO RIGI",Toast.LENGTH_SHORT).show();
+                        ContentValues values = new ContentValues();
+                        String[] parametros = {idS};
+                        String patoflexId = (""+id);
+                        values.put(Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA, patoflexId);
+                        values.put(Utilidades.PATOLOGIARIGI.CAMPO_ID_SEGMENTO_PATOLOGIA,idSegmento);
+                        dbPR.update(Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA, values, Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA + "=?", parametros);
+                    }
+                }
             }
+
             id = id + 1;
 
         }

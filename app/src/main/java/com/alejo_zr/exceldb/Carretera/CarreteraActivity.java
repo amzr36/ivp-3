@@ -15,6 +15,7 @@ import com.alejo_zr.exceldb.Segmento.Flexible.ConsultarSegmentoFlexActivity;
 import com.alejo_zr.exceldb.Segmento.Rigido.ConsultarSegmentoRigiActivity;
 import com.alejo_zr.exceldb.entidades.Carretera;
 import com.alejo_zr.exceldb.entidades.PatoFlex;
+import com.alejo_zr.exceldb.entidades.PatoRigi;
 import com.alejo_zr.exceldb.entidades.SegmentoFlex;
 import com.alejo_zr.exceldb.entidades.SegmentoRigi;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
@@ -26,6 +27,7 @@ public class CarreteraActivity extends AppCompatActivity {
     private ArrayList<SegmentoFlex> listaSegmentosF;
     private ArrayList<SegmentoRigi> listaSegmentosR;
     private ArrayList<PatoFlex> listaPatologiasFlex;
+    private ArrayList<PatoRigi> listaPatologiasRigi;
     private TextView tvIdCarretera,tvNomCarretera,tvNombreCarretera,tvCodigoCarretera,tvTerritorialCarretera,tvAdmonCarretera,
             tvLevantadoCarretera;
 
@@ -62,11 +64,10 @@ public class CarreteraActivity extends AppCompatActivity {
 
         cargarSegmentosFlex();
         cargarSegmentosRigi();
-        cargarDañosFlex();        
+        cargarDañosFlex();
+        cargarDañosRigi();
 
     }
-    
-
 
     public void onClick(View view) {
 
@@ -115,12 +116,26 @@ public class CarreteraActivity extends AppCompatActivity {
         eliminarSegFlex();
         eliminarSegRigi();
         eliminarDañosFlex();
+        eliminarDañosRigi();
 
 
         Intent intent = new Intent(CarreteraActivity.this,ConsultarCarreteraActivity.class);
         startActivity(intent);
-        idCarretera();
         db.close();
+    }
+
+    private void eliminarDañosRigi() {
+        SQLiteDatabase db = baseDatos.getWritableDatabase();
+
+        for (int i=0; i<listaPatologiasRigi.size();i++){
+            boolean IdCarretera = tvNomCarretera.getText().toString().equals(listaPatologiasRigi.get(i).getNombre_carretera_patoRigi());
+
+            if(IdCarretera==true){
+                String[] parametrosDR={tvNomCarretera.getText().toString()};
+                db.delete(Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA,Utilidades.PATOLOGIARIGI.CAMPO_NOMBRE_CARRETERA_PATOLOGIA+"=?",parametrosDR);
+            }
+        }
+
     }
 
     private void eliminarDañosFlex() {
@@ -134,7 +149,6 @@ public class CarreteraActivity extends AppCompatActivity {
                 db.delete(Utilidades.PATOLOGIAFLEX.TABLA_PATOLOGIA,Utilidades.PATOLOGIAFLEX.CAMPO_NOMBRE_CARRETERA_PATOLOGIA+"=?",parametrosDF);
             }
         }
-        idPatoFlex();
 
     }
 
@@ -149,7 +163,7 @@ public class CarreteraActivity extends AppCompatActivity {
                 db.delete(Utilidades.SEGMENTORIGI.TABLA_SEGMENTO,Utilidades.SEGMENTORIGI.CAMPO_NOMBRE_CARRETERA_SEGMENTO+"=?",parametrosSR);
             }
         }
-        idSegRigi();
+
     }
 
     private void eliminarSegFlex() {
@@ -164,8 +178,42 @@ public class CarreteraActivity extends AppCompatActivity {
                 db.delete(Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO,Utilidades.SEGMENTOFLEX.CAMPO_NOMBRE_CARRETERA_SEGMENTO+"=?",parametrosSF);
             }
         }
-        //idSegFlex();
 
+    }
+    private void cargarDañosRigi() {
+
+        SQLiteDatabase db=baseDatos.getReadableDatabase();
+
+        PatoRigi patoRigi=null;
+        listaPatologiasRigi= new ArrayList<PatoRigi>();
+        //select * from carretera
+        Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA,null);
+
+        while(cursor.moveToNext()){
+            patoRigi = new PatoRigi();
+            patoRigi.setId_patoRigi(cursor.getInt(0));
+            patoRigi.setId_segmento_patoRigi(cursor.getString(1));
+            patoRigi.setNombre_carretera_patoRigi(cursor.getString(2));
+            patoRigi.setAbscisa(cursor.getString(3));
+            patoRigi.setLatitud(cursor.getString(4));
+            patoRigi.setLongitud(cursor.getString(5));
+            patoRigi.setNo_placa(cursor.getString(6));
+            patoRigi.setLetra(cursor.getString(7));
+            patoRigi.setLargoLoza(cursor.getString(8));
+            patoRigi.setAnchoLoza(cursor.getString(9));
+            patoRigi.setDanio(cursor.getString(10));
+            patoRigi.setSeveridad(cursor.getString(11));
+            patoRigi.setLargoDanio(cursor.getString(12));
+            patoRigi.setAnchoDanio(cursor.getString(13));
+            patoRigi.setLargoRepa(cursor.getString(14));
+            patoRigi.setAnchoRepa(cursor.getString(15));
+            patoRigi.setAclaraciones(cursor.getString(16));
+            patoRigi.setNombreFoto(cursor.getString(17));
+            patoRigi.setFoto(cursor.getString(18));
+
+            listaPatologiasRigi.add(patoRigi);
+
+        }
 
     }
 
@@ -248,44 +296,6 @@ public class CarreteraActivity extends AppCompatActivity {
 
             listaSegmentosF.add(segmento);
         }
-    }
-
-
-    private void idPatoFlex() {
-    }
-
-    private void idSegRigi() {
-    }
-/*
-    private void idSegFlex() {
-
-        SQLiteDatabase db = baseDatos.getWritableDatabase();
-        int id=1;
-        for (int i=0; i<listaSegmentosF.size();i++) {
-
-            int idSegmento = listaSegmentosF.get(i).getId_segmento();
-            int modulo = idSegmento / id;
-            Toast.makeText(getApplicationContext(), "Modulo" + modulo, Toast.LENGTH_SHORT).show();
-            if (modulo != 1) {
-                Toast.makeText(getApplicationContext(), "Id " + id + "idS" + idSegmento + "M" + modulo, Toast.LENGTH_SHORT).show();
-                String segmentoId;
-                segmentoId = ("" + id);
-                String[] parametrosSG = {segmentoId};
-                ContentValues values = new ContentValues();
-                values.put(Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO, segmentoId);
-                db.update(Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO, values, Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO + "=?", parametrosSG);
-                id = id + 1;
-            }
-        }
-
-
-
-
-    }*/
-
-    private void idCarretera() {
-
-
     }
 
 

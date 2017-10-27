@@ -27,6 +27,7 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
 
     private BaseDatos baseDatos;
     private TextView tvnomCarretera_consultar_patoRigi,tvIdSegmento_consultar_patoRigi;
+    private String campoIS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,10 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String dato_nom = bundle.getString("tv_nombre_carretera_segmento").toString();
         String id_segmento = bundle.getString("tv_id_segmento").toString();
+        String dato_is= bundle.getString("campoIS".toString());
         tvnomCarretera_consultar_patoRigi.setText(dato_nom);
         tvIdSegmento_consultar_patoRigi.setText(id_segmento);
+        campoIS = dato_is;
 
 
         consultarListaPatologias();
@@ -139,6 +142,7 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
             patoRigi.setAclaraciones(cursor.getString(16));
             patoRigi.setNombreFoto(cursor.getString(17));
             patoRigi.setFoto(cursor.getString(18));
+            patoRigi.setIs(cursor.getString(19));
 
             listaPatologiasRigi.add(patoRigi);
 
@@ -158,9 +162,8 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
                 boolean idSeg = tvIdSegmento_consultar_patoRigi.getText().toString().equals(listaPatologiasRigi.get(i).getId_segmento_patoRigi());
 
                 if (idSeg == true) {
-                    listaInformacionPatologiasRigi.add("Carretera: " + listaPatologiasRigi.get(i).getNombre_carretera_patoRigi() +"-Segmento "
-                            +listaPatologiasRigi.get(i).getId_segmento_patoRigi()+ " - Daño: " + listaPatologiasRigi.get(i).getDanio()
-                            +"- ABS "+ listaPatologiasRigi.get(i).getAbscisa()+"- Severidad "+listaPatologiasRigi.get(i).getSeveridad());
+                    listaInformacionPatologiasRigi.add(" ABS "+ listaPatologiasRigi.get(i).getAbscisa()+ " - Daño: " + listaPatologiasRigi.get(i).getDanio()
+                            +"- Severidad "+listaPatologiasRigi.get(i).getSeveridad());
                     listaIdPatoRigi.add(listaPatologiasRigi.get(i).getId_patoRigi()-1);
                 }
             }
@@ -174,6 +177,7 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
                 intent = new Intent(ConsultaPatologiaRigiActivity.this, RegistroPatologiaRigiActivity.class);
                 intent.putExtra("id_segmento",tvIdSegmento_consultar_patoRigi.getText().toString());
                 intent.putExtra("nom_carretera_segmento",tvnomCarretera_consultar_patoRigi.getText().toString());
+                intent.putExtra("campoIS",campoIS);
                 startActivity(intent);
                 break;
         }

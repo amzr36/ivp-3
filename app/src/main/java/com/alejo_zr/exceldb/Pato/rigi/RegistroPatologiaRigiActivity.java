@@ -59,7 +59,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
     private ImageButton botonCargar;
     private ImageView imagen;
     private String path;
-    private String idFotoRigi,campoSeveridad;
+    private String idFotoRigi,campoSeveridad,campoIS;
 
     private MaterialSpinner spinnerPatoRigi,spinnerSeveridadPatoRigiRegistro;
     private TextView tv_nombre_carretera_patologia,tv_id_segmento_patologia_Rigi,tv_foto_danio,tv_idFotoRigi,tv_foto_nombre,ej_Pato_Rigi;
@@ -120,8 +120,10 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String dato_nom_carretera = bundle.getString("nom_carretera_segmento");
         String id_segmento = bundle.getString("id_segmento");
+        String dato_is= bundle.getString("campoIS".toString());
         tv_nombre_carretera_patologia.setText(dato_nom_carretera);
         tv_id_segmento_patologia_Rigi.setText(id_segmento);
+        campoIS = dato_is;
 
         ArrayAdapter<String> arrayAdapterPato = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, tipoDanioRigi);
         spinnerPatoRigi.setAdapter(arrayAdapterPato);
@@ -256,8 +258,8 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
                 verificarDatosPatoRigi();
                 break;
             case R.id.btnDanioRigi:
-                guardarFotografia();
                 tomarFotografia();
+                guardarFotografia();
                 break;
             case R.id.btnObtenerCoordenadasPatoRigi:
                 obtenerCoordenadas();
@@ -324,14 +326,14 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
                 + Utilidades.PATOLOGIARIGI.CAMPO_DANIO_PATOLOGIA+","+ Utilidades.PATOLOGIARIGI.CAMPO_SEVERIDAD+","
                 + Utilidades.PATOLOGIARIGI.CAMPO_LARGO_PATOLOGIA+","+ Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_PATOLOGIA+","+ Utilidades.PATOLOGIARIGI.CAMPO_LARGO_REPARACION
                 +"," + Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_REPARACION+","+ Utilidades.PATOLOGIARIGI.CAMPO_ACLARACIONES+","+ Utilidades.PATOLOGIARIGI.CAMPO_NOMBRE_FOTO+","
-                + Utilidades.PATOLOGIARIGI.CAMPO_FOTO_DANIO+")" +
+                + Utilidades.PATOLOGIARIGI.CAMPO_FOTO_DANIO+","+Utilidades.PATOLOGIARIGI.CAMPO_IS+")" +
                 " VALUES ('"+tv_nombre_carretera_patologia.getText().toString()+"' , '"+tv_id_segmento_patologia_Rigi.getText().toString()+"' , '"+
                 campoAbscisaRigi.getText().toString()+"' , '"+campoLatitudPatoRigi.getText().toString()+"' , '"+campoLongitudPatoRigi.getText().toString()+"' , '"
                 +campoNumeroLosa.getText().toString()+"' , '"+campoLetraLosa.getText().toString()+"' , '"+campoLargoLosa.getText().toString()+"' , '"+campoAnchoLosa.getText().toString()+"' , '"
                 +campoDanioPatoRigi.getText().toString()+"' , '"+campoSeveridad+"' , '"
                 +campoLargoDanio.getText().toString()+"' , '"+campoAnchoDanio.getText().toString()+"' , '"+campoLargoRepa.getText().toString()+"' , '"
                 +campoAnchoRepa.getText().toString()+"' , '"+campoAclaracion.getText().toString()+"' , '"+tv_foto_nombre.getText().toString()+"' , '"
-                +tv_foto_danio.getText().toString()+"')";
+                +tv_foto_danio.getText().toString()+"' , '"+campoIS+"')";
 
         Toast.makeText(getApplicationContext(),"Se registro el Daño: "+campoDanioPatoRigi.getText().toString(),Toast.LENGTH_SHORT).show();
         db.execSQL(insert);
@@ -355,11 +357,11 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         db.execSQL(insert);
 
         BaseDatos baseDatos = new BaseDatos(this);
-        final Cursor cursor = baseDatos.getfotoFLex();
+        final Cursor cursor = baseDatos.getfotoRigi();
 
         if(cursor.moveToNext()){
             do{
-                idFotoRigi = cursor.getString(cursor.getColumnIndex(Utilidades.FOTOFLEX.CAMPO_ID_FOTO));
+                idFotoRigi = cursor.getString(cursor.getColumnIndex(Utilidades.FOTORIGI.CAMPO_ID_FOTORIGI));
             }while (cursor.moveToNext());
             tv_idFotoRigi.setText(idFotoRigi);
         }
@@ -550,13 +552,13 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         @Override
         public void onProviderDisabled(String provider) {
             // Este metodo se ejecuta cuando el GPS es desactivado
-            //mensaje1.setText("GPS Desactivado");
+            Toast.makeText(getApplicationContext(),R.string.gps,Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onProviderEnabled(String provider) {
             // Este metodo se ejecuta cuando el GPS es activado
-            //mensaje1.setText("GPS Activado");
+
         }
 
         @Override
