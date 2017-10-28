@@ -1,5 +1,7 @@
 package com.alejo_zr.exceldb.Carretera;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -99,12 +101,35 @@ public class CarreteraActivity extends AppCompatActivity {
                 break;
 
             case R.id.btnEliminarCarretera:
-                eliminarCarretera();
+                confirmar();
                 break;
 
 
         }
     }
+
+    private void confirmar() {
+        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
+        dialogo1.setTitle("Confirmación");
+        dialogo1.setMessage("¿ Desea eliminar la Carretera "+tvNombreCarretera.getText()+"?");
+        dialogo1.setCancelable(false);
+        dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                eliminarCarretera();
+            }
+        });
+        dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                cancelar();
+            }
+        });
+        dialogo1.show();
+    }
+
+    public void cancelar() {
+        //finish();
+    }
+
 
     private void eliminarCarretera() {
         SQLiteDatabase db=baseDatos.getWritableDatabase();

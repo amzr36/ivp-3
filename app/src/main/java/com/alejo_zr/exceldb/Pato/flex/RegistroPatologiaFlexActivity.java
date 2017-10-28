@@ -272,12 +272,20 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
             case R.id.btnObtenerCoordenadasPatoFlex:
                 obtenerCoordenadas();
                 break;
+            case R.id.btnManualPatoFlex:
+                abrirManual();
+                break;
             case R.id.ej_Pato_Flex:
                 Intent intent = new Intent(RegistroPatologiaFlexActivity.this, RegistroPatologiaFlexEjemploActivity.class);
                 startActivity(intent);
                 break;
         }
 
+    }
+
+    private void abrirManual() {
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
+        startActivity(launchIntent);
     }
 
     private void verificarDatosPatoFlex() {

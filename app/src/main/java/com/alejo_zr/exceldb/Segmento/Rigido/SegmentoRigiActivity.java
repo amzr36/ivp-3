@@ -1,6 +1,8 @@
 package com.alejo_zr.exceldb.Segmento.Rigido;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -71,7 +73,7 @@ public class SegmentoRigiActivity extends AppCompatActivity {
     private void agregarIS() {
         SQLiteDatabase db = baseDatos.getWritableDatabase();
         String[] parametros={tv_id_segmento.getText().toString()};
-        campoIS=new String(tv_nombre_carretera_segmento.getText().toString()+tv_id_segmento.getText().toString());
+        campoIS=new String(tv_nombre_carretera_segmento.getText().toString()+"-"+tv_id_segmento.getText().toString());
 
         ContentValues values = new ContentValues();
         values.put(Utilidades.SEGMENTORIGI.CAMPO_IS , campoIS);
@@ -109,10 +111,31 @@ public class SegmentoRigiActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.btnEliminarSegmentoRigi:
-                eliminarSegRigi();
+                confirmar();
                 break;
 
         }
+    }
+    private void confirmar() {
+        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
+        dialogo1.setTitle("Confirmación");
+        dialogo1.setMessage("¿ Desea eliminar el segmento ?");
+        dialogo1.setCancelable(false);
+        dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                eliminarSegRigi();
+            }
+        });
+        dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                cancelar();
+            }
+        });
+        dialogo1.show();
+    }
+
+    public void cancelar() {
+        //finish();
     }
     private void eliminarSegRigi() {
         SQLiteDatabase db = baseDatos.getWritableDatabase();

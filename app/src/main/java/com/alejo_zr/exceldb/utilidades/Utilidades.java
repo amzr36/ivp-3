@@ -139,7 +139,7 @@ public class Utilidades {
 
 
     public static abstract class FOTOFLEX implements BaseColumns {
-        public static final String TABLA_FOTO = "fotos";
+        public static final String TABLA_FOTO = "fotos_flex";
         public static final String CAMPO_ID_FOTO = "id_foto";
         public static final String CAMPO_NOMBRE_CARRETERA_FOTO = "nombreCarretera_foto";
         public static final String CAMPO_ID_SEGMENTO_FOTO = "segmento_foto";
@@ -154,7 +154,7 @@ public class Utilidades {
 
 
     public static abstract class FOTORIGI implements BaseColumns {
-        public static final String TABLA_FOTORIGI = "fotos";
+        public static final String TABLA_FOTORIGI = "fotos_rigi";
         public static final String CAMPO_ID_FOTORIGI = "id_foto";
         public static final String CAMPO_NOMBRE_CARRETERA_FOTORIGI = "nombreCarretera_foto";
         public static final String CAMPO_ID_SEGMENTO_FOTORIGI = "segmento_foto";

@@ -64,7 +64,7 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                campoAdmon = "";
             }
         });
     }

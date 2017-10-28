@@ -34,6 +34,7 @@
                     android:id="@+id/campoAbscisaFlex"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:hint="@string/abscisa"
                     android:text="K0+120"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -65,7 +66,8 @@
                     android:id="@+id/campoLatitudPatoFlex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Se Botienen mediante"
+                    android:hint="@string/latitud"
+                    android:text="Se obtienen mediante"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -80,6 +82,7 @@
                     android:id="@+id/campolongitudPatoFlex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/longitud"
                     android:text="el GPS o se diligencian"
                     />
             </android.support.design.widget.TextInputLayout>
@@ -100,9 +103,22 @@
                     android:id="@+id/campoCarrilPatoFlex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/carril"
                     android:text="Dependiendo de la configuraciion de calzadas y carriles,
                      se pone la ubicación dondes se encuentra el daño "/>
 
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHighlight="@color/colorAccent">
+
+                    <EditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/patologia"
+                        android:text="Piel de Cocodrilo" />
+                </android.support.design.widget.TextInputLayout>
 
 
             </android.support.design.widget.TextInputLayout>
@@ -116,14 +132,6 @@
             android:textSize="@dimen/subTitulo"
             android:textStyle="bold"/>
 
-        <EditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Piel de Cocodrilo"
-            />
-
-
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,6 +140,7 @@
                 android:id="@+id/campoDanioPatoFlex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/codPato"
                 android:text="PC"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -143,8 +152,10 @@
 
             <EditText
 
+                android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/severidad"
                 android:text="Media" />
         </android.support.design.widget.TextInputLayout>
 
@@ -173,6 +184,7 @@
                     android:id="@+id/campoLargoDanioFlex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/largo"
                     android:text="1,2"/>
 
 
@@ -189,6 +201,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/ancho"
                     android:text="0,95"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -234,6 +247,8 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/aclaraciones"
+                    android:textColorHighlight="@color/colorAccent"
                     android:text="Conforme lo indica el manual, este campo se puede diligenciar, agrupando las dimensiones de varios daños, en los cuales se puedan considerar para realizar una sola reparación"/>
             </android.support.design.widget.TextInputLayout>
 

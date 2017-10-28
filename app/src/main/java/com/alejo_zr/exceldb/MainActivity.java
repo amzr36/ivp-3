@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void exportar() {
 
-        Toast.makeText(getApplicationContext(),"SI RECONOCE EL BOTON",Toast.LENGTH_SHORT).show();
+
         BaseDatos baseDatos = new BaseDatos(this);
         //conn.insertData();
         final Cursor cursor = baseDatos.getroad();
@@ -386,7 +386,7 @@ public class MainActivity extends AppCompatActivity {
             workbook.write();
             workbook.close();
 
-            Toast.makeText(getApplication(), "Se exporto los datos a IVP.xls", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "Se exporto el documento IVP.xls", Toast.LENGTH_SHORT).show();
 
 
         } catch (Exception e) {

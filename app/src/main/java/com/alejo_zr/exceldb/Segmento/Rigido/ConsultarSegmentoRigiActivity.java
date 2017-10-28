@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
 import com.alejo_zr.exceldb.R;
+import com.alejo_zr.exceldb.entidades.PatoRigi;
 import com.alejo_zr.exceldb.entidades.SegmentoRigi;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
 
@@ -29,6 +30,7 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
     private ListView listViewSegmentos;
     private ArrayList<String> listaInformacionSegmentos;
     private ArrayList<SegmentoRigi> listaSegmentos;
+    private ArrayList<PatoRigi> listaPatologiasRigi;
     private ArrayList<Integer> listaIdSegmentos;
     private TextView tvnomCarretera_consultar_segmentoRigi;
 
@@ -68,6 +70,7 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        cargarPatoRigi();
     }
     protected void onStart() {
         super.onStart();
@@ -100,7 +103,7 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        cargarPatoRigi();
     }
 
     private void consultarListaSegmentos() {
@@ -170,6 +173,72 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
         }
 
         dbSR.close();
+    }
+    private void cargarPatoRigi() {
+        SQLiteDatabase db=baseDatos.getReadableDatabase();
+
+        PatoRigi patoRigi=null;
+        listaPatologiasRigi= new ArrayList<PatoRigi>();
+        //select * from carretera
+        Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA,null);
+
+        while(cursor.moveToNext()){
+            patoRigi = new PatoRigi();
+            patoRigi.setId_patoRigi(cursor.getInt(0));
+            patoRigi.setId_segmento_patoRigi(cursor.getString(1));
+            patoRigi.setNombre_carretera_patoRigi(cursor.getString(2));
+            patoRigi.setAbscisa(cursor.getString(3));
+            patoRigi.setLatitud(cursor.getString(4));
+            patoRigi.setLongitud(cursor.getString(5));
+            patoRigi.setNo_placa(cursor.getString(6));
+            patoRigi.setLetra(cursor.getString(7));
+            patoRigi.setLargoLoza(cursor.getString(8));
+            patoRigi.setAnchoLoza(cursor.getString(9));
+            patoRigi.setDanio(cursor.getString(10));
+            patoRigi.setSeveridad(cursor.getString(11));
+            patoRigi.setLargoDanio(cursor.getString(12));
+            patoRigi.setAnchoDanio(cursor.getString(13));
+            patoRigi.setLargoRepa(cursor.getString(14));
+            patoRigi.setAnchoRepa(cursor.getString(15));
+            patoRigi.setAclaraciones(cursor.getString(16));
+            patoRigi.setNombreFoto(cursor.getString(17));
+            patoRigi.setFoto(cursor.getString(18));
+            patoRigi.setIs(cursor.getString(19));
+
+            listaPatologiasRigi.add(patoRigi);
+        }
+        editarIdPatoRigi();
+    }
+
+    private void editarIdPatoRigi() {
+        SQLiteDatabase dbPR = baseDatos.getWritableDatabase();
+        int id = 1;
+        for (int i = 0; i < listaPatologiasRigi.size(); i++) {
+            double idSegRigi = listaPatologiasRigi.get(i).getId_patoRigi();
+            double modulo = idSegRigi / id;
+            String idS = new String("" + idSegRigi);
+            String iS= new String(""+listaPatologiasRigi.get(i).getIs());
+            for(int l =0;l<listaSegmentos.size();l++)
+            {
+                boolean isegmento = iS.equals(listaSegmentos.get(l).getIs());
+                String idSegmento = new String(""+listaSegmentos.get(l).getId_segmento());
+                if(isegmento==true){
+                    if (modulo != 1) {
+                        ContentValues values = new ContentValues();
+                        String[] parametros = {idS};
+                        String patorigiId = (""+id);
+                        values.put(Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA, patorigiId);
+                        values.put(Utilidades.PATOLOGIARIGI.CAMPO_ID_SEGMENTO_PATOLOGIA,idSegmento);
+                        dbPR.update(Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA, values, Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA + "=?", parametros);
+                    }
+                }
+            }
+
+            id = id + 1;
+
+        }
+
+        dbPR.close();
     }
 
     public void onClick(View view) {

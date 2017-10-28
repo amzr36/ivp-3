@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
 import com.alejo_zr.exceldb.R;
@@ -218,19 +217,16 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
         SQLiteDatabase dbPF = baseDatos.getWritableDatabase();
         int id = 1;
         for (int i = 0; i < listaPatologiasFlex.size(); i++) {
-            //Toast.makeText(getApplicationContext(),"editarPATOFLEX ",Toast.LENGTH_SHORT).show();
             double idSegFlex = listaPatologiasFlex.get(i).getId_patoFlex();
             double modulo = idSegFlex / id;
             String idS = new String("" + idSegFlex);
             String iS= new String(""+listaPatologiasFlex.get(i).getIs());
             for(int l =0;l<listaSegmentos.size();l++)
             {
-                Toast.makeText(getApplicationContext(),"iSFlex "+iS+ " -iSSeg"+listaSegmentos.get(l).getIs()+"-id Seg "+listaSegmentos.get(l).getId_segmento(),Toast.LENGTH_SHORT).show();
                 boolean isegmento = iS.equals(listaSegmentos.get(l).getIs());
                 String idSegmento = new String(""+listaSegmentos.get(l).getId_segmento());
                 if(isegmento==true){
                     if (modulo != 1) {
-                        Toast.makeText(getApplicationContext(),"ultimo if ",Toast.LENGTH_SHORT).show();
                         ContentValues values = new ContentValues();
                         String[] parametros = {idS};
                         String patoflexId = (""+id);

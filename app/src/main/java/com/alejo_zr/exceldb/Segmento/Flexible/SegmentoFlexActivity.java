@@ -1,6 +1,8 @@
 package com.alejo_zr.exceldb.Segmento.Flexible;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -145,10 +147,32 @@ public class SegmentoFlexActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.btnEliminarSegmentoFlex:
-                eliminarSegFlex();
+                confirmar();
                 break;
 
         }
+    }
+
+    private void confirmar() {
+        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
+        dialogo1.setTitle("Confirmación");
+        dialogo1.setMessage("¿ Desea eliminar el segmento ?");
+        dialogo1.setCancelable(false);
+        dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                eliminarSegFlex();
+            }
+        });
+        dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                cancelar();
+            }
+        });
+        dialogo1.show();
+    }
+
+    public void cancelar() {
+        //finish();
     }
 
     private void eliminarSegFlex() {
