@@ -5,4 +5,5 @@
     <color name="colorAccent">#E5775C</color>
     <color name="textColorHint">#E5775C</color>
     <color name="ejemplo">#E5775C</color>
+    <color name="toolbar">#FFFFFF</color>
 </resources>

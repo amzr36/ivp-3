@@ -28,6 +28,7 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
     private ArrayList<PatoFlex> listaPatologiasFlex;
     private ArrayList<Integer> listaIdSegmentos;
     private TextView tvnomCarretera_consultar_segmentoFlex,idCarreteraSegFlexConsulta;
+    private String id,nombre,codigo,territorial,admon,levantado;
 
     private BaseDatos baseDatos;
 
@@ -40,11 +41,17 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
 
         listViewSegmentos = (ListView) findViewById(R.id.listViewSegmentoFlex);
         tvnomCarretera_consultar_segmentoFlex = (TextView) findViewById(R.id.tvnomCarretera_consultar_segmentoFlex);
-        idCarreteraSegFlexConsulta = (TextView) findViewById(R.id.idCarreteraSegFlexConsulta);
 
         Bundle bundle = getIntent().getExtras();
-        String dato_nom = bundle.getString("nom_carretera").toString();
-        tvnomCarretera_consultar_segmentoFlex.setText(dato_nom);
+        /***Datos de la carretera***/
+        id = bundle.getString("id_carretera").toString();
+        nombre = bundle.getString("nom_carretera").toString();
+        codigo = bundle.getString("cod_carretera").toString();
+        territorial= bundle.getString("territo").toString();
+        admon = bundle.getString("admon").toString();
+        levantado = bundle.getString("levantado").toString();
+
+        tvnomCarretera_consultar_segmentoFlex.setText(nombre);
 
 
         consultarListaSegmentos();
@@ -77,7 +84,6 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
 
         listViewSegmentos = (ListView) findViewById(R.id.listViewSegmentoFlex);
         tvnomCarretera_consultar_segmentoFlex = (TextView) findViewById(R.id.tvnomCarretera_consultar_segmentoFlex);
-        idCarreteraSegFlexConsulta = (TextView) findViewById(R.id.idCarreteraSegFlexConsulta);
 
         Bundle bundle = getIntent().getExtras();
         String dato_nom = bundle.getString("nom_carretera").toString();

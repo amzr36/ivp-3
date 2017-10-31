@@ -32,6 +32,7 @@ public class CarreteraActivity extends AppCompatActivity {
     private ArrayList<PatoRigi> listaPatologiasRigi;
     private TextView tvIdCarretera,tvNomCarretera,tvNombreCarretera,tvCodigoCarretera,tvTerritorialCarretera,tvAdmonCarretera,
             tvLevantadoCarretera;
+    private int id;
 
     private BaseDatos baseDatos;
     @Override
@@ -49,6 +50,8 @@ public class CarreteraActivity extends AppCompatActivity {
         tvAdmonCarretera = (TextView) findViewById(R.id.tvAdmonCarretera);
         tvLevantadoCarretera = (TextView) findViewById(R.id.tvLevantadoCarretera);
 
+
+
         Bundle objetoEnviado=getIntent().getExtras();
         Carretera carretera=null;
 
@@ -63,6 +66,8 @@ public class CarreteraActivity extends AppCompatActivity {
             tvLevantadoCarretera.setText(carretera.getLevantado().toString());
 
         }
+
+        int id = Integer.parseInt(tvIdCarretera.getText().toString());
 
         cargarSegmentosFlex();
         cargarSegmentosRigi();
@@ -80,6 +85,10 @@ public class CarreteraActivity extends AppCompatActivity {
                 intent = new Intent(CarreteraActivity.this, ConsultarSegmentoFlexActivity.class);
                 intent.putExtra("id_carretera",tvIdCarretera.getText().toString());
                 intent.putExtra("nom_carretera",tvNombreCarretera.getText().toString());
+                intent.putExtra("cod_carretera",tvCodigoCarretera.getText().toString());
+                intent.putExtra("territo",tvTerritorialCarretera.getText().toString());
+                intent.putExtra("admon",tvAdmonCarretera.getText().toString());
+                intent.putExtra("levantado",tvLevantadoCarretera.getText().toString());
                 startActivity(intent);
                 break;
             case R.id.btnSegmentoRigido:

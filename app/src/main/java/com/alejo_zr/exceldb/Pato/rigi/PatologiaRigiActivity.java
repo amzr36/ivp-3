@@ -17,7 +17,7 @@ import com.alejo_zr.exceldb.entidades.PatoRigi;
 
 public class PatologiaRigiActivity extends AppCompatActivity {
 
-    private TextView tvIdDaño,tvIdSegmento,tvNombreCarreteraPatologiaActivity,tvNumeroLosa,tvLetraLosa,tvLargoLosa,tvAncholoza ,
+    private TextView tvIdDaño,tvIdSegmento,tvNombreCarreteraPatologiaActivity,tvNumeroLosa,tvLetraLosa,tvLargoLosa,tvAncholosa ,
             tvAclaraciones,tvanchRepa,tvlarRepa,tvdanionombre,tvlarDanio,tvanchoDanio,tvAbscisaPatoRigiActivity,
             tvLatPatoRigiActivity,tvLongRigiActivity,tvDireccionPatoRigi,tvSeveridadPatoRigiActivity,tvNombreFoto_patoRigiActivity;
     private String path;
@@ -36,7 +36,7 @@ public class PatologiaRigiActivity extends AppCompatActivity {
         tvNumeroLosa=(TextView) findViewById(R.id.tvnumero);
         tvLetraLosa=(TextView) findViewById(R.id.tvletra);
         tvLargoLosa=(TextView) findViewById(R.id.tvLargoLosa);
-        tvAncholoza=(TextView) findViewById(R.id.tvancholosa);
+        tvAncholosa=(TextView) findViewById(R.id.tvancholosa);
         tvdanionombre = (TextView) findViewById(R.id.tvdanionombrePatoRigiActivity);
         tvSeveridadPatoRigiActivity = (TextView) findViewById(R.id.tvSeveridadPatoRigiActivity);
         tvlarDanio = (TextView) findViewById(R.id.tvlarDanioPatoRigiActivity);
@@ -58,25 +58,27 @@ public class PatologiaRigiActivity extends AppCompatActivity {
 
         if(patologiaEnviado!=null){
             patoRigi = (PatoRigi) patologiaEnviado.getSerializable("patologia");
-            tvAbscisaPatoRigiActivity.setText(patoRigi.getAbscisa().toString());
-            tvLatPatoRigiActivity.setText(patoRigi.getLatitud().toString());
-            tvLongRigiActivity.setText(patoRigi.getLongitud().toString());
-            tvNumeroLosa.setText(patoRigi.getNo_placa().toString());
-            tvLetraLosa.setText((patoRigi.getLetra().toString()));
-            tvLargoLosa.setText(patoRigi.getLargoLoza().toString());
-            tvAncholoza.setText(patoRigi.getAnchoLoza().toString());
-            tvdanionombre.setText(patoRigi.getDanio().toString());
-            tvSeveridadPatoRigiActivity.setText(patoRigi.getSeveridad().toString());
-            tvlarDanio.setText(patoRigi.getLargoDanio().toString());
-            tvanchoDanio.setText(patoRigi.getAnchoDanio().toString());
-            tvanchRepa.setText(patoRigi.getAnchoRepa().toString());
-            tvlarRepa.setText(patoRigi.getLargoRepa().toString());
-            tvAclaraciones.setText(patoRigi.getAclaraciones().toString());
-            tvIdSegmento.setText(patoRigi.getId_segmento_patoRigi().toString());
-            tvNombreCarreteraPatologiaActivity.setText(patoRigi.getNombre_carretera_patoRigi().toString());
-            tvIdDaño.setText(patoRigi.getId_patoRigi().toString());
-            tvNombreFoto_patoRigiActivity.setText(patoRigi.getNombreFoto().toString());
-            tvDireccionPatoRigi.setText(patoRigi.getFoto().toString());
+            if(patoRigi!=null){
+                tvAbscisaPatoRigiActivity.setText(patoRigi.getAbscisa().toString());
+                tvLatPatoRigiActivity.setText(patoRigi.getLatitud().toString());
+                tvLongRigiActivity.setText(patoRigi.getLongitud().toString());
+                tvNumeroLosa.setText(patoRigi.getNo_placa().toString());
+                tvLetraLosa.setText((patoRigi.getLetra().toString()));
+                tvLargoLosa.setText(patoRigi.getLargoLoza().toString());
+                tvAncholosa.setText(patoRigi.getAnchoLoza().toString());
+                tvdanionombre.setText(patoRigi.getDanio().toString());
+                tvSeveridadPatoRigiActivity.setText(patoRigi.getSeveridad().toString());
+                tvlarDanio.setText(patoRigi.getLargoDanio().toString());
+                tvanchoDanio.setText(patoRigi.getAnchoDanio().toString());
+                tvanchRepa.setText(patoRigi.getAnchoRepa().toString());
+                tvlarRepa.setText(patoRigi.getLargoRepa().toString());
+                tvAclaraciones.setText(patoRigi.getAclaraciones().toString());
+                tvIdSegmento.setText(patoRigi.getId_segmento_patoRigi().toString());
+                tvNombreCarreteraPatologiaActivity.setText(patoRigi.getNombre_carretera_patoRigi().toString());
+                tvIdDaño.setText(patoRigi.getId_patoRigi().toString());
+                tvNombreFoto_patoRigiActivity.setText(patoRigi.getNombreFoto().toString());
+                tvDireccionPatoRigi.setText(patoRigi.getFoto().toString());
+            }
 
         }
 
@@ -84,6 +86,107 @@ public class PatologiaRigiActivity extends AppCompatActivity {
         obtenerFotoPatoRigi();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        tvNombreCarreteraPatologiaActivity = (TextView) findViewById(R.id.tvNombreCarreteraPatologiaRigiActivity);
+        tvAbscisaPatoRigiActivity = (TextView) findViewById(R.id.tvAbscisaPatoRigiActivity);
+        tvLatPatoRigiActivity= (TextView) findViewById(R.id.tvLatPatoRigiActivity);
+        tvLongRigiActivity= (TextView) findViewById(R.id.tvLongRigiActivity);
+        tvNumeroLosa=(TextView) findViewById(R.id.tvnumero);
+        tvLetraLosa=(TextView) findViewById(R.id.tvletra);
+        tvLargoLosa=(TextView) findViewById(R.id.tvLargoLosa);
+        tvAncholosa=(TextView) findViewById(R.id.tvancholosa);
+        tvdanionombre = (TextView) findViewById(R.id.tvdanionombrePatoRigiActivity);
+        tvSeveridadPatoRigiActivity = (TextView) findViewById(R.id.tvSeveridadPatoRigiActivity);
+        tvlarDanio = (TextView) findViewById(R.id.tvlarDanioPatoRigiActivity);
+        tvanchoDanio = (TextView) findViewById(R.id.tvanchDanioPatoRigiActivity);
+        tvlarRepa = (TextView) findViewById(R.id.tvlarRepaPatoRigiActivity);
+        tvanchRepa = (TextView) findViewById(R.id.tvanchoRepaPatoRigiActivity);
+        tvAclaraciones=(TextView) findViewById(R.id.tvAclaracionesPatoRigiActivity);
+
+        tvIdSegmento = (TextView) findViewById(R.id.tvIdSegmentoPatologiaRigiActivity);
+        tvIdDaño = (TextView) findViewById(R.id.tvIdDañoPatoRigi);
+        tvNombreFoto_patoRigiActivity = (TextView) findViewById(R.id.tvNoombreFoto_patoRigiActivity);
+        tvDireccionPatoRigi = (TextView) findViewById(R.id.tvDireccionPatoRigi);
+
+        imgDanio_PatoRigi = (ImageView) findViewById(R.id.imgDanio_PatoRigi) ;
+
+        Bundle patologiaEnviado=getIntent().getExtras();
+        PatoRigi patoRigi=null;
+
+        if(patologiaEnviado!=null){
+
+                patoRigi = (PatoRigi) patologiaEnviado.getSerializable("patologia");
+            if(patoRigi!=null) {
+                tvAbscisaPatoRigiActivity.setText(patoRigi.getAbscisa().toString());
+                tvLatPatoRigiActivity.setText(patoRigi.getLatitud().toString());
+                tvLongRigiActivity.setText(patoRigi.getLongitud().toString());
+                tvNumeroLosa.setText(patoRigi.getNo_placa().toString());
+                tvLetraLosa.setText((patoRigi.getLetra().toString()));
+                tvLargoLosa.setText(patoRigi.getLargoLoza().toString());
+                tvAncholosa.setText(patoRigi.getAnchoLoza().toString());
+                tvdanionombre.setText(patoRigi.getDanio().toString());
+                tvSeveridadPatoRigiActivity.setText(patoRigi.getSeveridad().toString());
+                tvlarDanio.setText(patoRigi.getLargoDanio().toString());
+                tvanchoDanio.setText(patoRigi.getAnchoDanio().toString());
+                tvanchRepa.setText(patoRigi.getAnchoRepa().toString());
+                tvlarRepa.setText(patoRigi.getLargoRepa().toString());
+                tvAclaraciones.setText(patoRigi.getAclaraciones().toString());
+                tvIdSegmento.setText(patoRigi.getId_segmento_patoRigi().toString());
+                tvNombreCarreteraPatologiaActivity.setText(patoRigi.getNombre_carretera_patoRigi().toString());
+                tvIdDaño.setText(patoRigi.getId_patoRigi().toString());
+                tvNombreFoto_patoRigiActivity.setText(patoRigi.getNombreFoto().toString());
+                tvDireccionPatoRigi.setText(patoRigi.getFoto().toString());
+            }else{
+                Bundle bundle = getIntent().getExtras();
+                String abscisa = bundle.getString("tvAbscisa");
+                String latitud = bundle.getString("tvLatitud");
+                String longitud= bundle.getString("tvLongitud");
+                String numero= bundle.getString("tvNumeroLosa");
+                String letra = bundle.getString("tvLetraLosa");
+                String largoLosa = bundle.getString("tvLargoLosa");
+                String anchoLosa = bundle.getString("tvAnchoLosa");
+                String danio= bundle.getString("tvdanionombre");
+                String seve= bundle.getString("tvSeveridadPatoFlexActivity");
+                String larDanio= bundle.getString("tvlarDanio");
+                String anchoDanio= bundle.getString("tvanchDanio");
+                String anchoRepa= bundle.getString("tvanchRepa");
+                String larRepa= bundle.getString("tvlarRepa");
+                String aclaraciones= bundle.getString("tvAclaraciones");
+                String direccion= bundle.getString("tvDireccionPatoRigi");
+                String nombreFoto= bundle.getString("tvNombreFoto_patoRigiActivity");
+                String idSeg= bundle.getString("tvIdSegmento");
+                String nomCarre= bundle.getString("tvNombreCarreteraPatologiaActivity");
+                String idDaño= bundle.getString("tvIdDaño");
+
+                tvAbscisaPatoRigiActivity.setText(abscisa);
+                tvLatPatoRigiActivity.setText(latitud);
+                tvLongRigiActivity.setText(longitud);
+                tvNumeroLosa.setText(numero);
+                tvLetraLosa.setText(letra);
+                tvLargoLosa.setText(largoLosa);
+                tvAncholosa.setText(anchoLosa);
+                tvdanionombre.setText(danio);
+                tvlarDanio.setText(larDanio);
+                tvanchoDanio.setText(anchoDanio);
+                tvLargoLosa.setText(larRepa);
+                tvAncholosa.setText(anchoRepa);
+                tvAclaraciones.setText(aclaraciones);
+                tvNombreCarreteraPatologiaActivity.setText(nomCarre);
+                tvIdSegmento.setText(idSeg);
+                tvDireccionPatoRigi.setText(direccion);
+                tvIdDaño.setText(idDaño);
+                tvNombreFoto_patoRigiActivity.setText(nombreFoto);
+            }
+
+        }
+
+
+
+        path = tvDireccionPatoRigi.getText().toString();
+        obtenerFotoPatoRigi();
+    }
 
     private void obtenerFotoPatoRigi() {
 
@@ -115,7 +218,7 @@ public class PatologiaRigiActivity extends AppCompatActivity {
                 intent.putExtra("tvNumeroLosa",tvNumeroLosa.getText().toString());
                 intent.putExtra("tvLetraLosa",tvLetraLosa.getText().toString());
                 intent.putExtra("tvLargoLosa",tvLargoLosa.getText().toString());
-                intent.putExtra("tvAnchooLosa",tvAncholoza.getText().toString());
+                intent.putExtra("tvAnchooLosa",tvAncholosa.getText().toString());
                 intent.putExtra("tvdanionombre",tvdanionombre.getText().toString());
                 intent.putExtra("tvSeveridadPatoFlexActivity",tvSeveridadPatoRigiActivity.getText().toString());
                 intent.putExtra("tvlarDanio",tvlarDanio.getText().toString());

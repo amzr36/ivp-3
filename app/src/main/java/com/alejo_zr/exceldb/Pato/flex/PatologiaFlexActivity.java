@@ -111,38 +111,47 @@ public class PatologiaFlexActivity extends AppCompatActivity {
         tvNombreFoto_patoFlexActivity = (TextView) findViewById(R.id.tvNombreFoto_patoFlexActivity);
         tvDireccionPatoFlex = (TextView) findViewById(R.id.tvDireccionPatoFlex);
 
+        Bundle bundle = getIntent().getExtras();
+        String abscisa = bundle.getString("tvAbscisa");
+        String latitud = bundle.getString("tvLatitud");
+        String longitud= bundle.getString("tvLongitud");
+        String carril= bundle.getString("tvCarrilDanio");
+        String danio= bundle.getString("tvdanionombre");
+        String seve= bundle.getString("tvSeveridadPatoFlexActivity");
+        String larDanio= bundle.getString("tvlarDanio");
+        String anchoDanio= bundle.getString("tvanchDanio");
+        String anchoRepa= bundle.getString("tvanchRepa");
+        String larRepa= bundle.getString("tvlarRepa");
+        String aclaraciones= bundle.getString("tvAclaraciones");
+        String direccion= bundle.getString("tvDireccionPatoFlex");
+        String nombreFoto= bundle.getString("tvNombreFoto_patoFlexActivity");
+        String idSeg= bundle.getString("tvIdSegmento");
+        String nomCarre= bundle.getString("tvNombreCarreteraPatologiaActivity");
+        String idDaño= bundle.getString("tvIdDaño");
 
+        tvAbscisaPatoFlexActivity.setText(abscisa);
+        tvLatPatoFlexActivity.setText(latitud);
+        tvLongFlexActivity.setText(longitud);
+        tvCarrilDanio.setText(carril);
+        tvdanionombre.setText(danio);
+        tvlarDanio.setText(larDanio);
+        tvanchoDanio.setText(anchoDanio);
+        tvlarRepa.setText(larRepa);
+        tvanchRepa.setText(anchoRepa);
+        tvAclaraciones.setText(aclaraciones);
+        tvNombreCarreteraPatologiaActivity.setText(nomCarre);
+        tvIdSegmento.setText(idSeg);
+        path = direccion;
+        tvIdDaño.setText(idDaño);
+        tvNombreFoto_patoFlexActivity.setText(nombreFoto);
 
-        Bundle patologiaEnviado=getIntent().getExtras();
-        PatoFlex patoFlex=null;
-
-        if(patologiaEnviado!=null){
-            patoFlex = (PatoFlex) patologiaEnviado.getSerializable("patologia");
-
-            tvAbscisaPatoFlexActivity.setText(patoFlex.getAbscisa().toString());
-            tvLatPatoFlexActivity.setText(patoFlex.getLatitud().toString());
-            tvLongFlexActivity.setText(patoFlex.getLongitud().toString());
-            tvCarrilDanio.setText(patoFlex.getCarril().toString());
-            tvdanionombre.setText(patoFlex.getDanio().toString());
-            tvSeveridadPatoFlexActivity.setText(patoFlex.getSeveridad().toString());
-            tvlarDanio.setText(patoFlex.getLargoDanio().toString());
-            tvanchoDanio.setText(patoFlex.getAnchoDanio().toString());
-            tvanchRepa.setText(patoFlex.getAnchoRepa().toString());
-            tvlarRepa.setText(patoFlex.getLargoRepa().toString());
-            tvAclaraciones.setText(patoFlex.getAclaraciones().toString());
-            tvIdSegmento.setText(patoFlex.getId_segmento_patoFlex().toString());
-            tvNombreCarreteraPatologiaActivity.setText(patoFlex.getNombre_carretera_patoFlex().toString());
-            tvNombreFoto_patoFlexActivity.setText(patoFlex.getNombreFoto().toString());
-            tvIdDaño.setText(patoFlex.getId_patoFlex().toString());
-            tvDireccionPatoFlex.setText(patoFlex.getFoto().toString());
-
-        }
 
         path = tvDireccionPatoFlex.getText().toString();
         obtenerFotoPatoFlex();
 
 
     }
+
 
     private void obtenerFotoPatoFlex() {
 

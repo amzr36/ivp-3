@@ -48,7 +48,8 @@
             android:label="@string/consulSeg" />
         <activity
             android:name=".Segmento.Flexible.SegmentoFlexActivity"
-            android:label="@string/datosSegmento" />
+            android:label="@string/datosSegmento"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Segmento.Flexible.EditarSegmentoFlexActivity"
             android:label="@string/editarSegmento" />

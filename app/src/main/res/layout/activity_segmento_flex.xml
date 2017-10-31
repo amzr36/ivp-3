@@ -4,13 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin"
     tools:context="com.alejo_zr.exceldb.Segmento.Flexible.SegmentoFlexActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarSegFlexActivity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/backSegFlexActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_atras"
+                android:tint="@color/toolbar"/>
+
+            <ImageView
+                android:id="@+id/homeSegFlexActivity"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:background="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/backSegFlexActivity"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/datosSegmento"
+                android:layout_marginLeft="@dimen/margen_toolbar"
+                android:layout_toRightOf="@id/homeSegFlexActivity"
+                android:layout_centerVertical="true"
+                android:textColor="@color/toolbar"
+                android:textSize="@dimen/subTitulo"/>
+            <ImageButton
+                android:id="@+id/btnEliminarSegmentoFlex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borrar"
+                android:layout_marginLeft="@dimen/margen_toolbar"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:onClick="onClick"/>
+            <ImageButton
+                android:id="@+id/btnEditarSegmentoFlex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/btnEliminarSegmentoFlex"
+                android:onClick="onClick"
+                />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <ScrollView
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_below="@id/toolbarSegFlexActivity">
 
         <RelativeLayout
             android:id="@+id/relativeSegmentoFlexActivity"
@@ -33,19 +94,7 @@
                     android:textSize="@dimen/subTitulo"
                     />
 
-                <ImageButton
-                    android:id="@+id/btnEditarSegmentoFlex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit"
-                    android:onClick="onClick"/>
-                <ImageButton
-                    android:id="@+id/btnEliminarSegmentoFlex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/borrar"
-                    android:layout_marginLeft="@dimen/marginLeftTV"
-                    android:onClick="onClick"/>
+
             </LinearLayout>
 
 

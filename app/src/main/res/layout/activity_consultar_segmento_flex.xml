@@ -5,15 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="@dimen/activity_horizontal_margin"
     tools:context="com.alejo_zr.exceldb.Segmento.Flexible.ConsultarSegmentoFlexActivity">
 
-    <TextView
-        android:id="@+id/idCarreteraSegFlexConsulta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/id"/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarConsulSegFlexActivity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/backConsulSegFlexActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_atras"
+                android:tint="@color/toolbar"/>
+
+            <ImageView
+                android:id="@+id/homeConsulSegFlexActivity"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:background="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/backConsulSegFlexActivity"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/homeConsulSegFlexActivity"
+                android:layout_marginLeft="@dimen/margen_toolbar"
+                android:text="@string/consulSeg"
+                android:textSize="@dimen/subTitulo"
+                android:textColor="@color/toolbar"/>
+
+            </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:id="@+id/tvnomCarretera_consultar_segmentoFlex"
@@ -21,7 +54,8 @@
         android:layout_height="wrap_content"
         android:text="@string/nombre"
         android:textSize="@dimen/titulo"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/toolbarConsulSegFlexActivity"/>
 
 
     <ListView

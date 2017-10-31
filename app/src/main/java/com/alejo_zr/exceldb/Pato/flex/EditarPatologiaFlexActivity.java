@@ -275,6 +275,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         obtenerFotoPatoFlex();
     }
 
+
     private void obtenerFotoPatoFlex() {
 
         MediaScannerConnection.scanFile(this, new String[]{path}, null,
@@ -405,6 +406,26 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         intent.putExtra("nom_carretera",tvNombre_Carretera_Segmento_EditarFlex.getText().toString());
         startActivity(intent);*/
         db.close();
+
+        Intent intent = new Intent(EditarPatologiaFlexActivity.this,PatologiaFlexActivity.class);
+        intent.putExtra("tvAbscisa",campoAbscisaFlex.getText().toString());
+        intent.putExtra("tvLatitud",campoLatitudPatoFlex.getText().toString());
+        intent.putExtra("tvLongitud",campoLongitudPatoFlex.getText().toString());
+        intent.putExtra("tvCarrilDanio",campoCarrilPato.getText().toString());
+        intent.putExtra("tvdanionombre",campoDanioPato.getText().toString());
+        intent.putExtra("tvSeveridadPatoFlexActivity",campoSeveridad);
+        intent.putExtra("tvlarDanio",campoLargoDanio.getText().toString());
+        intent.putExtra("tvanchDanio",campoAnchoDanio.getText().toString());
+        intent.putExtra("tvanchRepa", campoAnchoRepa.getText().toString());
+        intent.putExtra("tvlarRepa",campoLargoRepa.getText().toString());
+        intent.putExtra("tvAclaraciones",campoAclaracion.getText().toString());
+        intent.putExtra("tvDireccionPatoFlex",path);
+        intent.putExtra("tvNombreFoto_patoFlexActivity",tv_foto_nombre.getText().toString());
+        intent.putExtra("imgFoto",path);
+        intent.putExtra("tvIdSegmento",tv_id_segmento_patologia_flex.getText().toString());
+        intent.putExtra("tvNombreCarreteraPatologiaActivity",tv_nombre_carretera_patologia.getText().toString());
+        intent.putExtra("tvIdDaño",tv_idDanio.getText().toString());
+        startActivity( intent);
     }
 
     private void guardarFotografia() {

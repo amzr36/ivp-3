@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbarSegmento"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:elevation="4dp"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/backSegmento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_atras"
+                android:tint="@color/toolbar"/>
+
+            <ImageView
+                android:id="@+id/homePatoFlexActivity"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:background="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/backSegmento"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/datosSegmento"
+                android:layout_marginLeft="@dimen/margen_toolbar"
+                android:layout_toRightOf="@id/homePatoFlexActivity"
+                android:layout_centerVertical="true"
+                android:textColor="@color/toolbar"
+                android:textSize="@dimen/subTitulo"/>
+            <ImageButton
+                android:id="@+id/btnEliminarSegmento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borrar"
+                android:layout_marginLeft="@dimen/margen_toolbar"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:onClick="onClick"/>
+            <ImageButton
+                android:id="@+id/btnEditarSegmento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/btnEliminarSegmento"
+                android:onClick="onClick"
+                />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+

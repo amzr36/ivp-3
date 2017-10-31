@@ -155,7 +155,7 @@ public class EditarPatologiaRigiActivity extends AppCompatActivity {
         tv_direccionFoto.setText(direccion);
         tv_idDanio.setText(idDaño);
         tv_foto_nombre.setText(nombreFoto);
-        //tv_foto_danio.setText("1");
+
 
         path = tv_direccionFoto.getText().toString();
 
@@ -391,6 +391,28 @@ public class EditarPatologiaRigiActivity extends AppCompatActivity {
 
         db.update(Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA,values,Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA+"=?",parametros);
         Toast.makeText(getApplicationContext(),"Se edito el segmento",Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(EditarPatologiaRigiActivity.this,PatologiaRigiActivity.class);
+        intent.putExtra("tvAbscisa",campoAbscisaRigi.getText().toString());
+        intent.putExtra("tvLatitud",campoLatitudPatoRigi.getText().toString());
+        intent.putExtra("tvLongitud",campoLongitudPatoRigi.getText().toString());
+        intent.putExtra("tvNumeroLosa",campoNumeroLosa.getText().toString());
+        intent.putExtra("tvLetraLosa",campoLetraLosa.getText().toString());
+        intent.putExtra("tvLargoLosa",campoLargoLosa.getText().toString());
+        intent.putExtra("tvAnchooLosa",campoAnchoLosa.getText().toString());
+        intent.putExtra("tvdanionombre",campoDanioPatoRigi.getText().toString());
+        intent.putExtra("tvSeveridadPatoFlexActivity",seve);
+        intent.putExtra("tvlarDanio",campoLargoDanio.getText().toString());
+        intent.putExtra("tvanchDanio",campoAnchoDanio.getText().toString());
+        intent.putExtra("tvanchRepa", campoAnchoRepa.getText().toString());
+        intent.putExtra("tvlarRepa",campoLargoLosa.getText().toString());
+        intent.putExtra("tvAclaraciones",campoAclaracion.getText().toString());
+        intent.putExtra("tvDireccionPatoRigi",path);
+        intent.putExtra("tvNombreFoto_patoRigiActivity",tv_foto_nombre.getText().toString());
+        intent.putExtra("tvIdSegmento",tv_id_segmento_patologia_Rigi.getText().toString());
+        intent.putExtra("tvNombreCarreteraPatologiaActivity",tv_nombre_carretera_patologia.getText().toString());
+        intent.putExtra("tvIdDaño",tv_idDanio.getText().toString());
+        startActivity( intent);
 
     }
     private void guardarFotografia() {

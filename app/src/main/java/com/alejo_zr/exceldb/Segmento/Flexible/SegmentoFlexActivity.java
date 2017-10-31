@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,12 +29,15 @@ public class SegmentoFlexActivity extends AppCompatActivity {
     private ArrayList<PatoFlex> listaPatologiasFlex;
     private BaseDatos baseDatos;
     private String campoIS,valoriS;
-    int id_segmento;
+    private int id_segmento;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segmento_flex);
+        toolbar = (Toolbar) findViewById(R.id.toolbarSegmento);
+        setSupportActionBar(toolbar);
 
         baseDatos=new BaseDatos(this);
         tv_nombre_carretera_segmento = (TextView) findViewById(R.id.tv_nombre_carretera_segmento_flex);
@@ -148,6 +152,10 @@ public class SegmentoFlexActivity extends AppCompatActivity {
                 break;
             case R.id.btnEliminarSegmentoFlex:
                 confirmar();
+                break;
+            case R.id.backSegFlexActivity:
+                intent = new Intent (SegmentoFlexActivity.this, ConsultarSegmentoFlexActivity.class);
+                startActivity(intent);
                 break;
 
         }

@@ -14,4 +14,6 @@
     <dimen name="marginTopBtn">45dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="explicacion">16dp</dimen>
+    <dimen name="icon">48dp</dimen>
+    <dimen name="margen_toolbar">5dp</dimen>
 </resources>
