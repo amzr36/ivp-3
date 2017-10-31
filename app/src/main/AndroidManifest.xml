@@ -30,28 +30,22 @@
         </activity>
         <activity
             android:name=".Carretera.RegistroCarreteraActivity"
-            android:label="@string/regis"
-            />
+            android:label="@string/regis" />
         <activity
             android:name=".Carretera.ConsultarCarreteraActivity"
-            android:label="@string/consul"
-            />
+            android:label="@string/consul" />
         <activity
             android:name=".Carretera.CarreteraActivity"
-            android:label="@string/datosCarretera"
-            />
+            android:label="@string/datosCarretera" />
         <activity
             android:name=".Carretera.EditarCarreteraActivity"
-            android:label="@string/editarCarretera"
-            />
+            android:label="@string/editarCarretera" />
         <activity
             android:name=".Segmento.Flexible.RegistroSegmentoFlexActivity"
-            android:label="@string/regisSeg"
-            />
+            android:label="@string/regisSeg" />
         <activity
             android:name=".Segmento.Flexible.ConsultarSegmentoFlexActivity"
-            android:label="@string/consulSeg"
-            />
+            android:label="@string/consulSeg" />
         <activity
             android:name=".Segmento.Flexible.SegmentoFlexActivity"
             android:label="@string/datosSegmento" />
@@ -60,23 +54,19 @@
             android:label="@string/editarSegmento" />
         <activity
             android:name=".Segmento.Rigido.ConsultarSegmentoRigiActivity"
-            android:label="@string/consulSeg"
-            />
+            android:label="@string/consulSeg" />
         <activity
             android:name=".Segmento.Rigido.SegmentoRigiActivity"
             android:label="@string/datosSegmento" />
         <activity
             android:name=".Segmento.Rigido.RegistroSegmentoRigiActivity"
-            android:label="@string/regisSeg"
-            />
+            android:label="@string/regisSeg" />
         <activity
             android:name=".Segmento.Rigido.EditarSegmentoRigiActivity"
-            android:label="@string/editarSegmento"
-            />
+            android:label="@string/editarSegmento" />
         <activity
             android:name=".Pato.flex.RegistroPatologiaFlexActivity"
-            android:label="@string/patoFlex"
-            />
+            android:label="@string/patoFlex" />
         <activity
             android:name=".Pato.flex.ConsultaPatologiaFlexActivity"
             android:parentActivityName=".Segmento.Flexible.SegmentoFlexActivity" />
@@ -101,7 +91,8 @@
         <activity android:name=".Pato.rigi.RegistroPatologiaRigiActivity" />
         <activity android:name=".Pato.rigi.RegistroPatologiaRigiEjemploActivity" />
         <activity android:name=".Pato.rigi.ConsultaPatologiaRigiActivity" />
-        <activity android:name=".Pato.rigi.PatologiaRigiActivity"></activity>
+        <activity android:name=".Pato.rigi.PatologiaRigiActivity" />
+        <activity android:name=".Pato.rigi.EditarPatologiaRigiActivity"></activity>
     </application>
 
 </manifest>

@@ -368,11 +368,11 @@
             android:text="direccion foto"
             android:visibility="visible"/>
         <TextView
-            android:id="@+id/tv_foto_danioRigi"
+            android:id="@+id/tv_direccion_foto_rigi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="direccion foto"
-            android:visibility="invisible"/>
+            android:visibility="visible"/>
 
 
         <ImageButton

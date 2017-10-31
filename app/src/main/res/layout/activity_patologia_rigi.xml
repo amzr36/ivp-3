@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,16 +10,39 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvNombreCarreteraPatologiaRigiActivity"
+        <LinearLayout
+            android:id="@+id/llpatoRigiActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/nombre"
-            android:textSize="@dimen/titulo"
-            android:textStyle="bold|italic"
-            />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvNombreCarreteraPatologiaRigiActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/nombre"
+                android:textSize="@dimen/titulo"
+                android:textStyle="bold|italic"
+                />
+            <ImageButton
+                android:id="@+id/btnEditarPatologiaRigi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit"
+                android:onClick="onClick"
+                android:layout_alignParentRight="true"/>
+            <ImageButton
+                android:id="@+id/btnEliminarPatoRigi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borrar"
+                android:layout_marginLeft="@dimen/marginLeftTV"
+                android:onClick="onClick"/>
+        </LinearLayout>
+
         <TextView
             android:id="@+id/tvIdsegpatoRigiAct"
             android:layout_width="wrap_content"
@@ -27,7 +50,7 @@
             android:text="@string/segmento"
             android:textSize="@dimen/subTitulo"
             android:textStyle="bold|italic"
-            android:layout_below="@+id/tvNombreCarreteraPatologiaRigiActivity"/>
+            android:layout_below="@+id/llpatoRigiActivity"/>
         <TextView
             android:id="@+id/tvIdSegmentoPatologiaRigiActivity"
             android:layout_width="wrap_content"
@@ -62,13 +85,6 @@
             android:layout_toRightOf="@+id/tv_id_danio_pato_Rigi"
             android:layout_alignBottom="@+id/tvIdsegpatoRigiAct"/>
 
-        <ImageButton
-            android:id="@+id/btnEditarPatologiaRigi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/edit"
-            android:layout_alignParentRight="true"/>
-
         <LinearLayout
             android:id="@+id/llabsRigi"
             android:layout_width="match_parent"
@@ -79,7 +95,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/abscisa"
-                android:textSize="@dimen/subTitulo"
                 android:textStyle="bold"/>
 
             <TextView
@@ -107,7 +122,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/latitud"
-                    android:textSize="@dimen/subTitulo"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -127,7 +141,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/longitud"
-                    android:textSize="@dimen/subTitulo"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -145,8 +158,7 @@
             android:id="@+id/No_placa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/no_placa"
-            android:textSize="@dimen/subTitulo"
+            android:text="@string/placa"
             android:textStyle="bold"
             android:layout_below="@id/llLatRigi"/>
 
@@ -156,16 +168,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_below="@id/No_placa">
+
             <TextView
                 android:id="@+id/numero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="numero"
-                android:layout_weight="1
-"
-                />
+                android:textStyle="bold"/>
 
-                <TextView
+            <TextView
                     android:id="@+id/tvnumero"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -177,6 +189,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="letra"
+                    android:textStyle="bold"
                     android:layout_weight="1
 "
                     />
@@ -195,7 +208,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/losa_dimen"
-            android:textSize="@dimen/subTitulo"
             android:textStyle="bold"
             android:layout_below="@id/llCariilRigi"/>
 
@@ -213,7 +225,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/largo"/>
+                android:text="@string/largo"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tvLargoLosa"
@@ -258,7 +271,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/patologia"
-                    android:textSize="@dimen/subTitulo"
                     android:textStyle="bold"
                     android:layout_below="@+id/lldanionombreRigi"
                     />
@@ -283,8 +295,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/severidad"
-                    android:textSize="@dimen/subTitulo"
-
                     android:textStyle="bold"
                     />
                 <TextView
@@ -302,7 +312,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/danio"
-            android:textSize="@dimen/subTitulo"
             android:textStyle="bold"
             android:layout_below="@+id/llPatoRigiActivity"
              />
@@ -349,7 +358,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/reparacion"
-            android:textSize="@dimen/subTitulo"
             android:textStyle="bold"
             android:layout_below="@id/lldimendanioRigi"
             android:layout_marginTop="@dimen/marginTopTV"/>
@@ -394,7 +402,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/aclaraciones"
-            android:textSize="@dimen/subTitulo"
             android:textStyle="bold"
             android:layout_below="@+id/lldimenrepaRigi"
             android:layout_marginTop="@dimen/marginTopTV"/>
@@ -402,7 +409,7 @@
             android:id="@+id/tvAclaracionesPatoRigiActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/vacio"
+            android:hint="@string/vacio"
             android:layout_below="@id/aclaraciones"/>
 
         <TextView
@@ -410,14 +417,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvAclaracionesPatoRigiActivity"
-            android:text="@string/nombre"
+            android:text="direccion"
+            android:textStyle="bold"
             android:visibility="visible"/>
         <TextView
             android:id="@+id/tvNoombreFoto_patoRigiActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvDireccionPatoRigi"
-            android:text="@string/nombre"/>
+            android:text="@string/nombre"
+            android:visibility="visible"/>
 
         <ImageView
             android:id="@+id/imgDanio_PatoRigi"
@@ -426,11 +435,6 @@
             android:src="@drawable/img_base"
             android:layout_below="@+id/tvDireccionPatoRigi"
             />
-
-
-
-
-
 
     </RelativeLayout>
 

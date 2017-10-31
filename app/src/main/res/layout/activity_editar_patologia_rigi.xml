@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/activity_horizontal_margin"
-    tools:context="com.alejo_zr.exceldb.Pato.flex.EditarPatologiaFlexActivity">
+    tools:context="com.alejo_zr.exceldb.Pato.rigi.EditarPatologiaRigiActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,11 +14,10 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/btnManualPatoFlexEditar"
+                android:id="@+id/btnManualPatoRigiEditar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/mivp"
@@ -27,7 +26,7 @@
                 />
 
             <TextView
-                android:id="@+id/ej_Pato_FlexEditar"
+                android:id="@+id/ej_Pato_RigiEditar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ejemplo"
@@ -37,10 +36,8 @@
                 android:onClick="onClick"/>
         </RelativeLayout>
 
-
-
         <TextView
-            android:id="@+id/tv_nombre_carretera_patologia_flexEditar"
+            android:id="@+id/tv_nombre_carretera_patologia_RigiEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nombre"
@@ -50,17 +47,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/tv_id_segm_pato_flex"
+                android:id="@+id/tv_id_segm_pato_Rigi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/segmento"
                 android:textStyle="bold|italic"/>
             <TextView
-                android:id="@+id/tv_id_segmento_patologia_flex_Editar"
+                android:id="@+id/tv_id_segmento_patologia_Rigi_Editar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -73,14 +69,13 @@
                 android:textStyle="bold"
                 android:text="@string/danio_activity"/>
             <TextView
-                android:id="@+id/tv_id_danio_pato_flex_editar"
+                android:id="@+id/tv_id_danio_pato_rigi_editar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/id"/>
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -90,20 +85,20 @@
             android:layout_marginTop="@dimen/marginTopTV">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoAbscisaFlexEditar"
+                android:id="@+id/input_campoAbscisaRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColorHighlight="@color/colorAccent">
                 <EditText
-                    android:id="@+id/campoAbscisaFlexEditar"
+                    android:id="@+id/campoAbscisaRigiEditar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/abscisa"/>
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/btnObtenerCoordenadasPatoFlexEditar"
+                android:id="@+id/btnObtenerCoordenadasPatoRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -120,14 +115,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoLatPFlexEditar"
+                android:id="@+id/input_campoLatPRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColorHighlight="@color/colorAccent">
 
                 <EditText
-                    android:id="@+id/campoLatitudPatoFlexEditar"
+                    android:id="@+id/campoLatitudPatoRigiEditar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/latitud"
@@ -135,14 +130,14 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoLngPFlexEditar"
+                android:id="@+id/input_campoLngPRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColorHighlight="@color/colorAccent">
 
                 <EditText
-                    android:id="@+id/campolongitudPatoFlexEditar"
+                    android:id="@+id/campolongitudPatoRigiEditar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/longitud"
@@ -156,24 +151,71 @@
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoCarrilPatoFlexEditar"
+                android:id="@+id/input_campoNumeroLosaPatoRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:textColorHighlight="@color/colorAccent">
 
                 <EditText
-                    android:id="@+id/campoCarrilPatoFlexEditar"
+                    android:id="@+id/campoNumeroLosaEditar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/carril"/>
+                    android:hint="@string/no_placa"/>
+            </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_campoLetraLosaPatoRigiEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHighlight="@color/colorAccent">
 
+                <EditText
+                    android:id="@+id/campoLetraLosaEditar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/letra_losa"/>
+            </android.support.design.widget.TextInputLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_campoLargoLosaPatoRigiEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHighlight="@color/colorAccent">
+                <EditText
+                    android:id="@+id/campoLargoLosaRigiEditar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/largo_losa"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_campoAnchoLosaPatoRigiEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHighlight="@color/colorAccent">
+                <EditText
+                    android:id="@+id/campoAnchoLosaRigiEditar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/ancho_losa"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvDanio"
+            android:id="@+id/tvDanioRigiEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/patologia"
@@ -181,7 +223,7 @@
             android:textStyle="bold"/>
 
         <fr.ganfra.materialspinner.MaterialSpinner
-            android:id="@+id/spinnerPatoFlexEditar"
+            android:id="@+id/spinnerPatoRigiEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:ms_floatingLabelText="@string/patologia"
@@ -191,25 +233,25 @@
 
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_campoDanioPatoFlexEditar"
+            android:id="@+id/input_campoDanioPatoRigiEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHighlight="@color/colorAccent">
             <EditText
-                android:id="@+id/campoDanioPatoFlexEditar"
+                android:id="@+id/campoDanioPatoRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/codPato"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_campoSeveridadFlexEditar"
+            android:id="@+id/input_campoSeveridadRigiEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHighlight="@color/colorAccent">
 
             <fr.ganfra.materialspinner.MaterialSpinner
-                android:id="@+id/spinnerSeveridadPatoFlexEditar"
+                android:id="@+id/spinnerSeveridadPatoRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:ms_floatingLabelColor="@color/colorAccent"
@@ -221,7 +263,7 @@
 
 
         <TextView
-            android:id="@+id/tvDimenDanio"
+            android:id="@+id/tvDimenDanioRigi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/danio"
@@ -234,13 +276,13 @@
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoLargoDanioFlexEditar"
+                android:id="@+id/input_campoLargoDanioRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColorHighlight="@color/colorAccent">
                 <EditText
-                    android:id="@+id/campoLargoDanioFlexEditar"
+                    android:id="@+id/campoLargoDanioRigiEditar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/largo"/>
@@ -249,14 +291,14 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoAnchoDanioFlexEditar"
+                android:id="@+id/input_campoAnchoDanioRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColorHighlight="@color/colorAccent">
 
                 <EditText
-                    android:id="@+id/campoAnchoDanioFlexEditar"
+                    android:id="@+id/campoAnchoDanioRigiEditar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/anchoD"/>
@@ -268,7 +310,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvRepa"
+            android:id="@+id/tvRepaRigi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/reparacion"
@@ -280,27 +322,27 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoLargoRepaFlexEditar"
+                android:id="@+id/input_campoLargoRepaRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColorHighlight="@color/colorAccent">
 
                 <EditText
-                    android:id="@+id/campoLargoRepaFlexEditar"
+                    android:id="@+id/campoLargoRepaRigiEditar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/largo"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoAnchoRepaFlexEditar"
+                android:id="@+id/input_campoAnchoRepaRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColorHighlight="@color/colorAccent">
                 <EditText
-                    android:id="@+id/campoAnchoRepaFlexEditar"
+                    android:id="@+id/campoAnchoRepaRigiEditar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/anchoD"/>
@@ -309,12 +351,12 @@
         </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_campoAclaracionesFlexEditar"
+            android:id="@+id/input_campoAclaracionesRigiEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHighlight="@color/colorAccent">
             <EditText
-                android:id="@+id/campoAclaracionesFlexEditar"
+                android:id="@+id/campoAclaracionesRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/aclaraciones"/>
@@ -322,7 +364,7 @@
 
 
         <TextView
-            android:id="@+id/tvidfo"
+            android:id="@+id/tvidfoRigiEditar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="ID FOTO"
@@ -330,27 +372,27 @@
 
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_campoidFotoFlexEditar"
+            android:id="@+id/input_campoidFotoRigiEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHighlight="@color/colorAccent">
+
             <TextView
-                android:id="@+id/tv_idFotoFlexEditar"
+                android:id="@+id/tv_idFotoRigiEditar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/vacio"
-                />
+                android:hint="@string/vacio" />
 
         </android.support.design.widget.TextInputLayout>
 
         <TextView
-            android:id="@+id/tv_foto_nombreEditar"
+            android:id="@+id/tv_foto_nombreRigiEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="nombre FOTO"
+            android:text="nombreFoto"
             android:visibility="visible"/>
         <TextView
-            android:id="@+id/tv_foto_danioEditar"
+            android:id="@+id/tv_direccionfoto_danioRigiEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="direccion foto"
@@ -358,7 +400,7 @@
 
 
         <ImageButton
-            android:id="@+id/btnFotoFlexEditar"
+            android:id="@+id/btnFotoRigiEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -367,15 +409,15 @@
             />
 
         <ImageView
-            android:id="@+id/imagenPatoFlexEditar"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:src="@drawable/img_base"
+            android:id="@+id/imagenIdPatoRigiEditar"
             android:layout_marginTop="@dimen/marginTopTV"
             android:layout_gravity="center_horizontal" />
 
         <Button
-            android:id="@+id/btnEditarPatologiaFlex"
+            android:id="@+id/btnEditarPatologiaRigiActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginTop"

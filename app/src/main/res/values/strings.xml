@@ -83,6 +83,35 @@
     <string name="largo_losa">Largo losa</string>
     <string name="ancho_losa">Ancho losa</string>
     <string name="gps">Active el GPS</string>
+    <string name="placa">Placa</string>
+
+    <string-array name="dañosPatoFlex">
+        <item>Fisuras Longitudinales y transversales</item>
+        <item>Fisura longitudinal en junta de construcción</item>
+        <item>Fisuras por reflexión de juntas o grietas en placas de concret</item>
+        <item>Fisuras en medialuna</item>
+        <item>"fisura_borde"</item>
+        <item>Fisuras de borde</item>
+        <item>Fisuras en bloque</item>
+        <item>Piel de cocodrilo</item>
+        <item>Fisuración por desplazamiento de capas</item>
+        <item>Fisuración incipiente</item>
+        <item>Ondulación</item>
+        <item>Abultamiento</item>
+        <item>Hundimiento</item>
+        <item>Ahuellamiento</item>
+        <item>Descascaramiento </item>
+        <item>Baches</item>
+        <item>Parche</item>
+        <item>Desgaste superficial</item>
+        <item>Perdida de agregado</item>
+        <item>Pulimento del agregado</item>
+        <item>Cabezas duras</item>
+        <item>Exudación</item>
+        <item>Surcos</item>
+        <item>Corrimiento vertical de la berma</item>
+        <item></item>
+    </string-array>
 
 
     <!--Daños Pavimento Flexible!-->
@@ -124,7 +153,7 @@
     <string name="pa">PA</string>
     <string name="pulimentof_agregado">Pulimento del agregado</string>
     <string name="puf">PU</string>
-    <string name="cabeza_dura">cabezas duras</string>
+    <string name="cabeza_dura">Cabezas duras</string>
     <string name="cd">CD</string>
     <string name="exudacion">Exudación</string>
     <string name="ex">EX</string>
@@ -192,7 +221,7 @@
     <string name="separacion_berma_pavimento">Separación entre la berma y el pavimento</string>
     <string name="sb">SB</string>
     <string name="losa_dimen">Dimensiones de la losa (m) </string>
-    <string name= "no_placa"> No placa </string>
+    <string name="no_placa"> No placa </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

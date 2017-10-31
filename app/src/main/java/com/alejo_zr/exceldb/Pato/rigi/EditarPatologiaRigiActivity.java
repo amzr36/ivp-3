@@ -1,6 +1,7 @@
 package com.alejo_zr.exceldb.Pato.rigi;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -47,7 +48,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-public class RegistroPatologiaRigiActivity extends AppCompatActivity {
+public class EditarPatologiaRigiActivity extends AppCompatActivity {
 
     private final String CARPETA_RAIZ="InventarioVial/";
     private final String RUTA_IMAGEN=CARPETA_RAIZ+"PavimentoRigido";
@@ -55,18 +56,19 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
     final int COD_SELECCIONA=10;
     final int COD_FOTO=20;
 
+    private BaseDatos baseDatos;
     private Button btnRegistrarPatologia;
     private ImageButton botonCargar;
     private ImageView imagen;
-    private String path;
+    private String path,seve;
     private String idFotoRigi,campoSeveridad,campoIS;
 
     private MaterialSpinner spinnerPatoRigi,spinnerSeveridadPatoRigiRegistro;
-    private TextView tv_nombre_carretera_patologia,tv_id_segmento_patologia_Rigi,tv_direccion_foto,tv_idFotoRigi,tv_foto_nombre,ej_Pato_Rigi;
-    private TextInputLayout input_campoAbscisaRigi,input_campoCarrilPato,input_campoDanioPatoRigi,input_campoLargoDanio,input_campoAnchoDanio,input_campoSeveridad,
+    private TextView tv_idDanio,tv_nombre_carretera_patologia,tv_id_segmento_patologia_Rigi,tv_foto_danio,tv_direccionFoto,tv_foto_nombre,ej_Pato_Rigi;
+    private TextInputLayout input_campoAbscisaRigi,input_campoDanioPatoRigi,input_campoLargoDanio,input_campoAnchoDanio,input_campoSeveridad,
             input_campoidFotoRigi;
-    private EditText campoNumeroLosa,campoLetraLosa,campoLargoLosa,campoAnchoLosa, campoDanioPatoRigi, campoLargoDanio, campoAnchoDanio, campoLargoRepa, campoAnchoRepa, campoAclaracion,campoAbscisaRigi,
-            campoLatitudPatoRigi,campoLongitudPatoRigi;
+    private EditText campoNumeroLosa,campoLetraLosa,campoLargoLosa,campoAnchoLosa, campoDanioPatoRigi, campoLargoDanio,
+            campoAnchoDanio, campoLargoRepa, campoAnchoRepa, campoAclaracion,campoAbscisaRigi,campoLatitudPatoRigi,campoLongitudPatoRigi;
     private String[] tipoDanioRigi = { "Grieta de esquina", "Grieta longitudinal",
             "Grieta Transversal", "Grieta en los extremos de los pasadores", "Grieta en bloque", "Grieta en pozos y sumideros", "separacion de juntas longitudinales",
             "Deterioro de sello", "Desportillamiento de juntas", "Descascaramiento", "Desintegracion", "Baches", "Pulimiento", "Escalonamiento de juntas longitudinales y transversale",
@@ -77,54 +79,86 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro_patologia_rigi);
+        setContentView(R.layout.activity_editar_patologia_rigi);
 
-        botonCargar= (ImageButton) findViewById(R.id.btnDanioRigi);
-        if(validaPermisos()){
-            botonCargar.setEnabled(true);
-        }else{
-            botonCargar.setEnabled(false);
-        }
-        imagen= (ImageView) findViewById(R.id.imagenIdPatoRigiRegistro);
+        baseDatos = new BaseDatos(this);
+
+        imagen= (ImageView) findViewById(R.id.imagenIdPatoRigiEditar);
 
         btnRegistrarPatologia= (Button) findViewById(R.id.btnRegistroPatologia);
 
-        spinnerSeveridadPatoRigiRegistro = (MaterialSpinner) findViewById(R.id.spinnerSeveridadPatoRigiRegistro);
-        spinnerPatoRigi = (MaterialSpinner) findViewById(R.id.spinnerPatoRigi);
-        campoAbscisaRigi = (EditText) findViewById(R.id.campoAbscisaRigi);
-        campoLatitudPatoRigi = (EditText) findViewById(R.id.campoLatitudPatoRigi);
-        campoLongitudPatoRigi = (EditText) findViewById(R.id.campolongitudPatoRigi);
-        campoNumeroLosa = (EditText)findViewById(R.id.campoNumeroLosa);
-        campoLetraLosa= (EditText)findViewById(R.id.campoLetraLosa);
-        campoLargoLosa= (EditText)findViewById(R.id.campoLargoLosaRigiRegistro);
-        campoAnchoLosa= (EditText)findViewById(R.id.campoAnchoLosaRigiRegistro);
-        campoDanioPatoRigi = (EditText) findViewById(R.id.campoDanioPatoRigi);
-        campoLargoDanio = (EditText) findViewById(R.id.campoLargoDanioRigi);
-        campoAnchoDanio = (EditText) findViewById(R.id.campoAnchoDanioRigi);
-        campoLargoRepa = (EditText) findViewById(R.id.campoLargoRepaRigi);
-        campoAnchoRepa = (EditText) findViewById(R.id.campoAnchoRepaRigi);
-        campoAclaracion = (EditText) findViewById(R.id.campoAclaracionesRigi);
-
-        tv_nombre_carretera_patologia = (TextView) findViewById(R.id.tv_nombre_carretera_patologia_Rigi);
-        tv_id_segmento_patologia_Rigi = (TextView) findViewById(R.id.tv_id_segmento_patologia_Rigi_registro);
-        tv_direccion_foto = (TextView) findViewById(R.id.tv_direccion_foto_rigi);
-        tv_idFotoRigi = (TextView) findViewById(R.id.tv_idFotoRigi);
-        tv_foto_nombre = (TextView) findViewById(R.id.tv_foto_nombreRigi);
-        ej_Pato_Rigi = (TextView) findViewById(R.id.ej_Pato_Rigi);
-        input_campoAbscisaRigi = (TextInputLayout) findViewById(R.id.input_campoAbscisaRigi);
-        input_campoDanioPatoRigi = (TextInputLayout) findViewById(R.id.input_campoDanioPatoRigi);
-        input_campoLargoDanio = (TextInputLayout) findViewById(R.id.input_campoLargoDanioRigi);
-        input_campoAnchoDanio = (TextInputLayout) findViewById(R.id.input_campoAnchoDanioRigi);
-        input_campoSeveridad = (TextInputLayout) findViewById(R.id.input_campoSeveridadRigi);
-        input_campoidFotoRigi = (TextInputLayout) findViewById(R.id.input_campoidFotoRigi);
-
+        spinnerSeveridadPatoRigiRegistro = (MaterialSpinner) findViewById(R.id.spinnerSeveridadPatoRigiEditar);
+        spinnerPatoRigi = (MaterialSpinner) findViewById(R.id.spinnerPatoRigiEditar);
+        tv_idDanio = (TextView) findViewById(R.id.tv_id_danio_pato_rigi_editar);
+        campoAbscisaRigi = (EditText) findViewById(R.id.campoAbscisaRigiEditar);
+        campoLatitudPatoRigi = (EditText) findViewById(R.id.campoLatitudPatoRigiEditar);
+        campoLongitudPatoRigi = (EditText) findViewById(R.id.campolongitudPatoRigiEditar);
+        campoNumeroLosa = (EditText)findViewById(R.id.campoNumeroLosaEditar);
+        campoLetraLosa= (EditText)findViewById(R.id.campoLetraLosaEditar);
+        campoLargoLosa= (EditText)findViewById(R.id.campoLargoLosaRigiEditar);
+        campoAnchoLosa= (EditText)findViewById(R.id.campoAnchoLosaRigiEditar);
+        campoDanioPatoRigi = (EditText) findViewById(R.id.campoDanioPatoRigiEditar);
+        campoLargoDanio = (EditText) findViewById(R.id.campoLargoDanioRigiEditar);
+        campoAnchoDanio = (EditText) findViewById(R.id.campoAnchoDanioRigiEditar);
+        campoLargoRepa = (EditText) findViewById(R.id.campoLargoRepaRigiEditar);
+        campoAnchoRepa = (EditText) findViewById(R.id.campoAnchoRepaRigiEditar);
+        campoAclaracion = (EditText) findViewById(R.id.campoAclaracionesRigiEditar);
+        tv_nombre_carretera_patologia = (TextView) findViewById(R.id.tv_nombre_carretera_patologia_RigiEditar);
+        tv_id_segmento_patologia_Rigi = (TextView) findViewById(R.id.tv_id_segmento_patologia_Rigi_Editar);
+        tv_foto_danio = (TextView) findViewById(R.id.tv_idFotoRigiEditar);
+        tv_direccionFoto = (TextView) findViewById(R.id.tv_direccionfoto_danioRigiEditar);
+        tv_foto_nombre = (TextView) findViewById(R.id.tv_foto_nombreRigiEditar);
+        ej_Pato_Rigi = (TextView) findViewById(R.id.ej_Pato_RigiEditar);
+        input_campoAbscisaRigi = (TextInputLayout) findViewById(R.id.input_campoAbscisaRigiEditar);
+        input_campoDanioPatoRigi = (TextInputLayout) findViewById(R.id.input_campoDanioPatoRigiEditar);
+        input_campoLargoDanio = (TextInputLayout) findViewById(R.id.input_campoLargoDanioRigiEditar);
+        input_campoAnchoDanio = (TextInputLayout) findViewById(R.id.input_campoAnchoDanioRigiEditar);
+        input_campoSeveridad = (TextInputLayout) findViewById(R.id.input_campoSeveridadRigiEditar);
+        input_campoidFotoRigi = (TextInputLayout) findViewById(R.id.input_campoidFotoRigiEditar);
+        tv_foto_danio.setText("1");
         Bundle bundle = getIntent().getExtras();
-        String dato_nom_carretera = bundle.getString("nom_carretera_segmento");
-        String id_segmento = bundle.getString("id_segmento");
-        String dato_is= bundle.getString("campoIS".toString());
-        tv_nombre_carretera_patologia.setText(dato_nom_carretera);
-        tv_id_segmento_patologia_Rigi.setText(id_segmento);
-        campoIS = dato_is;
+        String abscisa = bundle.getString("tvAbscisa");
+        String latitud = bundle.getString("tvLatitud");
+        String longitud= bundle.getString("tvLongitud");
+        String numero= bundle.getString("tvNumeroLosa");
+        String letra = bundle.getString("tvLetraLosa");
+        String largoLosa = bundle.getString("tvLargoLosa");
+        String anchoLosa = bundle.getString("tvAnchoLosa");
+        String danio= bundle.getString("tvdanionombre");
+        String seve= bundle.getString("tvSeveridadPatoFlexActivity");
+        String larDanio= bundle.getString("tvlarDanio");
+        String anchoDanio= bundle.getString("tvanchDanio");
+        String anchoRepa= bundle.getString("tvanchRepa");
+        String larRepa= bundle.getString("tvlarRepa");
+        String aclaraciones= bundle.getString("tvAclaraciones");
+        String direccion= bundle.getString("tvDireccionPatoRigi");
+        String nombreFoto= bundle.getString("tvNombreFoto_patoRigiActivity");
+        String idSeg= bundle.getString("tvIdSegmento");
+        String nomCarre= bundle.getString("tvNombreCarreteraPatologiaActivity");
+        String idDaño= bundle.getString("tvIdDaño");
+
+        campoAbscisaRigi.setText(abscisa);
+        campoLatitudPatoRigi.setText(latitud);
+        campoLongitudPatoRigi.setText(longitud);
+        campoNumeroLosa.setText(numero);
+        campoLetraLosa.setText(letra);
+        campoLargoLosa.setText(largoLosa);
+        campoAnchoLosa.setText(anchoLosa);
+        campoDanioPatoRigi.setText(danio);
+        campoLargoDanio.setText(larDanio);
+        campoAnchoDanio.setText(anchoDanio);
+        campoLargoRepa.setText(larRepa);
+        campoAnchoRepa.setText(anchoRepa);
+        campoAclaracion.setText(aclaraciones);
+        tv_nombre_carretera_patologia.setText(nomCarre);
+        tv_id_segmento_patologia_Rigi.setText(idSeg);
+        tv_direccionFoto.setText(direccion);
+        tv_idDanio.setText(idDaño);
+        tv_foto_nombre.setText(nombreFoto);
+        //tv_foto_danio.setText("1");
+
+        path = tv_direccionFoto.getText().toString();
+
 
         ArrayAdapter<String> arrayAdapterPato = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, tipoDanioRigi);
         spinnerPatoRigi.setAdapter(arrayAdapterPato);
@@ -132,12 +166,9 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         spinnerSeveridadPatoRigiRegistro.setAdapter(arrayAdapterSeveridad);
 
         spinnerSeveridadPatoRigiRegistro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position) {
-
-
                     case 0:
                         campoSeveridad = "A";
                         break;
@@ -160,7 +191,6 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
 
             }
         });
-
         spinnerPatoRigi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -247,29 +277,52 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
 
             }
         });
+
+        obtenerFotoPatoRigi();
     }
 
+    private void obtenerFotoPatoRigi() {
+        MediaScannerConnection.scanFile(this, new String[]{path}, null,
+                new MediaScannerConnection.OnScanCompletedListener() {
+                    @Override
+                    public void onScanCompleted(String path, Uri uri) {
+                        Log.i("Ruta de almacenamiento","Path: "+path);
+                    }
+                });
 
+        Bitmap bitmap= BitmapFactory.decodeFile(path);
+        int alto=300;//alto en pixeles
+        int ancho=350;//ancho en pixeles
+        bitmap = Bitmap.createScaledBitmap(bitmap,alto,ancho,true);
+        imagen.setImageBitmap(bitmap);
+    }
 
     public void onClick(View view) {
+        switch (view.getId()) {
 
-        switch (view.getId()){
-
-            case R.id.btnRegistroPatologiaRigi:
+            case R.id.btnEditarPatologiaRigiActivity:
                 verificarDatosPatoRigi();
                 break;
-            case R.id.btnDanioRigi:
+            case R.id.btnFotoRigiEditar:
                 guardarFotografia();
+                tomarFotografia();
                 break;
-            case R.id.btnObtenerCoordenadasPatoRigi:
+            case R.id.btnObtenerCoordenadasPatoRigiEditar:
                 obtenerCoordenadas();
                 break;
-            case R.id.ej_Pato_Rigi:
-                Intent intent = new Intent(RegistroPatologiaRigiActivity.this, RegistroPatologiaRigiEjemploActivity.class);
+            case R.id.btnManualPatoRigiEditar:
+                abrirManual();
+                break;
+            case R.id.ej_Pato_FlexEditar:
+                Intent intent = new Intent(EditarPatologiaRigiActivity.this, RegistroPatologiaRigiEjemploActivity.class);
                 startActivity(intent);
                 break;
         }
+    }
 
+    private void abrirManual() {
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
+        startActivity(launchIntent);
     }
 
     private void verificarDatosPatoRigi() {
@@ -299,7 +352,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         }else{
             input_campoLargoDanio.setErrorEnabled(false);
         }
-        if(tv_idFotoRigi.getText().toString().trim().isEmpty()){
+        if(tv_direccionFoto.getText().toString().trim().isEmpty()){
             input_campoidFotoRigi.setError("Tome la foto del daño");
             isValid=false;
         }else{
@@ -307,52 +360,48 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         }
 
         if(isValid){
-            registrarPatoRigi();
+            editarPatoRigi();
         }
 
     }
 
-    private void registrarPatoRigi() {
+    private void editarPatoRigi() {
 
-        BaseDatos bd=new BaseDatos(this);
+        SQLiteDatabase db = baseDatos.getWritableDatabase();
+        String[] parametros={tv_idDanio.getText().toString()};
 
-        SQLiteDatabase db=bd.getWritableDatabase();
+        ContentValues values = new ContentValues();
 
-        String insert="INSERT INTO "+ Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA
-                +" ( " + Utilidades.PATOLOGIARIGI.CAMPO_NOMBRE_CARRETERA_PATOLOGIA+","+ Utilidades.PATOLOGIARIGI.CAMPO_ID_SEGMENTO_PATOLOGIA+","+
-                Utilidades.PATOLOGIARIGI.CAMPO_ABSCISA_PATOLOGIA+","+ Utilidades.PATOLOGIARIGI.CAMPO_LATITUD+","+ Utilidades.PATOLOGIARIGI.CAMPO_LONGITUD+","
-                + Utilidades.PATOLOGIARIGI.CAMPO_NUMERO_LOSA+","+ Utilidades.PATOLOGIARIGI.CAMPO_LETRA_LOSA+","+ Utilidades.PATOLOGIARIGI.CAMPO_LARGO_LOSA+","
-                + Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_LOSA+","
-                + Utilidades.PATOLOGIARIGI.CAMPO_DANIO_PATOLOGIA+","+ Utilidades.PATOLOGIARIGI.CAMPO_SEVERIDAD+","
-                + Utilidades.PATOLOGIARIGI.CAMPO_LARGO_PATOLOGIA+","+ Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_PATOLOGIA+","+ Utilidades.PATOLOGIARIGI.CAMPO_LARGO_REPARACION
-                +"," + Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_REPARACION+","+ Utilidades.PATOLOGIARIGI.CAMPO_ACLARACIONES+","+ Utilidades.PATOLOGIARIGI.CAMPO_NOMBRE_FOTO+","
-                + Utilidades.PATOLOGIARIGI.CAMPO_FOTO_DANIO+","+Utilidades.PATOLOGIARIGI.CAMPO_IS+")" +
-                " VALUES ('"+tv_nombre_carretera_patologia.getText().toString()+"' , '"+tv_id_segmento_patologia_Rigi.getText().toString()+"' , '"+
-                campoAbscisaRigi.getText().toString()+"' , '"+campoLatitudPatoRigi.getText().toString()+"' , '"+campoLongitudPatoRigi.getText().toString()+"' , '"
-                +campoNumeroLosa.getText().toString()+"' , '"+campoLetraLosa.getText().toString()+"' , '"+campoLargoLosa.getText().toString()+"' , '"+campoAnchoLosa.getText().toString()+"' , '"
-                +campoDanioPatoRigi.getText().toString()+"' , '"+campoSeveridad+"' , '"
-                +campoLargoDanio.getText().toString()+"' , '"+campoAnchoDanio.getText().toString()+"' , '"+campoLargoRepa.getText().toString()+"' , '"
-                +campoAnchoRepa.getText().toString()+"' , '"+campoAclaracion.getText().toString()+"' , '"+tv_foto_nombre.getText().toString()+"' , '"
-                +tv_direccion_foto.getText().toString()+"' , '"+campoIS+"')";
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_ABSCISA_PATOLOGIA , campoAbscisaRigi.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_LATITUD  , campoLatitudPatoRigi.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_LONGITUD, campoLongitudPatoRigi.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_NUMERO_LOSA  , campoNumeroLosa.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_LETRA_LOSA , campoLetraLosa.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_LARGO_LOSA  , campoLargoLosa.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_LOSA  , campoAnchoLosa.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_DANIO_PATOLOGIA, campoDanioPatoRigi.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_SEVERIDAD, campoSeveridad);
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_LARGO_PATOLOGIA  , campoLargoDanio.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_PATOLOGIA, campoAnchoDanio.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_LARGO_REPARACION, campoLargoRepa.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_REPARACION, campoAnchoRepa.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_ACLARACIONES, campoAclaracion.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_NOMBRE_FOTO, tv_foto_nombre.getText().toString());
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_FOTO_DANIO, tv_direccionFoto.getText().toString());
 
-        Toast.makeText(getApplicationContext(),"Se registro el Daño: "+campoDanioPatoRigi.getText().toString(),Toast.LENGTH_SHORT).show();
-        db.execSQL(insert);
-
-        db.close();
+        db.update(Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA,values,Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA+"=?",parametros);
+        Toast.makeText(getApplicationContext(),"Se edito el segmento",Toast.LENGTH_SHORT).show();
 
     }
-
     private void guardarFotografia() {
 
         BaseDatos bd=new BaseDatos(this);
 
         SQLiteDatabase db=bd.getWritableDatabase();
 
-
         String insert="INSERT INTO "+ Utilidades.FOTORIGI.TABLA_FOTORIGI
-                +" ( " + Utilidades.FOTORIGI.CAMPO_NOMBRE_CARRETERA_FOTORIGI+","+ Utilidades.FOTORIGI.CAMPO_ID_SEGMENTO_FOTORIGI+")" +
+                +" ( " +Utilidades.FOTORIGI.CAMPO_NOMBRE_CARRETERA_FOTORIGI+","+Utilidades.FOTORIGI.CAMPO_ID_SEGMENTO_FOTORIGI+")" +
                 " VALUES ('"+tv_nombre_carretera_patologia.getText().toString()+"' , '"+tv_id_segmento_patologia_Rigi.getText().toString()+"')";
-
 
         db.execSQL(insert);
 
@@ -363,15 +412,15 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
             do{
                 idFotoRigi = cursor.getString(cursor.getColumnIndex(Utilidades.FOTORIGI.CAMPO_ID_FOTORIGI));
             }while (cursor.moveToNext());
-            tv_idFotoRigi.setText(idFotoRigi);
+            tv_foto_danio.setText(idFotoRigi);
         }
 
-        tomarFotografia();
         db.close();
 
     }
 
     private void tomarFotografia() {
+
         File fileImagen=new File(Environment.getExternalStorageDirectory(),RUTA_IMAGEN);
         boolean isCreada=fileImagen.exists();
         String nombreImagen="";
@@ -380,14 +429,14 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         }
 
         if(isCreada==true){
-            nombreImagen=("Carretera_"+tv_nombre_carretera_patologia.getText().toString()+"_Segmento_"+tv_id_segmento_patologia_Rigi.getText().toString()+"_Foto_"+tv_idFotoRigi.getText().toString()+".png");
+            nombreImagen=("Carretera_"+tv_nombre_carretera_patologia.getText().toString()+"_Segmento_"+tv_id_segmento_patologia_Rigi.getText().toString()+"_Foto_"+tv_foto_danio.getText().toString()+".png");
         }
 
         tv_foto_nombre.setText(nombreImagen);
         path=Environment.getExternalStorageDirectory()+
                 File.separator+RUTA_IMAGEN+File.separator+nombreImagen;
 
-        tv_direccion_foto.setText(path);
+        tv_direccionFoto.setText(path);
 
 
         File imagen=new File(path);
@@ -408,7 +457,6 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
 
         ////
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -431,7 +479,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
 
                     Bitmap bitmap= BitmapFactory.decodeFile(path);
                     imagen.setImageBitmap(bitmap);
-
+                    obtenerFotoPatoRigi();
                     break;
             }
 
@@ -461,7 +509,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
     }
 
     private void cargarDialogoRecomendacion() {
-        AlertDialog.Builder dialogo=new AlertDialog.Builder(RegistroPatologiaRigiActivity.this);
+        AlertDialog.Builder dialogo=new AlertDialog.Builder(EditarPatologiaRigiActivity.this);
         dialogo.setTitle("Permisos Desactivados");
         dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la App");
 
@@ -477,7 +525,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
 
     private void solicitarPermisosManual() {
         final CharSequence[] opciones={"si","no"};
-        final AlertDialog.Builder alertOpciones=new AlertDialog.Builder(RegistroPatologiaRigiActivity.this);
+        final AlertDialog.Builder alertOpciones=new AlertDialog.Builder(EditarPatologiaRigiActivity.this);
         alertOpciones.setTitle("¿Desea configurar los permisos de forma manual?");
         alertOpciones.setItems(opciones, new DialogInterface.OnClickListener() {
             @Override
@@ -498,8 +546,8 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
     }
     private void obtenerCoordenadas() {
         LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        RegistroPatologiaRigiActivity.Localizacion Local = new RegistroPatologiaRigiActivity.Localizacion();
-        Local.setRegistroPatologiaRigiActivity(this);
+        Localizacion Local = new Localizacion();
+        Local.setEditarPatologiaRigiActivity(this);
         final boolean gpsEnabled = mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if (!gpsEnabled) {
             Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -511,8 +559,6 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         }
         mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 50, (LocationListener) Local);
         mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 50, (LocationListener) Local);
-
-
     }
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -525,14 +571,14 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
     }
 
     private class Localizacion implements LocationListener {
-        RegistroPatologiaRigiActivity registroPatologiaRigiActivity;
+        EditarPatologiaRigiActivity editarPatologiaRigiActivity;
 
-        public RegistroPatologiaRigiActivity getRegistroPatologiaRigiActivity() {
-            return registroPatologiaRigiActivity;
+        public EditarPatologiaRigiActivity getEditarPatologiaRigiActivity() {
+            return editarPatologiaRigiActivity;
         }
 
-        public void setRegistroPatologiaRigiActivity(RegistroPatologiaRigiActivity registroPatologiaRigiActivity) {
-            this.registroPatologiaRigiActivity = registroPatologiaRigiActivity;
+        public void setEditarPatologiaRigiActivity(EditarPatologiaRigiActivity editarPatologiaRigiActivity) {
+            this.editarPatologiaRigiActivity = editarPatologiaRigiActivity;
         }
 
         @Override
@@ -553,12 +599,12 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         @Override
         public void onProviderDisabled(String provider) {
             // Este metodo se ejecuta cuando el GPS es desactivado
-            Toast.makeText(getApplicationContext(),R.string.gps,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"GPS DESACTIVADO",Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onProviderEnabled(String provider) {
-            // Este metodo se ejecuta cuando el GPS es activado
+            //Este metodo se ejecuta cuando el GPS es activado
 
         }
 
@@ -567,5 +613,4 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
 
         }
     }
-
 }

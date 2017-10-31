@@ -29,7 +29,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -50,12 +49,11 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class RegistroPatologiaFlexActivity extends AppCompatActivity {
 
     private final String CARPETA_RAIZ="InventarioVial/";
-    private final String RUTA_IMAGEN=CARPETA_RAIZ+"PavimentoFlexible";
+    private final String RUTA_IMAGEN=CARPETA_RAIZ+"PavimentoFlexible/";
 
     final int COD_SELECCIONA=10;
     final int COD_FOTO=20;
 
-    private Button btnRegistrarPatologia;
     private ImageButton botonCargar;
     private ImageView imagen;
     private String path;
@@ -67,7 +65,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
             input_campoidFotoFlex;
     private EditText campoCarrilPato, campoDanioPato, campoLargoDanio, campoAnchoDanio, campoLargoRepa, campoAnchoRepa, campoAclaracion,campoAbscisaFlex,
             campoLatitudPatoFlex,campoLongitudPatoFlex;
-    private String[] tipoDanio = {"Seleccione el tipo de Daño", "Fisuras longitudinales y transversales", "Fisura longitudinal en junta de construcción",
+    private String[] tipoDanio = {"Fisuras longitudinales y transversales", "Fisura longitudinal en junta de construcción",
             "Fisuras por reflexión de juntas o grietas en placas de concreto", "Fisuras en medialuna", "Fisuras de borde", "Fisuras en bloque", "Piel de cocotrilo",
             "Fisuración por desplazamiento de capas", "Fisuración incipiente", "Ondulación", "Abultamiento", "Hundimiento", "Ahuellamiento", "Descascaramiento",
             "Baches", "Parche", "Desgaste superficial", "Perdida de agregado", "Pulimento del agregado", "Cabezas duras", "Exudación", "Surcos",
@@ -85,8 +83,6 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
             botonCargar.setEnabled(false);
         }
         imagen= (ImageView) findViewById(R.id.imagemId);
-
-        btnRegistrarPatologia= (Button) findViewById(R.id.btnRegistroPatologia);
 
         spinnerSeveridadPatoFlexRegistro = (MaterialSpinner) findViewById(R.id.spinnerSeveridadPatoFlexRegistro);
         spinnerPatoFlex = (MaterialSpinner) findViewById(R.id.spinnerPatoFlex);
@@ -133,8 +129,6 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                     switch (position) {
-
-
                         case 0:
                             campoSeveridad = "A";
                             break;
@@ -165,84 +159,81 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
                 switch (position){
 
                     case 0:
-                        //No se ha seleccionado el Spinner
-                        break;
-                    case 1:
                         campoDanioPato.setText(R.string.fisuras_fl_lt);
                         break;
-                    case 2:
+                    case 1:
                         campoDanioPato.setText(R.string.fisura_fcl);
                         break;
-                    case 3:
+                    case 2:
                         campoDanioPato.setText(R.string.fisura_fjl);
                         break;
-                    case 4:
+                    case 3:
                         campoDanioPato.setText(R.string.fisura_fml);
                         break;
-                    case 5:
+                    case 4:
                         campoDanioPato.setText(R.string.fbd);
                         break;
-                    case 6:
+                    case 5:
                         campoDanioPato.setText(R.string.fisura_fb);
                         break;
-                    case 7:
+                    case 6:
                         campoDanioPato.setText(R.string.pc);
                         break;
-                    case 8:
+                    case 7:
                         campoDanioPato.setText(R.string.fdc);
                         break;
-                    case 9:
+                    case 8:
                         campoDanioPato.setText(R.string.fin);
                         break;
-                    case 10:
+                    case 9:
                         campoDanioPato.setText(R.string.ond);
                         break;
-                    case 11:
+                    case 10:
                         campoDanioPato.setText(R.string.ab);
                         break;
-                    case 12:
+                    case 11:
                         campoDanioPato.setText(R.string.hun);
                         break;
-                    case 13:
+                    case 12:
                         campoDanioPato.setText(R.string.ahu);
                         break;
-                    case 14:
+                    case 13:
                         campoDanioPato.setText(R.string.dcf);
                         break;
-                    case 15:
+                    case 14:
                         campoDanioPato.setText(R.string.bchf);
                         break;
-                    case 16:
+                    case 15:
                         campoDanioPato.setText(R.string.pch);
                         break;
-                    case 17:
+                    case 16:
                         campoDanioPato.setText(R.string.dsu);
                         break;
-                    case 18:
+                    case 17:
                         campoDanioPato.setText(R.string.pa);
                         break;
-                    case 19:
+                    case 18:
                         campoDanioPato.setText(R.string.puf);
                         break;
-                    case 20:
+                    case 19:
                         campoDanioPato.setText(R.string.cd);
                         break;
-                    case 21:
+                    case 20:
                         campoDanioPato.setText(R.string.ex);
                         break;
-                    case 22:
+                    case 21:
                         campoDanioPato.setText(R.string.su);
                         break;
-                    case 23:
+                    case 22:
                         campoDanioPato.setText(R.string.cvb);
                         break;
-                    case 24:
+                    case 23:
                         campoDanioPato.setText(R.string.sbf);
                         break;
-                    case 25:
+                    case 24:
                         campoDanioPato.setText(R.string.afi);
                         break;
-                    case 26:
+                    case 25:
                         campoDanioPato.setText(R.string.afa);
                         break;
 
@@ -475,6 +466,9 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
                             });
 
                     Bitmap bitmap= BitmapFactory.decodeFile(path);
+                    int alto=300;//alto en pixeles
+                    int ancho=350;//ancho en pixeles
+                    bitmap = Bitmap.createScaledBitmap(bitmap,alto,ancho,true);
                     imagen.setImageBitmap(bitmap);
 
                     break;

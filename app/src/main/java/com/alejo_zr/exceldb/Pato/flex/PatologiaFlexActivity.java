@@ -6,16 +6,24 @@ import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alejo_zr.exceldb.BuildConfig;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.PatoFlex;
 
+import java.io.File;
+
 public class PatologiaFlexActivity extends AppCompatActivity {
+
+    private final String CARPETA_RAIZ="InventarioVial/";
+    private final String RUTA_IMAGEN=CARPETA_RAIZ+"PavimentoFlexible/";
 
     private TextView tvIdDaño,tvIdSegmento,tvNombreCarreteraPatologiaActivity,tvCarrilDanio,tvAclaraciones,tvanchRepa,tvlarRepa,tvdanionombre,tvlarDanio,tvanchoDanio,
             tvAbscisaPatoFlexActivity,tvLatPatoFlexActivity,tvLongFlexActivity,tvDireccionPatoFlex,tvSeveridadPatoFlexActivity
@@ -148,6 +156,9 @@ public class PatologiaFlexActivity extends AppCompatActivity {
                 });
 
         Bitmap bitmap= BitmapFactory.decodeFile(path);
+        int alto=400;//alto en pixeles
+        int ancho=450;//ancho en pixeles
+        bitmap = Bitmap.createScaledBitmap(bitmap,alto,ancho,true);
         imgPatoFlex.setImageBitmap(bitmap);
     }
 
@@ -156,7 +167,7 @@ public class PatologiaFlexActivity extends AppCompatActivity {
         Intent intent = null;
         switch (view.getId()){
 
-            case R.id.btnEditarPatologia:
+            case R.id.btnEditarPatologiaFlex:
                 intent = new Intent(PatologiaFlexActivity.this, EditarPatologiaFlexActivity.class);
                 intent.putExtra("tvAbscisa",tvAbscisaPatoFlexActivity.getText().toString());
                 intent.putExtra("tvLatitud",tvLatPatoFlexActivity.getText().toString());
@@ -171,13 +182,33 @@ public class PatologiaFlexActivity extends AppCompatActivity {
                 intent.putExtra("tvAclaraciones",tvAclaraciones.getText().toString());
                 intent.putExtra("tvDireccionPatoFlex",tvDireccionPatoFlex.getText().toString());
                 intent.putExtra("tvNombreFoto_patoFlexActivity",tvNombreFoto_patoFlexActivity.getText().toString());
+                intent.putExtra("imgFoto",path);
                 intent.putExtra("tvIdSegmento",tvIdSegmento.getText().toString());
                 intent.putExtra("tvNombreCarreteraPatologiaActivity",tvNombreCarreteraPatologiaActivity.getText().toString());
                 intent.putExtra("tvIdDaño",tvIdDaño.getText().toString());
                 startActivity( intent);
                 break;
+            /*case R.id.imgDanio_PatoFlex:
+                abrirFoto();
+                break;
+                */
 
         }
+
+    }
+    private void abrirFoto() {
+        /*File file=new File(Environment.getExternalStorageDirectory()+RUTA_IMAGEN+tvNombreFoto_patoFlexActivity.getText().toString());
+        Uri path= FileProvider.getUriForFile(PatologiaFlexActivity.this, BuildConfig.APPLICATION_ID + ".provider",file);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(path);
+        intent.setType("image/*");
+        startActivity(intent);*/
+        String image=tvNombreFoto_patoFlexActivity.getText().toString();
+        File file=new File(Environment.getExternalStorageDirectory()+RUTA_IMAGEN+image);
+        Uri path= FileProvider.getUriForFile(PatologiaFlexActivity.this, BuildConfig.APPLICATION_ID + ".provider",file);
+        Intent intent=new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(path,"image/*");
+        startActivity(intent);
     }
 
 }

@@ -17,11 +17,11 @@ import com.alejo_zr.exceldb.utilidades.Utilidades;
 public class EditarSegmentoFlexActivity extends AppCompatActivity {
 
 
-    EditText campoNCalzadas_EditarFlex, campoNCarriles_EditarFlex, campoAnchoCarril_EditarFlex, campoAnchoBerma_EditarFlex, campoPRI_EditarFlex,
+    private EditText campoNCalzadas_EditarFlex, campoNCarriles_EditarFlex, campoAnchoCarril_EditarFlex, campoAnchoBerma_EditarFlex, campoPRI_EditarFlex,
             campoPRF_EditarFlex, campoComentarios_EditarFlex,campoFechaSegmentoFlexEditar;
-    TextView tvId_Carretera_Segmento_EditarFlex,tvNombre_Carretera_Segmento_EditarFlex,campotipoPav_EditarFlex,tv_id_segmento_editarFlex;
+    private TextView tvNombre_Carretera_Segmento_EditarFlex,tv_id_segmento_editarFlex;
 
-    BaseDatos baseDatos;
+    private BaseDatos baseDatos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
