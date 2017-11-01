@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.Carretera.CarreteraActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.PatoRigi;
 import com.alejo_zr.exceldb.entidades.SegmentoRigi;
@@ -142,7 +143,7 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
         for (int i=0; i<listaSegmentos.size();i++){
             boolean nomCarretera = tvnomCarretera_consultar_segmentoRigi.getText().toString().equals(listaSegmentos.get(i).getNombre_carretera());
             if(nomCarretera==true){
-                listaInformacionSegmentos.add("id"+listaSegmentos.get(i).getId_segmento()+"Carretera: "+listaSegmentos.get(i).getNombre_carretera()+" - PRI: "+listaSegmentos.get(i).getPri());
+                listaInformacionSegmentos.add("Segmento: "+listaSegmentos.get(i).getId_segmento()+" - PRI: "+listaSegmentos.get(i).getPri());
                 listaIdSegmentos.add(listaSegmentos.get(i).getId_segmento()-1);
             }
 
@@ -246,6 +247,11 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.floabtnAddSegRigi:
                 Intent intent = new Intent(ConsultarSegmentoRigiActivity.this,RegistroSegmentoRigiActivity.class);
+                intent.putExtra("nom_carretera",tvnomCarretera_consultar_segmentoRigi.getText().toString());
+                startActivity(intent);
+                break;
+            case R.id.backConsulSegRigiActivity:
+                intent = new Intent(ConsultarSegmentoRigiActivity.this,CarreteraActivity.class);
                 intent.putExtra("nom_carretera",tvnomCarretera_consultar_segmentoRigi.getText().toString());
                 startActivity(intent);
                 break;

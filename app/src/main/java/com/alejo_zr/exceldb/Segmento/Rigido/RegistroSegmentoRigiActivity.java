@@ -1,6 +1,7 @@
 package com.alejo_zr.exceldb.Segmento.Rigido;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -75,6 +76,7 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
 
     public void onClick(View view) {
 
+        Intent intent = null;
         switch(view.getId()){
 
             case R.id.btnRegistroSegmentoRigi:
@@ -82,6 +84,11 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
                 break;
             case R.id.btnFechaRegistroSegRigi:
                 obtenerFecha();
+                break;
+            case R.id.backRegisSegRigiActivity:
+                intent = new Intent(RegistroSegmentoRigiActivity.this,ConsultarSegmentoRigiActivity.class);
+                intent.putExtra("nom_carretera",tvNombre_Carretera_Segmento.getText().toString());
+                startActivity(intent);
                 break;
         }
 

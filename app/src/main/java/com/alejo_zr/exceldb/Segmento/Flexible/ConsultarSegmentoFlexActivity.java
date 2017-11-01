@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.Carretera.CarreteraActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.PatoFlex;
 import com.alejo_zr.exceldb.entidades.SegmentoFlex;
@@ -43,13 +44,8 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
         tvnomCarretera_consultar_segmentoFlex = (TextView) findViewById(R.id.tvnomCarretera_consultar_segmentoFlex);
 
         Bundle bundle = getIntent().getExtras();
-        /***Datos de la carretera***/
-        id = bundle.getString("id_carretera").toString();
+
         nombre = bundle.getString("nom_carretera").toString();
-        codigo = bundle.getString("cod_carretera").toString();
-        territorial= bundle.getString("territo").toString();
-        admon = bundle.getString("admon").toString();
-        levantado = bundle.getString("levantado").toString();
 
         tvnomCarretera_consultar_segmentoFlex.setText(nombre);
 
@@ -252,10 +248,15 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
 
     public void onClick(View view) {
 
+        Intent intent;
         switch (view.getId()){
             case R.id.floabtnAddSegFlex:
-                Intent intent = new Intent(ConsultarSegmentoFlexActivity.this,RegistroSegmentoFlexActivity.class);
-                intent.putExtra("id_carretera",idCarreteraSegFlexConsulta.getText().toString());
+                intent = new Intent(ConsultarSegmentoFlexActivity.this,RegistroSegmentoFlexActivity.class);
+                intent.putExtra("nom_carretera",tvnomCarretera_consultar_segmentoFlex.getText().toString());
+                startActivity(intent);
+                break;
+            case R.id.backConsulSegFlexActivity:
+                intent = new Intent(ConsultarSegmentoFlexActivity.this,CarreteraActivity.class);
                 intent.putExtra("nom_carretera",tvnomCarretera_consultar_segmentoFlex.getText().toString());
                 startActivity(intent);
                 break;

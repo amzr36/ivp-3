@@ -87,7 +87,7 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-
+        Intent intent ;
         switch (view.getId()){
 
             case R.id.btnRegistroSegmentoFlex:
@@ -97,8 +97,13 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
                 obtenerFecha();
                 break;
             case R.id.ej_Segmento_Flex:
-                Intent intent = new Intent(RegistroSegmentoFlexActivity.this,RegistroSegmentoFlexEjemploActivity.class);
+                intent = new Intent(RegistroSegmentoFlexActivity.this,RegistroSegmentoFlexEjemploActivity.class);
                 startActivity(intent);
+            case R.id.backRegisSegFlexActivity:
+                intent = new Intent(RegistroSegmentoFlexActivity.this,ConsultarSegmentoFlexActivity.class);
+                intent.putExtra("nom_carretera",tvNombre_Carretera_SegmentoFlex.getText().toString());
+                startActivity(intent);
+                break;
         }
 
 

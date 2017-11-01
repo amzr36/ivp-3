@@ -113,6 +113,11 @@ public class SegmentoRigiActivity extends AppCompatActivity {
             case R.id.btnEliminarSegmentoRigi:
                 confirmar();
                 break;
+            case R.id.backSegRigiActivity:
+                intent = new Intent (SegmentoRigiActivity.this, ConsultarSegmentoRigiActivity.class);
+                intent.putExtra("nom_carretera",tv_nombre_carretera_segmento.getText().toString());
+                startActivity(intent);
+                break;
 
         }
     }

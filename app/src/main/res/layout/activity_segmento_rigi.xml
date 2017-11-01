@@ -1,278 +1,333 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin"
     tools:context="com.alejo_zr.exceldb.Segmento.Rigido.SegmentoRigiActivity">
 
-    <RelativeLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarSegRigiActivity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <LinearLayout
-        android:id="@+id/llEncabezadoSegRigi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_nombre_carretera_segmento_Rigi"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/nombre"
-            android:textSize="@dimen/subTitulo"
-            />
-
-        <ImageButton
-            android:id="@+id/btnEditarSegmentoRigi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit"
-            android:onClick="onClick"/>
-        <ImageButton
-            android:id="@+id/btnEliminarSegmentoRigi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/borrar"
-            android:layout_marginLeft="@dimen/marginLeftTV"
-            android:onClick="onClick"/>
-
-    </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_id_segmentoactivityRigi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/segmento"
-            android:textStyle="bold"
-            android:layout_below="@id/llEncabezadoSegRigi"/>
-
-        <TextView
-            android:id="@+id/tv_id_segmentoFlexRigi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/llEncabezadoSegRigi"
-            android:layout_toRightOf="@id/tv_id_segmentoactivityRigi"
-            android:layout_marginLeft="@dimen/marginLeftTV"
-            android:hint="@string/segmento"/>
-
-
-        <LinearLayout
-            android:id="@+id/llTipoPavRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_id_segmentoFlexRigi"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvTPRigi"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/backSegRigiActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tipoPav"
-                android:textStyle="bold"/>
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_atras"
+                android:tint="@color/toolbar"
+                android:onClick="onClick"/>
+
+            <ImageView
+                android:id="@+id/homeSegRigiActivity"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:background="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/backSegRigiActivity"/>
 
             <TextView
-                android:id="@+id/tvPavRigi"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/pavRigi"
+                android:text="@string/datosSegmento"
+                android:layout_marginLeft="@dimen/margen_toolbar"
+                android:layout_toRightOf="@id/homeSegRigiActivity"
+                android:layout_centerVertical="true"
+                android:textColor="@color/toolbar"
+                android:textSize="@dimen/subTitulo"/>
+            <ImageButton
+                android:id="@+id/btnEliminarSegmentoRigi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borrar"
                 android:layout_marginLeft="@dimen/marginLeftTV"
-                />
-        </LinearLayout>
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:onClick="onClick"/>
+            <ImageButton
+                android:id="@+id/btnEditarSegmentoRigi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/btnEliminarSegmentoRigi"
+                android:onClick="onClick"/>
 
-        <LinearLayout
-            android:id="@+id/llNumeroRigi"
-            android:orientation="horizontal"
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_below="@id/toolbarSegRigiActivity">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginTopTV"
-            android:layout_below="@id/llTipoPavRigi">
-
-
-            <TextView
-                android:id="@+id/tvnCalRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.2"
-                android:text="@string/nCalzadas"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/tvnCalzadasRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.2"
-                android:hint="@string/vacio"/>
-
-            <TextView
-                android:id="@+id/tvnCarRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/nCarriles"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/tvnCarrilesRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.2"
-                android:hint="@string/vacio"/>
-
-
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:id="@+id/llAnchoRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/llNumeroRigi">
+            android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/llEncabezadoSegRigi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                >
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/espesrLosaRigi"
+                    android:id="@+id/tv_nombre_carretera_segmento_Rigi"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/espesorLosa"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/tvespesorLosaRigi"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/vacio"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/anchoRigi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ancho"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:id="@+id/anchoBermaRigi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/anchoBerma"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/tvanchoBermaRigi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/vacio"
+                    android:text="@string/nombre"
+                    android:textSize="@dimen/subTitulo"
                     />
 
             </LinearLayout>
 
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llPrRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/marginTopTV"
-            android:layout_below="@id/llAnchoRigi">
+            <TextView
+                android:id="@+id/tv_id_segmentoactivityRigi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/segmento"
+                android:textStyle="bold"
+                android:layout_below="@id/llEncabezadoSegRigi"/>
 
             <TextView
-                android:id="@+id/tvpriRigi"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_id_segmentoFlexRigi"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/pri"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/tvPRIRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_below="@+id/llEncabezadoSegRigi"
+                android:layout_toRightOf="@id/tv_id_segmentoactivityRigi"
                 android:layout_marginLeft="@dimen/marginLeftTV"
-                android:hint="@string/vacio"/>
-            <TextView
-                android:id="@+id/tvprfRigi"
+                android:hint="@string/segmento"/>
+            <LinearLayout
+                android:id="@+id/llTipoPavRigi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/prf"
+                android:layout_below="@+id/tv_id_segmentoFlexRigi"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvTPRigi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tipoPav"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvPavRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/pavRigi"
+                    android:layout_marginLeft="@dimen/marginLeftTV"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llNumeroRigi"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTopTV"
+                android:layout_below="@id/llTipoPavRigi">
+
+
+                <TextView
+                    android:id="@+id/tvnCalRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:text="@string/nCalzadas"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvnCalzadasRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:hint="@string/vacio"/>
+
+                <TextView
+                    android:id="@+id/tvnCarRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/nCarriles"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvnCarrilesRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:hint="@string/vacio"/>
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/llAnchoRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/llNumeroRigi">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/espesrLosaRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/espesorLosa"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/tvespesorLosaRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/vacio"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/anchoRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ancho"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/anchoBermaRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/anchoBerma"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/tvanchoBermaRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/vacio"
+                        />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPrRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/marginTopTV"
+                android:layout_below="@id/llAnchoRigi">
+
+                <TextView
+                    android:id="@+id/tvpriRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/pri"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvPRIRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/marginLeftTV"
+                    android:hint="@string/vacio"/>
+                <TextView
+                    android:id="@+id/tvprfRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/prf"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvPRFRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/marginLeftTV"
+                    android:hint="@string/vacio"/>
+
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/tvComenRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comentarios"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_below="@id/llPrRigi"/>
+            <TextView
+                android:id="@+id/tvComentariosRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvComenRigi"
+                android:hint="@string/vacio"/>
+
+            <TextView
+                android:id="@+id/tvFechaRigi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvComentariosRigi"
+                android:text="@string/fecha"
                 android:textStyle="bold"/>
+
             <TextView
-                android:id="@+id/tvPRFRigi"
+                android:id="@+id/tvFechaSegmentoRigi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="vacio"
+                android:layout_below="@id/tvComentariosRigi"
+                android:layout_toRightOf="@id/tvFechaRigi"
+                android:layout_marginLeft="@dimen/marginLeftTV"/>
+
+            <Button
+                android:id="@+id/btnConsultarPatologiaRigi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/marginLeftTV"
-                android:hint="@string/vacio"/>
+                android:layout_below="@id/tvFechaSegmentoRigi"
+                android:text="@string/consulPato"
+                android:layout_marginTop="@dimen/marginTopBtn"
+                android:onClick="onClick"/>
+        </RelativeLayout>
 
-        </LinearLayout>
 
 
+    </ScrollView>
 
-        <TextView
-            android:id="@+id/tvComenRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/comentarios"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_below="@id/llPrRigi"/>
-        <TextView
-            android:id="@+id/tvComentariosRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvComenRigi"
-            android:hint="@string/vacio"/>
-
-        <TextView
-            android:id="@+id/tvFechaRigi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvComentariosRigi"
-            android:text="@string/fecha"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/tvFechaSegmentoRigi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="vacio"
-            android:layout_below="@id/tvComentariosRigi"
-            android:layout_toRightOf="@id/tvFechaRigi"
-            android:layout_marginLeft="@dimen/marginLeftTV"/>
-
-        <Button
-            android:id="@+id/btnConsultarPatologiaRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvFechaSegmentoRigi"
-            android:text="@string/consulPato"
-            android:layout_marginTop="@dimen/marginTopBtn"
-            android:onClick="onClick"/>
-
-    </RelativeLayout>
-
-</ScrollView>
+</RelativeLayout>

@@ -32,7 +32,7 @@ public class CarreteraActivity extends AppCompatActivity {
     private ArrayList<PatoRigi> listaPatologiasRigi;
     private TextView tvIdCarretera,tvNomCarretera,tvNombreCarretera,tvCodigoCarretera,tvTerritorialCarretera,tvAdmonCarretera,
             tvLevantadoCarretera;
-    private int id;
+    private String nom_carretera;
 
     private BaseDatos baseDatos;
     @Override
@@ -57,17 +57,36 @@ public class CarreteraActivity extends AppCompatActivity {
 
         if(objetoEnviado!=null){
             carretera= (Carretera) objetoEnviado.getSerializable("carretera");
-            tvIdCarretera.setText(carretera.getId().toString());
-            tvNomCarretera.setText(carretera.getNombreCarretera().toString());
-            tvNombreCarretera.setText(carretera.getNombreCarretera().toString());
-            tvCodigoCarretera.setText(carretera.getCodCarretera().toString());
-            tvTerritorialCarretera.setText(carretera.getTerritorial().toString());
-            tvAdmonCarretera.setText(carretera.getAdmon().toString());
-            tvLevantadoCarretera.setText(carretera.getLevantado().toString());
+            if(carretera!=null)
+            {
+                tvIdCarretera.setText(carretera.getId().toString());
+                tvNomCarretera.setText(carretera.getNombreCarretera().toString());
+                tvNombreCarretera.setText(carretera.getNombreCarretera().toString());
+                tvCodigoCarretera.setText(carretera.getCodCarretera().toString());
+                tvTerritorialCarretera.setText(carretera.getTerritorial().toString());
+                tvAdmonCarretera.setText(carretera.getAdmon().toString());
+                tvLevantadoCarretera.setText(carretera.getLevantado().toString());
+            }else{
+                nom_carretera = objetoEnviado.getString("nom_carretera");
+                SQLiteDatabase db = baseDatos.getWritableDatabase();
+                String[] parametros ={nom_carretera.toString()};
+
+                Cursor cursor = db.rawQuery("SELECT "+Utilidades.CARRETERA.CAMPO_NOMBRE_CARRETERA+","
+                            +Utilidades.CARRETERA.CAMPO_CODIGO_CARRETERA+","+Utilidades.CARRETERA.CAMPO_TERRITO_CARRETERA+","+Utilidades.CARRETERA.CAMPO_ADMON_CARRETERA+
+                            ","+Utilidades.CARRETERA.CAMPO_LEVANTADO_CARRETERA+" FROM "+Utilidades.CARRETERA.TABLA_CARRETERA+
+                        " WHERE "+Utilidades.CARRETERA.CAMPO_NOMBRE_CARRETERA+"=? ",parametros);
+
+                    cursor.moveToFirst();
+                    tvNombreCarretera.setText(cursor.getString(0));
+                    tvCodigoCarretera.setText(cursor.getString(1));
+                    tvTerritorialCarretera.setText(cursor.getString(2));
+                    tvAdmonCarretera.setText(cursor.getString(3));
+                    tvLevantadoCarretera.setText(cursor.getString(4));
+
+            }
+
 
         }
-
-        int id = Integer.parseInt(tvIdCarretera.getText().toString());
 
         cargarSegmentosFlex();
         cargarSegmentosRigi();
@@ -83,17 +102,13 @@ public class CarreteraActivity extends AppCompatActivity {
 
             case R.id.btnSegmentoFlexible:
                 intent = new Intent(CarreteraActivity.this, ConsultarSegmentoFlexActivity.class);
-                intent.putExtra("id_carretera",tvIdCarretera.getText().toString());
+
                 intent.putExtra("nom_carretera",tvNombreCarretera.getText().toString());
-                intent.putExtra("cod_carretera",tvCodigoCarretera.getText().toString());
-                intent.putExtra("territo",tvTerritorialCarretera.getText().toString());
-                intent.putExtra("admon",tvAdmonCarretera.getText().toString());
-                intent.putExtra("levantado",tvLevantadoCarretera.getText().toString());
+
                 startActivity(intent);
                 break;
             case R.id.btnSegmentoRigido:
                 intent = new Intent(CarreteraActivity.this, ConsultarSegmentoRigiActivity.class);
-                intent.putExtra("id_carretera",tvIdCarretera.getText().toString());
                 intent.putExtra("nom_carretera",tvNombreCarretera.getText().toString());
                 startActivity(intent);
                 break;

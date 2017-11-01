@@ -4,36 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin"
     tools:context="com.alejo_zr.exceldb.Segmento.Rigido.ConsultarSegmentoRigiActivity">
 
-    <TextView
-    android:id="@+id/tvnomCarretera_consultar_segmentoRigi"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/nombre"
-    android:textSize="@dimen/titulo"
-    android:layout_centerHorizontal="true"/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarConsulSegRigiActivity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/backConsulSegRigiActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_atras"
+                android:tint="@color/toolbar"
+                android:onClick="onClick"/>
 
+            <ImageView
+                android:id="@+id/homeConsulSegRigiActivity"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:background="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/backConsulSegRigiActivity"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/homeConsulSegRigiActivity"
+                android:layout_marginLeft="@dimen/margen_toolbar"
+                android:text="@string/consulSeg"
+                android:textSize="@dimen/subTitulo"
+                android:textColor="@color/toolbar"/>
 
-    <ListView
-        android:id="@+id/listViewSegmentoRigi"
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvnomCarretera_consultar_segmentoRigi"
-        />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floabtnAddSegRigi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/add"
-        android:onClick="onClick"
-        />
+        android:layout_below="@id/toolbarConsulSegRigiActivity">
+
+        <TextView
+            android:id="@+id/tvnomCarretera_consultar_segmentoRigi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre"
+            android:textSize="@dimen/titulo"
+            android:layout_centerHorizontal="true"/>
+
+
+
+        <ListView
+            android:id="@+id/listViewSegmentoRigi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvnomCarretera_consultar_segmentoRigi"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floabtnAddSegRigi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/add"
+            android:onClick="onClick"
+            />
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

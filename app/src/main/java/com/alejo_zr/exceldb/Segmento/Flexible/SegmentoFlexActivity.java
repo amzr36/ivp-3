@@ -57,18 +57,45 @@ public class SegmentoFlexActivity extends AppCompatActivity {
 
         if(segmentoEnviado!=null){
             segmento = (SegmentoFlex) segmentoEnviado.getSerializable("segmento");
-            tv_id_segmento.setText(segmento.getId_segmento().toString());
-            id_segmento = segmento.getId_segmento();
-            tv_nombre_carretera_segmento.setText(segmento.getNombre_carretera().toString());
-            tvnCalzadas.setText(segmento.getnCalzadas().toString());
-            tvnCarriles.setText(segmento.getnCarriles().toString());
-            tvanchoCarril.setText(segmento.getAnchoCarril().toString());
-            tvanchoBerma.setText(segmento.getAnchoBerma().toString());
-            tvPRI.setText(segmento.getPri().toString());
-            tvPRF.setText(segmento.getPrf().toString());
-            tvComentarios.setText(segmento.getComentarios().toString());
-            tvFechaSegmentoFlex.setText(segmento.getFecha().toString());
-            valoriS = segmento.getIs();
+            if(segmento!=null){
+                tv_id_segmento.setText(segmento.getId_segmento().toString());
+                id_segmento = segmento.getId_segmento();
+                tv_nombre_carretera_segmento.setText(segmento.getNombre_carretera().toString());
+                tvnCalzadas.setText(segmento.getnCalzadas().toString());
+                tvnCarriles.setText(segmento.getnCarriles().toString());
+                tvanchoCarril.setText(segmento.getAnchoCarril().toString());
+                tvanchoBerma.setText(segmento.getAnchoBerma().toString());
+                tvPRI.setText(segmento.getPri().toString());
+                tvPRF.setText(segmento.getPrf().toString());
+                tvComentarios.setText(segmento.getComentarios().toString());
+                tvFechaSegmentoFlex.setText(segmento.getFecha().toString());
+                valoriS = segmento.getIs();
+            }else{
+                tv_id_segmento.setText(segmentoEnviado.getString("id_segmento"));
+                SQLiteDatabase db = baseDatos.getWritableDatabase();
+                int id = Integer.parseInt(tv_id_segmento.getText().toString());
+                String [] parametros = {""+id};
+
+                Cursor cursor = db.rawQuery("SELECT "+Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_NOMBRE_CARRETERA_SEGMENTO+","+
+                        Utilidades.SEGMENTOFLEX.CAMPO_CALZADAS_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_CARRILES_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_ANCHO_CARRIL+","+
+                        Utilidades.SEGMENTOFLEX.CAMPO_ANCHO_BERMA+","+Utilidades.SEGMENTOFLEX.CAMPO_PRI_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_PRF_SEGMENTO+","+
+                        Utilidades.SEGMENTOFLEX.CAMPO_COMENTARIOS+","+Utilidades.SEGMENTOFLEX.CAMPO_FECHA+" FROM "+Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO+
+                        " WHERE "+Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+"=?",parametros);
+
+                cursor.moveToFirst();
+                tv_id_segmento.setText(cursor.getString(0));
+                tv_nombre_carretera_segmento.setText(cursor.getString(1));
+                tvnCalzadas.setText(cursor.getString(2));
+                tvnCarriles.setText(cursor.getString(3));
+                tvanchoCarril.setText(cursor.getString(4));
+                tvanchoBerma.setText(cursor.getString(5));
+                tvPRI.setText(cursor.getString(6));
+                tvPRF.setText(cursor.getString(7));
+                tvComentarios.setText(cursor.getString(8));
+                tvFechaSegmentoFlex.setText(cursor.getString(9));
+
+            }
+
 
         }
 
@@ -155,6 +182,7 @@ public class SegmentoFlexActivity extends AppCompatActivity {
                 break;
             case R.id.backSegFlexActivity:
                 intent = new Intent (SegmentoFlexActivity.this, ConsultarSegmentoFlexActivity.class);
+                intent.putExtra("nom_carretera",tv_nombre_carretera_segmento.getText().toString());
                 startActivity(intent);
                 break;
 

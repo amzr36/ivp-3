@@ -81,6 +81,10 @@ public class EditarSegmentoFlexActivity extends AppCompatActivity {
             case R.id.btnEliminarSegmentoFlex:
                 eliminarSegmento();
                 break;
+            case R.id.backEditarSegFlexActivity:
+                Intent intent = new Intent(EditarSegmentoFlexActivity.this,SegmentoFlexActivity.class);
+                intent.putExtra("id_segmento",tv_id_segmento_editarFlex.getText().toString());
+                startActivity(intent);
         }
     }
 

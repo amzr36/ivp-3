@@ -30,49 +30,63 @@
         </activity>
         <activity
             android:name=".Carretera.RegistroCarreteraActivity"
-            android:label="@string/regis" />
+            android:label="@string/regis"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Carretera.ConsultarCarreteraActivity"
-            android:label="@string/consul" />
+            android:label="@string/consul"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Carretera.CarreteraActivity"
-            android:label="@string/datosCarretera" />
+            android:label="@string/datosCarretera"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Carretera.EditarCarreteraActivity"
-            android:label="@string/editarCarretera" />
+            android:label="@string/editarCarretera"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Segmento.Flexible.RegistroSegmentoFlexActivity"
-            android:label="@string/regisSeg" />
+            android:label="@string/regisSeg"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Segmento.Flexible.ConsultarSegmentoFlexActivity"
-            android:label="@string/consulSeg" />
+            android:label="@string/consulSeg"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Segmento.Flexible.SegmentoFlexActivity"
             android:label="@string/datosSegmento"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Segmento.Flexible.EditarSegmentoFlexActivity"
-            android:label="@string/editarSegmento" />
+            android:label="@string/editarSegmento"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Segmento.Rigido.ConsultarSegmentoRigiActivity"
-            android:label="@string/consulSeg" />
+            android:label="@string/consulSeg"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Segmento.Rigido.SegmentoRigiActivity"
-            android:label="@string/datosSegmento" />
+            android:label="@string/datosSegmento"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Segmento.Rigido.RegistroSegmentoRigiActivity"
-            android:label="@string/regisSeg" />
+            android:label="@string/regisSeg"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Segmento.Rigido.EditarSegmentoRigiActivity"
-            android:label="@string/editarSegmento" />
+            android:label="@string/editarSegmento"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Pato.flex.RegistroPatologiaFlexActivity"
-            android:label="@string/patoFlex" />
+            android:label="@string/patoFlex"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Pato.flex.ConsultaPatologiaFlexActivity"
             android:parentActivityName=".Segmento.Flexible.SegmentoFlexActivity" />
-        <activity android:name=".Pato.flex.PatologiaFlexActivity" />
-        <activity android:name=".Pato.flex.EditarPatologiaFlexActivity" />
+        <activity android:name=".Pato.flex.PatologiaFlexActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Pato.flex.EditarPatologiaFlexActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
