@@ -73,8 +73,7 @@ public class SegmentoFlexActivity extends AppCompatActivity {
             }else{
                 tv_id_segmento.setText(segmentoEnviado.getString("id_segmento"));
                 SQLiteDatabase db = baseDatos.getWritableDatabase();
-                int id = Integer.parseInt(tv_id_segmento.getText().toString());
-                String [] parametros = {""+id};
+                String [] parametros = {tv_id_segmento.getText().toString()};
 
                 Cursor cursor = db.rawQuery("SELECT "+Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_NOMBRE_CARRETERA_SEGMENTO+","+
                         Utilidades.SEGMENTOFLEX.CAMPO_CALZADAS_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_CARRILES_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_ANCHO_CARRIL+","+

@@ -1,17 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="@dimen/activity_horizontal_margin"
     tools:context="com.alejo_zr.exceldb.Carretera.ConsultarCarreteraActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarConsulCarreteraFlexActivity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/backConsulCarreteraActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_atras"
+                android:tint="@color/toolbar"
+                android:onClick="onClick"/>
+
+            <ImageView
+                android:id="@+id/homeConsulCarreteraActivity"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:background="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/backConsulCarreteraActivity"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/consul"
+                android:layout_marginLeft="@dimen/margen_toolbar"
+                android:layout_toRightOf="@id/homeConsulCarreteraActivity"
+                android:layout_centerVertical="true"
+                android:textColor="@color/toolbar"
+                android:textSize="@dimen/subTitulo"/>
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <ListView
         android:id="@+id/listViewCarretera"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_below="@id/toolbarConsulCarreteraFlexActivity"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floabtnAddCarretera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/add"
+        android:onClick="onClick"
+        />
 
 
-</LinearLayout>
+</RelativeLayout>

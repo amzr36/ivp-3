@@ -268,6 +268,12 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
                 Intent intent = new Intent(RegistroPatologiaRigiActivity.this, RegistroPatologiaRigiEjemploActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.backRegisPatoRigiActivity:
+                intent = new Intent(RegistroPatologiaRigiActivity.this,ConsultaPatologiaRigiActivity.class);
+                intent.putExtra("tv_id_segmento",tv_id_segmento_patologia_Rigi.getText().toString());
+                intent.putExtra("tv_nombre_carretera_segmento",tv_nombre_carretera_patologia.getText().toString());
+                startActivity(intent);
+                break;
         }
 
     }

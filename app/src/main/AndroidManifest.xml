@@ -82,7 +82,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Pato.flex.ConsultaPatologiaFlexActivity"
-            android:parentActivityName=".Segmento.Flexible.SegmentoFlexActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Pato.flex.PatologiaFlexActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Pato.flex.EditarPatologiaFlexActivity"
@@ -101,13 +101,20 @@
         <activity
             android:name=".Carretera.CarreteraRegistroEjemploActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Segmento.Flexible.RegistroSegmentoFlexEjemploActivity" />
-        <activity android:name=".Pato.flex.RegistroPatologiaFlexEjemploActivity" />
-        <activity android:name=".Pato.rigi.RegistroPatologiaRigiActivity" />
-        <activity android:name=".Pato.rigi.RegistroPatologiaRigiEjemploActivity" />
-        <activity android:name=".Pato.rigi.ConsultaPatologiaRigiActivity" />
-        <activity android:name=".Pato.rigi.PatologiaRigiActivity" />
-        <activity android:name=".Pato.rigi.EditarPatologiaRigiActivity"></activity>
+        <activity android:name=".Segmento.Flexible.RegistroSegmentoFlexEjemploActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Pato.flex.RegistroPatologiaFlexEjemploActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Pato.rigi.RegistroPatologiaRigiActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Pato.rigi.RegistroPatologiaRigiEjemploActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Pato.rigi.ConsultaPatologiaRigiActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Pato.rigi.PatologiaRigiActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Pato.rigi.EditarPatologiaRigiActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

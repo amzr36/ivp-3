@@ -61,7 +61,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
     private String idFotoFlex,campoSeveridad;
     private BaseDatos baseDatos;
     private MaterialSpinner spinnerPatoFlex,spinnerSeveridadPatoFlexRegistro;
-    private TextView tv_idDanio,tv_nombre_carretera_patologia,tv_id_segmento_patologia_flex,tv_foto_danio,tv_idFotoFlex,tv_foto_nombre,ej_Pato_Flex;
+    private TextView tv_idDanio,tv_nombre_carretera_patologia,tv_id_segmento_patologia_flex,tv_direccion_foto,tv_idFotoFlex,tv_foto_nombre,ej_Pato_Flex;
     private TextInputLayout input_campoAbscisaFlex,input_campoCarrilPato,input_campoDanioPato,input_campoLargoDanio,input_campoAnchoDanio,input_campoSeveridad,
             input_campoidFotoFlex;
     private EditText campoCarrilPato, campoDanioPato, campoLargoDanio, campoAnchoDanio, campoLargoRepa, campoAnchoRepa, campoAclaracion,campoAbscisaFlex,
@@ -97,7 +97,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         tv_nombre_carretera_patologia = (TextView) findViewById(R.id.tv_nombre_carretera_patologia_flexEditar);
         tv_id_segmento_patologia_flex = (TextView) findViewById(R.id.tv_id_segmento_patologia_flex_Editar);
         tv_idDanio = (TextView) findViewById(R.id.tv_id_danio_pato_flex_editar);
-        tv_foto_danio = (TextView) findViewById(R.id.tv_foto_danioEditar);
+        tv_direccion_foto = (TextView) findViewById(R.id.tv_direccion_foto_flex);
         tv_idFotoFlex = (TextView) findViewById(R.id.tv_idFotoFlexEditar);
         tv_foto_nombre = (TextView) findViewById(R.id.tv_foto_nombreEditar);
         ej_Pato_Flex = (TextView) findViewById(R.id.ej_Pato_FlexEditar);
@@ -108,6 +108,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         input_campoAnchoDanio = (TextInputLayout) findViewById(R.id.input_campoAnchoDanioFlexEditar);
         input_campoSeveridad = (TextInputLayout) findViewById(R.id.input_campoSeveridadFlexEditar);
         input_campoidFotoFlex = (TextInputLayout) findViewById(R.id.input_campoidFotoFlexEditar);
+        tv_idFotoFlex.setText(".");
 
         Bundle bundle = getIntent().getExtras();
         String abscisa = bundle.getString("tvAbscisa");
@@ -143,7 +144,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         tv_idDanio.setText(idDaño);
         tv_foto_nombre.setText(nombreFoto);
 
-        tv_foto_danio.setText("1");
+
         ArrayAdapter<String> arrayAdapterPato = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, tipoDanio);
         spinnerPatoFlex.setAdapter(arrayAdapterPato);
         ArrayAdapter<String> arrayAdapterSeveridad = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, severidad);
@@ -295,6 +296,8 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
     }
     public void onClick(View view) {
 
+        Intent intent = null;
+
         switch (view.getId()){
 
             case R.id.btnEditarPatologiaFlex:
@@ -311,19 +314,17 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
                 abrirManual();
                 break;
             case R.id.ej_Pato_FlexEditar:
-                Intent intent = new Intent(EditarPatologiaFlexActivity.this, RegistroPatologiaFlexEjemploActivity.class);
+                intent = new Intent(EditarPatologiaFlexActivity.this, RegistroPatologiaFlexEjemploActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.imagenPatoFlexEditar:
-                abrirFoto();
-        }
-    }
+            case R.id.backPatoFlexEditarActivity:
+                intent = new Intent(EditarPatologiaFlexActivity.this,PatologiaFlexActivity.class);
+                intent.putExtra("tvIdDaño",tv_idDanio.getText().toString());
+                startActivity( intent);
+                break;
 
-    private void abrirFoto() {
-        File imagen = new File(path);
-        Intent galleryIntent = new Intent(Intent.ACTION_VIEW, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        galleryIntent.setDataAndType(Uri.fromFile(imagen), path);
-        galleryIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); startActivity(galleryIntent);
+
+        }
     }
 
     private void abrirManual() {
@@ -363,7 +364,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         }else{
             input_campoLargoDanio.setErrorEnabled(false);
         }
-        if(tv_idFotoFlex.getText().toString().trim().isEmpty()){
+        if(tv_direccion_foto.getText().toString().trim().isEmpty()){
             input_campoidFotoFlex.setError("Tome la foto del daño");
             isValid=false;
         }else{
@@ -395,35 +396,15 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         values.put(Utilidades.PATOLOGIAFLEX.CAMPO_ANCHO_REPARACION, campoAnchoRepa.getText().toString());
         values.put(Utilidades.PATOLOGIAFLEX.CAMPO_ACLARACIONES, campoAclaracion.getText().toString());
         values.put(Utilidades.PATOLOGIAFLEX.CAMPO_NOMBRE_FOTO, tv_foto_nombre.getText().toString());
-        values.put(Utilidades.PATOLOGIAFLEX.CAMPO_FOTO_DANIO, tv_foto_danio.getText().toString());
-
+        values.put(Utilidades.PATOLOGIAFLEX.CAMPO_FOTO_DANIO, tv_direccion_foto.getText().toString());
 
 
         db.update(Utilidades.PATOLOGIAFLEX.TABLA_PATOLOGIA,values,Utilidades.PATOLOGIAFLEX.CAMPO_ID_PATOLOGIA+"=?",parametros);
         Toast.makeText(getApplicationContext(),"Se edito el segmento",Toast.LENGTH_SHORT).show();
-        /*Intent intent = new Intent(EditarSegmentoFlexActivity.this,ConsultarSegmentoFlexActivity.class);
-        intent.putExtra("tv_id_segmento",tv_id_segmento_editarFlex.getText().toString());
-        intent.putExtra("nom_carretera",tvNombre_Carretera_Segmento_EditarFlex.getText().toString());
-        startActivity(intent);*/
+
         db.close();
 
         Intent intent = new Intent(EditarPatologiaFlexActivity.this,PatologiaFlexActivity.class);
-        intent.putExtra("tvAbscisa",campoAbscisaFlex.getText().toString());
-        intent.putExtra("tvLatitud",campoLatitudPatoFlex.getText().toString());
-        intent.putExtra("tvLongitud",campoLongitudPatoFlex.getText().toString());
-        intent.putExtra("tvCarrilDanio",campoCarrilPato.getText().toString());
-        intent.putExtra("tvdanionombre",campoDanioPato.getText().toString());
-        intent.putExtra("tvSeveridadPatoFlexActivity",campoSeveridad);
-        intent.putExtra("tvlarDanio",campoLargoDanio.getText().toString());
-        intent.putExtra("tvanchDanio",campoAnchoDanio.getText().toString());
-        intent.putExtra("tvanchRepa", campoAnchoRepa.getText().toString());
-        intent.putExtra("tvlarRepa",campoLargoRepa.getText().toString());
-        intent.putExtra("tvAclaraciones",campoAclaracion.getText().toString());
-        intent.putExtra("tvDireccionPatoFlex",path);
-        intent.putExtra("tvNombreFoto_patoFlexActivity",tv_foto_nombre.getText().toString());
-        intent.putExtra("imgFoto",path);
-        intent.putExtra("tvIdSegmento",tv_id_segmento_patologia_flex.getText().toString());
-        intent.putExtra("tvNombreCarreteraPatologiaActivity",tv_nombre_carretera_patologia.getText().toString());
         intent.putExtra("tvIdDaño",tv_idDanio.getText().toString());
         startActivity( intent);
     }
@@ -473,7 +454,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         path=Environment.getExternalStorageDirectory()+
                 File.separator+RUTA_IMAGEN+File.separator+nombreImagen;
 
-        tv_foto_danio.setText(path);
+        tv_direccion_foto.setText(path);
 
 
         File imagen=new File(path);

@@ -250,7 +250,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
 
 
     public void onClick(View view) {
-
+        Intent intent = null;
         switch (view.getId()){
 
             case R.id.btnRegistroPatologia:
@@ -267,7 +267,13 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
                 abrirManual();
                 break;
             case R.id.ej_Pato_Flex:
-                Intent intent = new Intent(RegistroPatologiaFlexActivity.this, RegistroPatologiaFlexEjemploActivity.class);
+                intent = new Intent(RegistroPatologiaFlexActivity.this, RegistroPatologiaFlexEjemploActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.backRegistroPatoFlexActivity:
+                intent = new Intent(RegistroPatologiaFlexActivity.this,ConsultaPatologiaFlexActivity.class);
+                intent.putExtra("tv_id_segmento",tv_id_segmento_patologia_flex.getText().toString());
+                intent.putExtra("tv_nombre_carretera_segmento",tv_nombre_carretera_patologia.getText().toString());
                 startActivity(intent);
                 break;
         }
@@ -348,33 +354,6 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
         db.execSQL(insert);
 
         db.close();
-
-    }
-
-    private void cargarImagen() {
-
-        final CharSequence[] opciones={"Tomar Foto","Cargar Imagen","Cancelar"};
-        final AlertDialog.Builder alertOpciones=new AlertDialog.Builder(RegistroPatologiaFlexActivity.this);
-        alertOpciones.setTitle("Seleccione una Opción");
-        alertOpciones.setItems(opciones, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (opciones[i].equals("Tomar Foto")){
-                    guardarFotografia();
-                    tomarFotografia();
-
-                }else{
-                    if (opciones[i].equals("Cargar Imagen")){
-                        Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        intent.setType("image/");
-                        startActivityForResult(intent.createChooser(intent,"Seleccione la Aplicación"),COD_SELECCIONA);
-                    }else{
-                        dialogInterface.dismiss();
-                    }
-                }
-            }
-        });
-        alertOpciones.show();
 
     }
 

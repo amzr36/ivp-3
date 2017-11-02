@@ -4,56 +4,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin"
     tools:context="com.alejo_zr.exceldb.Pato.flex.ConsultaPatologiaFlexActivity">
 
-    <TextView
-        android:id="@+id/tvnomCarretera_consultar_patoFlex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nombre"
-        android:textSize="@dimen/titulo"/>
-    <LinearLayout
-        android:id="@+id/llseg"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarConsulPatoFlexActivity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/tvnomCarretera_consultar_patoFlex">
-        <TextView
-            android:id="@+id/tvIdSegmento_consultarFlex"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_below="@+id/tvnomCarretera_consultar_patoFlex"
-            android:text="@string/segmento"
-            android:textSize="@dimen/subTitulo"/>
-        <TextView
-            android:id="@+id/tvIdSegmento_consultar_patoflex"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/id"
-            android:textSize="@dimen/subTitulo"
-            />
-    </LinearLayout>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/backConsulPatoFlexActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_atras"
+                android:tint="@color/toolbar"
+                android:onClick="onClick"/>
 
-    <ListView
-        android:id="@+id/listViewPatologiaFlex"
+            <ImageView
+                android:id="@+id/homeConsulPatoFlexActivity"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:background="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/backConsulPatoFlexActivity"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/homeConsulPatoFlexActivity"
+                android:layout_marginLeft="@dimen/margen_toolbar"
+                android:text="@string/consulPato"
+                android:textSize="@dimen/subTitulo"
+                android:textColor="@color/toolbar"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/llseg"
-        />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floabtnAddPatoFlex"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/add"
-        android:onClick="onClick"
-        />
+        android:layout_below="@id/toolbarConsulPatoFlexActivity">
+
+        <TextView
+            android:id="@+id/tvnomCarretera_consultar_patoFlex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre"
+            android:textSize="@dimen/titulo"/>
+        <LinearLayout
+            android:id="@+id/llseg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/tvnomCarretera_consultar_patoFlex">
+            <TextView
+                android:id="@+id/tvIdSegmento_consultarFlex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_below="@+id/tvnomCarretera_consultar_patoFlex"
+                android:text="@string/segmento"
+                android:textSize="@dimen/subTitulo"/>
+            <TextView
+                android:id="@+id/tvIdSegmento_consultar_patoflex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/id"
+                android:textSize="@dimen/subTitulo"
+                />
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/listViewPatologiaFlex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llseg"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floabtnAddPatoFlex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/add"
+            android:onClick="onClick"
+            />
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>

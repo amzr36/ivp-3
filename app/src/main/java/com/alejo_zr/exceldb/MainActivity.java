@@ -48,17 +48,23 @@ public class MainActivity extends AppCompatActivity {
                 exportar();
                 break;
             case R.id.btnManual:
-                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
-                startActivity(launchIntent);
-                break;
+                try{
+                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
+                    startActivity(launchIntent);
+                    break;
+                }catch (Exception e){
+                    Toast.makeText(getApplicationContext(),"INSTALE EL MANUAL PARA LA INSPECCIÓN VISUAL DE PAVIMENTOS",Toast.LENGTH_LONG).show();
+                }
 
 
-        }
+            }
+
         if(intent != null){
             startActivity(intent);
         }
 
     }
+
 
     private void exportar() {
 

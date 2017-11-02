@@ -1,411 +1,457 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin"
     tools:context="com.alejo_zr.exceldb.Pato.rigi.RegistroPatologiaRigiActivity">
 
-
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarRegisPatoRigiActivity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <TextView
-            android:id="@+id/ej_Pato_Rigi"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/backRegisPatoRigiActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_atras"
+                android:tint="@color/toolbar"
+                android:onClick="onClick"/>
+
+            <ImageView
+                android:id="@+id/homeRegisPatoRigiActivity"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:background="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/backRegisPatoRigiActivity"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/homeRegisPatoRigiActivity"
+                android:layout_marginLeft="@dimen/margen_toolbar"
+                android:text="@string/consulPato"
+                android:textSize="@dimen/subTitulo"
+                android:textColor="@color/toolbar"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_below="@id/toolbarRegisPatoRigiActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/ejemplo"
-            android:textColor="@color/colorAccent"
-            android:layout_gravity="right"
-            android:layout_marginRight="@dimen/marginLeftTV"
-            android:onClick="onClick"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_nombre_carretera_patologia_Rigi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nombre"
-            android:layout_gravity="center"
-            android:textStyle="bold|italic"
-            android:textSize="@dimen/titulo"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/tv_id_segm_pato_Rigi"
+                android:id="@+id/ej_Pato_Rigi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/ejemplo"
+                android:textColor="@color/colorAccent"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/marginLeftTV"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:id="@+id/tv_nombre_carretera_patologia_Rigi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre"
+                android:layout_gravity="center"
+                android:textStyle="bold|italic"
+                android:textSize="@dimen/titulo"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_id_segm_pato_Rigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/segmento"
+                    android:textStyle="bold|italic"/>
+                <TextView
+                    android:id="@+id/tv_id_segmento_patologia_Rigi_registro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/segmento"
+                    android:textStyle="bold|italic"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/segmento"
-                android:textStyle="bold|italic"/>
-            <TextView
-                android:id="@+id/tv_id_segmento_patologia_Rigi_registro"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/marginTopTV">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoAbscisaRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+                    <EditText
+                        android:id="@+id/campoAbscisaRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/abscisa"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnObtenerCoordenadasPatoRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/coordenadas"
+                    android:textStyle="italic"
+                    android:textSize="15dp"
+                    android:onClick="onClick"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/segmento"
-                android:textStyle="bold|italic"/>
+                android:orientation="horizontal">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoLatPFlex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
 
-        </LinearLayout>
+                    <EditText
+                        android:id="@+id/campoLatitudPatoRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/latitud"
+                        />
+                </android.support.design.widget.TextInputLayout>
 
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoLngPRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
 
+                    <EditText
+                        android:id="@+id/campolongitudPatoRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/longitud"
+                        />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/marginTopTV">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoNumeroLosaPatoRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+
+                    <EditText
+                        android:id="@+id/campoNumeroLosa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/no_placa"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoLetraLosaPatoRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+
+                    <EditText
+                        android:id="@+id/campoLetraLosa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/letra_losa"/>
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoLargoLosaPatoRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+                    <EditText
+                        android:id="@+id/campoLargoLosaRigiRegistro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/largo_losa"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoAnchoLosaPatoRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+                    <EditText
+                        android:id="@+id/campoAnchoLosaRigiRegistro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/ancho_losa"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvDanioRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/patologia"
+                android:textSize="@dimen/subTitulo"
+                android:textStyle="bold"/>
+
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/spinnerPatoRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ms_floatingLabelText="@string/patologia"
+                app:ms_hint="@string/patologia"
+                app:ms_floatingLabelColor="@color/colorAccent"
+                app:ms_multiline="true"/>
+
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoAbscisaRigi"
+                android:id="@+id/input_campoDanioPatoRigi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:textColorHighlight="@color/colorAccent">
                 <EditText
-                    android:id="@+id/campoAbscisaRigi"
+                    android:id="@+id/campoDanioPatoRigi"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/abscisa"/>
+                    android:layout_height="wrap_content"
+                    android:hint="@string/codPato"/>
             </android.support.design.widget.TextInputLayout>
 
-            <Button
-                android:id="@+id/btnObtenerCoordenadasPatoRigi"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_campoSeveridadRigi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/coordenadas"
-                android:textStyle="italic"
-                android:textSize="15dp"
+                android:textColorHighlight="@color/colorAccent">
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spinnerSeveridadPatoRigiRegistro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ms_floatingLabelColor="@color/colorAccent"
+                    app:ms_floatingLabelText="@string/severidad"
+                    app:ms_hint="@string/severidad"
+                    app:ms_multiline="true" />
+            </android.support.design.widget.TextInputLayout>
+
+
+
+            <TextView
+                android:id="@+id/tvDimenDanioRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/danio"
+                android:textSize="@dimen/subTitulo"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoLargoDanioRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+                    <EditText
+                        android:id="@+id/campoLargoDanioRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/largo"/>
+
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoAnchoDanioRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+
+                    <EditText
+                        android:id="@+id/campoAnchoDanioRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/anchoD"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvRepaRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reparacion"
+                android:textSize="@dimen/subTitulo"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoLargoRepaRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+
+                    <EditText
+                        android:id="@+id/campoLargoRepaRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/largo"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_campoAnchoRepaRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHighlight="@color/colorAccent">
+                    <EditText
+                        android:id="@+id/campoAnchoRepaRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/anchoD"/>
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_campoAclaracionesRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHighlight="@color/colorAccent">
+                <EditText
+                    android:id="@+id/campoAclaracionesRigi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/aclaraciones"/>
+            </android.support.design.widget.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/tvidfoRigi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="ID FOTO"
+                android:textStyle="bold"/>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_campoidFotoRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHighlight="@color/colorAccent">
+                <TextView
+                    android:id="@+id/tv_idFotoRigi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/vacio"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_foto_nombreRigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="direccion foto"
+                android:visibility="visible"/>
+            <TextView
+                android:id="@+id/tv_direccion_foto_rigi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="direccion foto"
+                android:visibility="visible"/>
+
+
+            <ImageButton
+                android:id="@+id/btnDanioRigi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/photo"
                 android:onClick="onClick"
                 />
 
-        </LinearLayout>
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/img_base"
+                android:id="@+id/imagenIdPatoRigiRegistro"
+                android:layout_marginTop="@dimen/marginTopTV"
+                android:layout_gravity="center_horizontal" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoLatPFlex"
+            <Button
+                android:id="@+id/btnRegistroPatologiaRigi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHighlight="@color/colorAccent">
-
-                <EditText
-                    android:id="@+id/campoLatitudPatoRigi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/latitud"
-                    />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoLngPRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHighlight="@color/colorAccent">
-
-                <EditText
-                    android:id="@+id/campolongitudPatoRigi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/longitud"
-                    />
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoNumeroLosaPatoRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHighlight="@color/colorAccent">
-
-                <EditText
-                    android:id="@+id/campoNumeroLosa"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/no_placa"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoLetraLosaPatoRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHighlight="@color/colorAccent">
-
-                <EditText
-                    android:id="@+id/campoLetraLosa"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/letra_losa"/>
-            </android.support.design.widget.TextInputLayout>
+                android:layout_marginTop="@dimen/marginTop"
+                android:text="@string/registroPato"
+                android:onClick="onClick"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoLargoLosaPatoRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHighlight="@color/colorAccent">
-                <EditText
-                    android:id="@+id/campoLargoLosaRigiRegistro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/largo_losa"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoAnchoLosaPatoRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHighlight="@color/colorAccent">
-                <EditText
-                    android:id="@+id/campoAnchoLosaRigiRegistro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/ancho_losa"/>
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvDanioRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/patologia"
-            android:textSize="@dimen/subTitulo"
-            android:textStyle="bold"/>
-
-        <fr.ganfra.materialspinner.MaterialSpinner
-            android:id="@+id/spinnerPatoRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:ms_floatingLabelText="@string/patologia"
-            app:ms_hint="@string/patologia"
-            app:ms_floatingLabelColor="@color/colorAccent"
-            app:ms_multiline="true"/>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_campoDanioPatoRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHighlight="@color/colorAccent">
-            <EditText
-                android:id="@+id/campoDanioPatoRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/codPato"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_campoSeveridadRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHighlight="@color/colorAccent">
-
-            <fr.ganfra.materialspinner.MaterialSpinner
-                android:id="@+id/spinnerSeveridadPatoRigiRegistro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:ms_floatingLabelColor="@color/colorAccent"
-                app:ms_floatingLabelText="@string/severidad"
-                app:ms_hint="@string/severidad"
-                app:ms_multiline="true" />
-        </android.support.design.widget.TextInputLayout>
-
-
-
-        <TextView
-            android:id="@+id/tvDimenDanioRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/danio"
-            android:textSize="@dimen/subTitulo"
-            android:textStyle="bold"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoLargoDanioRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHighlight="@color/colorAccent">
-                <EditText
-                    android:id="@+id/campoLargoDanioRigi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/largo"/>
-
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoAnchoDanioRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHighlight="@color/colorAccent">
-
-                <EditText
-                    android:id="@+id/campoAnchoDanioRigi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/anchoD"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvRepaRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/reparacion"
-            android:textSize="@dimen/subTitulo"
-            android:textStyle="bold"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoLargoRepaRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHighlight="@color/colorAccent">
-
-                <EditText
-                    android:id="@+id/campoLargoRepaRigi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/largo"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_campoAnchoRepaRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHighlight="@color/colorAccent">
-                <EditText
-                    android:id="@+id/campoAnchoRepaRigi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/anchoD"/>
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_campoAclaracionesRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHighlight="@color/colorAccent">
-            <EditText
-                android:id="@+id/campoAclaracionesRigi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/aclaraciones"/>
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:id="@+id/tvidfoRigi"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="ID FOTO"
-            android:textStyle="bold"/>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_campoidFotoRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHighlight="@color/colorAccent">
-            <TextView
-                android:id="@+id/tv_idFotoRigi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/vacio"
-                />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <TextView
-            android:id="@+id/tv_foto_nombreRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="direccion foto"
-            android:visibility="visible"/>
-        <TextView
-            android:id="@+id/tv_direccion_foto_rigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="direccion foto"
-            android:visibility="visible"/>
-
-
-        <ImageButton
-            android:id="@+id/btnDanioRigi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/photo"
-            android:onClick="onClick"
-            />
-
-        <ImageView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:src="@drawable/img_base"
-            android:id="@+id/imagenIdPatoRigiRegistro"
-            android:layout_marginTop="@dimen/marginTopTV"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:id="@+id/btnRegistroPatologiaRigi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginTop"
-            android:text="@string/registroPato"
-            android:onClick="onClick"/>
+    </ScrollView>
 
 
 
 
 
-    </LinearLayout>
-
-
-
-</ScrollView>
+</RelativeLayout>

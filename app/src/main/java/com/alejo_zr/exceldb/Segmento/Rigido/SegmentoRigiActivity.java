@@ -53,17 +53,42 @@ public class SegmentoRigiActivity extends AppCompatActivity {
 
         if(segmentoEnviado!=null){
             segmento = (SegmentoRigi) segmentoEnviado.getSerializable("segmento");
-            tv_id_segmento.setText(segmento.getId_segmento().toString());
-            tv_nombre_carretera_segmento.setText(segmento.getNombre_carretera().toString());
-            tvnCalzadas.setText(segmento.getnCalzadas().toString());
-            tvnCarriles.setText(segmento.getnCarriles().toString());
-            tvespesorLosa.setText(segmento.getEspesorLosa().toString());
-            tvanchoBerma.setText(segmento.getAnchoBerma().toString());
-            tvPRI.setText(segmento.getPri().toString());
-            tvPRF.setText(segmento.getPrf().toString());
-            tvComentarios.setText(segmento.getComentarios().toString());
-            tvFechaSegmentoRigi.setText(segmento.getFecha().toString());
-            valoriS = segmento.getIs();
+            if(segmento!=null){
+                tv_id_segmento.setText(segmento.getId_segmento().toString());
+                tv_nombre_carretera_segmento.setText(segmento.getNombre_carretera().toString());
+                tvnCalzadas.setText(segmento.getnCalzadas().toString());
+                tvnCarriles.setText(segmento.getnCarriles().toString());
+                tvespesorLosa.setText(segmento.getEspesorLosa().toString());
+                tvanchoBerma.setText(segmento.getAnchoBerma().toString());
+                tvPRI.setText(segmento.getPri().toString());
+                tvPRF.setText(segmento.getPrf().toString());
+                tvComentarios.setText(segmento.getComentarios().toString());
+                tvFechaSegmentoRigi.setText(segmento.getFecha().toString());
+                valoriS = segmento.getIs();
+            }else{
+                tv_id_segmento.setText(segmentoEnviado.getString("id_segmento"));
+                SQLiteDatabase db = baseDatos.getWritableDatabase();
+                String [] parametros = {tv_id_segmento.getText().toString()};
+
+                Cursor cursor = db.rawQuery("SELECT "+Utilidades.SEGMENTORIGI.CAMPO_ID_SEGMENTO+","+Utilidades.SEGMENTORIGI.CAMPO_NOMBRE_CARRETERA_SEGMENTO+","+
+                        Utilidades.SEGMENTORIGI.CAMPO_CALZADAS_SEGMENTO+","+Utilidades.SEGMENTORIGI.CAMPO_CARRILES_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_ANCHO_BERMA+","
+                        +Utilidades.SEGMENTORIGI.CAMPO_ESPESOR_LOSA+","+Utilidades.SEGMENTORIGI.CAMPO_PRI_SEGMENTO+","+Utilidades.SEGMENTORIGI.CAMPO_PRF_SEGMENTO+","+
+                        Utilidades.SEGMENTORIGI.CAMPO_COMENTARIOS+","+Utilidades.SEGMENTORIGI.CAMPO_FECHA+" FROM "+Utilidades.SEGMENTORIGI.TABLA_SEGMENTO+
+                        " WHERE "+Utilidades.SEGMENTORIGI.CAMPO_ID_SEGMENTO+"=?",parametros);
+
+                cursor.moveToFirst();
+                tv_id_segmento.setText(cursor.getString(0));
+                tv_nombre_carretera_segmento.setText(cursor.getString(1));
+                tvnCalzadas.setText(cursor.getString(2));
+                tvnCarriles.setText(cursor.getString(3));
+                tvanchoBerma.setText(cursor.getString(4));
+                tvespesorLosa.setText(cursor.getString(5));
+                tvPRI.setText(cursor.getString(6));
+                tvPRF.setText(cursor.getString(7));
+                tvComentarios.setText(cursor.getString(8));
+                tvFechaSegmentoRigi.setText(cursor.getString(9));
+            }
+
         }
 
         agregarIS();
@@ -96,7 +121,6 @@ public class SegmentoRigiActivity extends AppCompatActivity {
                 break;
 
             case R.id.btnEditarSegmentoRigi:
-
                 intent = new Intent (SegmentoRigiActivity.this, EditarSegmentoRigiActivity.class);
                 intent.putExtra("tv_id_segmento",tv_id_segmento.getText().toString());
                 intent.putExtra("tv_nombre_carretera_segmento",tv_nombre_carretera_segmento.getText().toString());

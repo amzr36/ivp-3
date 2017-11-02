@@ -139,7 +139,6 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
         }
         editarIdSegmento();
         obtenerLista();
-
     }
 
 

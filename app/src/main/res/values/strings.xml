@@ -84,6 +84,8 @@
     <string name="ancho_losa">Ancho losa</string>
     <string name="gps">Active el GPS</string>
     <string name="placa">Placa</string>
+    <string name="datos_pato">Datos Patología</string>
+    <string name="editarPato">Editar Patología</string>
 
     <string-array name="dañosPatoFlex">
         <item>Fisuras Longitudinales y transversales</item>

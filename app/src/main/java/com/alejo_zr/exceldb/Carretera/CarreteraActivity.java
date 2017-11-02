@@ -127,8 +127,10 @@ public class CarreteraActivity extends AppCompatActivity {
             case R.id.btnEliminarCarretera:
                 confirmar();
                 break;
-
-
+            case R.id.backCarreteraActivity:
+                intent = new Intent(CarreteraActivity.this,ConsultarCarreteraActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 

@@ -1,5 +1,6 @@
 package com.alejo_zr.exceldb.Pato.flex;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.alejo_zr.exceldb.BaseDatos;
 import com.alejo_zr.exceldb.R;
+import com.alejo_zr.exceldb.Segmento.Flexible.SegmentoFlexActivity;
 import com.alejo_zr.exceldb.entidades.PatoFlex;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
 
@@ -101,10 +103,8 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
 
                 PatoFlex patologia=listaPatologiasFlex.get(listaIdPatoFlex.get(posS));
                 Intent intent=new Intent(ConsultaPatologiaFlexActivity.this, PatologiaFlexActivity.class);
-
                 Bundle bundle=new Bundle();
                 bundle.putSerializable("patologia",patologia);
-
                 intent.putExtras(bundle);
 
                 startActivity(intent);
@@ -145,8 +145,30 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
             listaPatologiasFlex.add(patoFlex);
 
         }
+        editarIdPato();
         obtenerLista();
 
+    }
+
+    private void editarIdPato() {
+        SQLiteDatabase db = baseDatos.getWritableDatabase();
+        int id = 1;
+        for (int i = 0; i < listaPatologiasFlex.size(); i++) {
+            double idPatoFlex = listaPatologiasFlex.get(i).getId_patoFlex();
+            double modulo = idPatoFlex / id;
+            String idP = new String("" + idPatoFlex);
+            if (modulo != 1) {
+                ContentValues values = new ContentValues();
+                String[] parametros = {idP};
+                String patoflexId = (""+id);
+                values.put(Utilidades.PATOLOGIAFLEX.CAMPO_ID_PATOLOGIA, patoflexId);
+                db.update(Utilidades.PATOLOGIAFLEX.TABLA_PATOLOGIA, values, Utilidades.PATOLOGIAFLEX.CAMPO_ID_PATOLOGIA + "=?", parametros);
+            }
+            id = id + 1;
+
+        }
+
+        db.close();
     }
 
     private void obtenerLista() {
@@ -182,6 +204,11 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
                 intent.putExtra("campoIS",campoIS);
                 startActivity(intent);
                 break;
+            case R.id.backConsulPatoFlexActivity:
+                intent = new Intent(ConsultaPatologiaFlexActivity.this, SegmentoFlexActivity.class);
+                intent.putExtra("id_segmento",tvIdSegmento_consultar_patoflex.getText().toString());
+                startActivity(intent);
+
         }
     }
 }

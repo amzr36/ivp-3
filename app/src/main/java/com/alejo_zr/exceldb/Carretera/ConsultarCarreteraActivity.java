@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.Carretera;
 import com.alejo_zr.exceldb.entidades.PatoFlex;
@@ -421,6 +422,21 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
 
     }
 
+    public void onClick(View view) {
+
+        Intent intent =null;
+        switch (view.getId()){
+
+            case R.id.floabtnAddCarretera:
+                intent = new Intent(ConsultarCarreteraActivity.this,RegistroCarreteraActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.backConsulCarreteraActivity:
+                intent = new Intent(ConsultarCarreteraActivity.this,MainActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
 }
 
 
