@@ -84,15 +84,29 @@
                     android:layout_gravity="center"
                     />
 
-                <TextView
-                    android:id="@+id/ej_Segmento_Flex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/ejemplo"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="@dimen/marginLeftTV"
-                    android:onClick="onClick"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/btnManualRegistroSegFlex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mivp"/>
+                    <TextView
+                        android:id="@+id/ej_Segmento_Flex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/ejemplo"
+                        android:textColor="@color/colorAccent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/marginLeftTV"
+                        android:onClick="onClick"/>
+
+                </RelativeLayout>
+
+
 
                 <TextView
                     android:id="@+id/tvNumeroFlex"

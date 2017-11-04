@@ -25,6 +25,7 @@ import java.util.Calendar;
 
 public class RegistroSegmentoFlexActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
     private BaseDatos baseDatos;
     private ArrayList<SegmentoFlex> listaSegmentosF;
     private EditText campoNCalzadas, campoNCarriles, campoAnchoCarril, campoAnchoBerma, campoPRI, campoPRF, campoComentarios,campoFecha;
@@ -41,6 +42,7 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_segmento_flex);
 
+        //Se enlazan los objetos con los views
         baseDatos = new BaseDatos(this);
         campoNCalzadas = (EditText) findViewById(R.id.campoNCalzadasFlex);
         campoNCarriles = (EditText) findViewById(R.id.campoNCarrilesFlex);
@@ -54,7 +56,6 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
         ej_Segmento_Flex = (TextView) findViewById(R.id.ej_Segmento_Flex);
 
 
-
         tvNombre_Carretera_SegmentoFlex = (TextView) findViewById(R.id.tvNombre_Carretera_SegmentoFlex);
 
         input_camponCalzadas = (TextInputLayout) findViewById(R.id.input_camponCalzadasFlex);
@@ -63,7 +64,7 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
         input_campoAnchoBerma= (TextInputLayout) findViewById(R.id.input_campoAnchoBermaFlex);
         input_campoPRI= (TextInputLayout) findViewById(R.id.input_campoPRIFlex);
 
-
+        //Se recibe el nombre de la carretera
         Bundle bundle = getIntent().getExtras();
         String dato_nom = bundle.getString("nom_carretera").toString();
         tvNombre_Carretera_SegmentoFlex.setText(dato_nom);
@@ -75,7 +76,7 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
     }
 
     private void fechaActual() {
-
+        //Obtiene la fecha del sistema
         final Calendar c = Calendar.getInstance();
         ano = c.get(Calendar.YEAR);
         mes = c.get(Calendar.MONTH);
@@ -87,20 +88,37 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
+        //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
         Intent intent ;
         switch (view.getId()){
 
             case R.id.btnRegistroSegmentoFlex:
+                //Se verifica que los campos requeridos para realizar el registro esten diligenciados,
+                // si esto su cumple se abre la actividad SegmentoFlex, con los datos del semento
                 verificarDatos();
                 break;
             case R.id.btnFecha:
+                //En caso de que el usuario quiera modificar la fecha proporcinada por el sistema, este la puede modificar
                 obtenerFecha();
                 break;
+            case R.id.btnManualRegistroSegFlex:
+                //Abre el MIVP
+                try{
+                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
+                    startActivity(launchIntent);
+                    break;
+                }catch (Exception e){
+                    //De no tenerse instalado el manual mostrara el mensaje
+                    Toast.makeText(getApplicationContext(),"INSTALE EL MANUAL PARA LA INSPECCIÓN VISUAL DE PAVIMENTOS",Toast.LENGTH_LONG).show();
+                }
+                break;
             case R.id.ej_Segmento_Flex:
+                //Abre la actividad RegistroSegmentoFlexEjemplo
                 intent = new Intent(RegistroSegmentoFlexActivity.this,RegistroSegmentoFlexEjemploActivity.class);
                 startActivity(intent);
             case R.id.backRegisSegFlexActivity:
-                intent = new Intent(RegistroSegmentoFlexActivity.this,SegmentoFlexActivity.class);
+                //Se devuelve a la actividad ConsultarSegmentoFlex
+                intent = new Intent(RegistroSegmentoFlexActivity.this,ConsultarSegmentoFlexActivity.class);
                 intent.putExtra("nom_carretera",tvNombre_Carretera_SegmentoFlex.getText().toString());
                 startActivity(intent);
                 break;
@@ -122,9 +140,10 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    /**Se verifica que los datos minimos sean diligenciados**/
+
 
     private void verificarDatos() {
+
         boolean isValid = true;
         if(campoNCalzadas.getText().toString().trim().isEmpty()){
             input_camponCalzadas.setError("Ingrese el número de calzadas");
@@ -208,7 +227,19 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
         db.execSQL(insert);
         Toast.makeText(getApplicationContext(),R.string.segRegis,Toast.LENGTH_SHORT).show();
 
+        BaseDatos baseDatos = new BaseDatos(this);
+        final Cursor cursor = baseDatos.getSegmentoFlex();
+
+        if(cursor.moveToNext()){
+            do{
+                id_seg_flex = cursor.getString(cursor.getColumnIndex(Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO));
+            }while (cursor.moveToNext());
+
+        }
         db.close();
+        Intent intent = new Intent(RegistroSegmentoFlexActivity.this,SegmentoFlexActivity.class);
+        intent.putExtra("id_segmento",id_seg_flex);
+        startActivity(intent);
 
     }
 }

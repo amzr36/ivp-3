@@ -30,7 +30,7 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_carretera);
 
-        //Se enlazanlos objetos con los views
+        //Se enlazan los objetos con los views
 
         spinnerAdrmonCarreteraRegistro = (MaterialSpinner) findViewById(R.id.spinnerAdrmonCarreteraRegistro) ;
 
@@ -70,11 +70,12 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        //Al oprimir un boton entra a este metodo, y dependiendo del boton se selecciona el caso
+        //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
         switch (view.getId())
         {
             case R.id.btnRegistro:
-                //Se verifican que los datos minomos que deben ser diligenciados, lo esten para realizar el registro
+                //Se verifica que los campos requeridos para realizar el registro esten diligenciados,
+                // si esto su cumple se abre la actividad CarreteraActivity, con los datos de la carretera
                 verficarCampo();
                 break;
             case R.id.tvEjemploCarretera:
@@ -94,11 +95,8 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
         }else{
             inputLayoutNombre.setErrorEnabled(false);
         }
-        if(isValid){
+        if(isValid) {
             registrarCarretera();
-            Intent intent= new Intent(RegistroCarreteraActivity.this, CarreteraActivity.class);
-            intent.putExtra("nom_carretera",campoNombre.getText().toString());
-            startActivity(intent);
         }
     }
 
@@ -118,6 +116,10 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Se registro la vía : "+campoNombre.getText().toString(),Toast.LENGTH_SHORT).show();
 
         db.close();
+
+        Intent intent= new Intent(RegistroCarreteraActivity.this, CarreteraActivity.class);
+        intent.putExtra("nom_carretera",campoNombre.getText().toString());
+        startActivity(intent);
     }
 
 

@@ -52,8 +52,6 @@
             android:onClick="onClick"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/marginTop"
-            android:elevation="@dimen/cardview_default_elevation"
-            android:background="@color/disabled_color"
             >
 
             <ImageButton

@@ -426,7 +426,7 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-
+    //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
         Intent intent =null;
         switch (view.getId()){
 

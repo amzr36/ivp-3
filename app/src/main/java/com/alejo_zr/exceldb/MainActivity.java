@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view){
-        //Al oprimir un boton entra a este metodo, y dependiendo del boton se selecciona el caso
+        //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
         Intent intent = null;
         switch (view.getId()){
             case R.id.btnRegistroCarretera:
