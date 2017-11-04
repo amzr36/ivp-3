@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
     private ListView listViewSegmentos;
     private ArrayList<String> listaInformacionSegmentos;
     private ArrayList<SegmentoFlex> listaSegmentos;
@@ -40,18 +41,19 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
 
         baseDatos=new BaseDatos(this);
 
+        //Se enlazanlos objetos con los views
         listViewSegmentos = (ListView) findViewById(R.id.listViewSegmentoFlex);
         tvnomCarretera_consultar_segmentoFlex = (TextView) findViewById(R.id.tvnomCarretera_consultar_segmentoFlex);
 
+        //Se recibe el nombre de la carretera
         Bundle bundle = getIntent().getExtras();
-
         nombre = bundle.getString("nom_carretera").toString();
 
         tvnomCarretera_consultar_segmentoFlex.setText(nombre);
 
 
         consultarListaSegmentos();
-
+        //Se le asigna el diseño y la lista que va a cargar el listview
         ArrayAdapter adaptador=new ArrayAdapter(this,android.R.layout.simple_list_item_1,listaInformacionSegmentos);
         listViewSegmentos.setAdapter(adaptador);
 
@@ -59,7 +61,7 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posS, long l) {
 
-
+                //Al seleccionar un item de la lista, este selecciona el ID del segmento y lo envia a SegmentoFlexActivity
                 SegmentoFlex segmentoflex=listaSegmentos.get(listaIdSegmentos.get(posS));
                 Intent intent=new Intent(ConsultarSegmentoFlexActivity.this,SegmentoFlexActivity.class);
 
@@ -146,11 +148,15 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
 
         listaInformacionSegmentos = new ArrayList<String>();
         listaIdSegmentos = new ArrayList<Integer>();
-
+        //Se filtran los segmentos pertenecientes a la carretera, para que no muestre los de otras
         for (int i=0; i<listaSegmentos.size();i++){
             boolean nomCarretera = tvnomCarretera_consultar_segmentoFlex.getText().toString().equals(listaSegmentos.get(i).getNombre_carretera());
             if(nomCarretera==true){
                 listaInformacionSegmentos.add("Carretera: "+listaSegmentos.get(i).getNombre_carretera()+" - PRI: "+listaSegmentos.get(i).getPri());
+                /*Se capturan los ID de los segmentos pertenecientes a la carretera,
+                    y se almacenan en un vector, al momento de ser seleccionado el segmento en el listview, la posición va a ser
+                    buscada en el vector y asi recupera el ID del segmento
+                 */
                 listaIdSegmentos.add(listaSegmentos.get(i).getId_segmento()-1);
             }
         }
@@ -158,6 +164,8 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
 
     private void editarIdSegmento() {
 
+        /*Al momento de ser eliminado un segmento, se carga esta actividad, y se actulizan los ID's de
+           todos los segmentos y patologias    */
         SQLiteDatabase dbS = baseDatos.getWritableDatabase();
 
         int id=1;

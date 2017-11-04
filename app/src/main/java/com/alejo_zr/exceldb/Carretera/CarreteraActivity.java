@@ -52,7 +52,7 @@ public class CarreteraActivity extends AppCompatActivity {
         tvAdmonCarretera = (TextView) findViewById(R.id.tvAdmonCarretera);
         tvLevantadoCarretera = (TextView) findViewById(R.id.tvLevantadoCarretera);
 
-        //Se recibe a carretera enviada
+        //Se recibe la carretera enviada
         Bundle objetoEnviado=getIntent().getExtras();
         Carretera carretera=null;
 
