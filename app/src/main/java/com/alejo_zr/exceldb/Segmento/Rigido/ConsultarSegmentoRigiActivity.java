@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
     private ListView listViewSegmentos;
     private ArrayList<String> listaInformacionSegmentos;
     private ArrayList<SegmentoRigi> listaSegmentos;
@@ -42,17 +43,19 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_segmento_rigi);
 
+        //Se enlazan los objetos con los views
         baseDatos=new BaseDatos(this);
 
         listViewSegmentos = (ListView) findViewById(R.id.listViewSegmentoRigi);
         tvnomCarretera_consultar_segmentoRigi = (TextView) findViewById(R.id.tvnomCarretera_consultar_segmentoRigi);
 
+        //Se recibe el nombre de la carretera
         Bundle bundle = getIntent().getExtras();
         String dato_nom = bundle.getString("nom_carretera").toString();
         tvnomCarretera_consultar_segmentoRigi.setText(dato_nom);
 
         consultarListaSegmentos();
-
+        //Se le asigna el diseño y la lista que va a cargar el listview
         ArrayAdapter adaptador=new ArrayAdapter(this,android.R.layout.simple_list_item_1,listaInformacionSegmentos);
         listViewSegmentos.setAdapter(adaptador);
 
@@ -60,6 +63,7 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posS, long l) {
 
+                //Al seleccionar un item de la lista, este selecciona el ID del segmento y lo envia a SegmentoFlexActivity
                 SegmentoRigi segmentorigi=listaSegmentos.get(listaIdSegmentos.get(posS));
                 Intent intent=new Intent(ConsultarSegmentoRigiActivity.this,SegmentoRigiActivity.class);
 
@@ -143,6 +147,9 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
         for (int i=0; i<listaSegmentos.size();i++){
             boolean nomCarretera = tvnomCarretera_consultar_segmentoRigi.getText().toString().equals(listaSegmentos.get(i).getNombre_carretera());
             if(nomCarretera==true){
+                /*Se obtienen los ID de los segmentos de la carretera almacenándose estos en una lista,
+                    al seleccionarse el segmento deseado en el listview, la posición de este (1,2,3,...,n) sera con la cual se busca en la lista anteriormente mencioanda,
+                    recuperandose el ID del segmento */
                 listaInformacionSegmentos.add("Segmento: "+listaSegmentos.get(i).getId_segmento()+" - PRI: "+listaSegmentos.get(i).getPri());
                 listaIdSegmentos.add(listaSegmentos.get(i).getId_segmento()-1);
             }
@@ -152,6 +159,8 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
 
     private void editarIdSegmento() {
 
+        /*Al momento de ser eliminado un segmento, se carga esta actividad, y se actulizan los ID's de
+           todos los segmentos y patologias    */
         SQLiteDatabase dbSR = baseDatos.getWritableDatabase();
 
         int id = 1;
@@ -245,12 +254,15 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
     public void onClick(View view) {
 
         switch (view.getId()){
+            //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
             case R.id.floabtnAddSegRigi:
+                //Abre la actividad RegistroSegmentoRigi, enviando el nombre de la carretera
                 Intent intent = new Intent(ConsultarSegmentoRigiActivity.this,RegistroSegmentoRigiActivity.class);
                 intent.putExtra("nom_carretera",tvnomCarretera_consultar_segmentoRigi.getText().toString());
                 startActivity(intent);
                 break;
             case R.id.backConsulSegRigiActivity:
+                //Se devuelve a la actividad CarreteraActivity
                 intent = new Intent(ConsultarSegmentoRigiActivity.this,CarreteraActivity.class);
                 intent.putExtra("nom_carretera",tvnomCarretera_consultar_segmentoRigi.getText().toString());
                 startActivity(intent);

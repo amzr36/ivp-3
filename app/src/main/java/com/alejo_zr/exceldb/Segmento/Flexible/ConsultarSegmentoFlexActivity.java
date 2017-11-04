@@ -152,10 +152,10 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
         for (int i=0; i<listaSegmentos.size();i++){
             boolean nomCarretera = tvnomCarretera_consultar_segmentoFlex.getText().toString().equals(listaSegmentos.get(i).getNombre_carretera());
             if(nomCarretera==true){
-                listaInformacionSegmentos.add("Carretera: "+listaSegmentos.get(i).getNombre_carretera()+" - PRI: "+listaSegmentos.get(i).getPri());
                 /*Se obtienen los ID de los segmentos de la carretera almacenándose estos en una lista,
                     al seleccionarse el segmento deseado en el listview, la posición de este (1,2,3,...,n) sera con la cual se busca en la lista anteriormente mencioanda,
                     recuperandose el ID del segmento */
+                listaInformacionSegmentos.add("Carretera: "+listaSegmentos.get(i).getNombre_carretera()+" - PRI: "+listaSegmentos.get(i).getPri());
                 listaIdSegmentos.add(listaSegmentos.get(i).getId_segmento()-1);
             }
         }
@@ -257,7 +257,7 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
         Intent intent;
         switch (view.getId()){
             case R.id.floabtnAddSegFlex:
-                //Abre la actividad RegistroSegmento, enviando el nombre de la carretera
+                //Abre la actividad RegistroSegmentoFlex, enviando el nombre de la carretera
                 intent = new Intent(ConsultarSegmentoFlexActivity.this,RegistroSegmentoFlexActivity.class);
                 intent.putExtra("nom_carretera",tvnomCarretera_consultar_segmentoFlex.getText().toString());
                 startActivity(intent);
