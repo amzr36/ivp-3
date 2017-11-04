@@ -35,28 +35,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view){
+        //Al oprimir un boton entra a este metodo, y dependiendo del boton se selecciona el caso
         Intent intent = null;
         switch (view.getId()){
             case R.id.btnRegistroCarretera:
+                //Abre la actividad RegistroCarretera
                 intent = new Intent(MainActivity.this,RegistroCarreteraActivity.class);
                 break;
             case R.id.btnConsultarCarretera:
+                //Abre la actividad ConsultarCarretera
                 intent = new Intent(MainActivity.this,ConsultarCarreteraActivity.class);
                 break;
 
             case R.id.btnExportar:
+                //Exporta los datos de la base de datos al archivo .xmls
                 exportar();
                 break;
             case R.id.btnManual:
+                //Abre el MIVP
                 try{
                     Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
                     startActivity(launchIntent);
                     break;
                 }catch (Exception e){
+                    //De no tenerse instalado el manual mostrara el mensaje
                     Toast.makeText(getApplicationContext(),"INSTALE EL MANUAL PARA LA INSPECCIÓN VISUAL DE PAVIMENTOS",Toast.LENGTH_LONG).show();
                 }
-
-
             }
 
         if(intent != null){
@@ -70,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         BaseDatos baseDatos = new BaseDatos(this);
-        //conn.insertData();
+        //Se accede a cada tabla de la base datos que se desea exportar
         final Cursor cursor = baseDatos.getroad();
         final Cursor cursor1 = baseDatos.getSegmentoFlex();
         final Cursor cursor2 = baseDatos.getSegmentoRigi();
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         final Cursor cursor4 = baseDatos.getPatoRigi();
 
         File sd = Environment.getExternalStorageDirectory();
+        //Se le da el nombre al archivo
         String csvFile = "IVP.xls";
 
         File directory = new File(sd.getAbsolutePath(),CARPETA_RAIZ);
@@ -87,22 +92,23 @@ public class MainActivity extends AppCompatActivity {
         }
         try {
 
-            //file path
+            //Se crea el archivo
             File file = new File(directory,csvFile);
             WorkbookSettings wbSettings = new WorkbookSettings();
             wbSettings.setLocale(new Locale("en", "EN"));
             WritableWorkbook workbook;
             workbook = Workbook.createWorkbook(file, wbSettings);
-            //Excel sheet name. 0 represents first sheet
+            //Se da el nombre a las hojas
             WritableSheet sheet = workbook.createSheet("Carreteras", 0);
-            WritableSheet sheet1 = workbook.createSheet("Segmento Flexible", 1);
-            WritableSheet sheet2 = workbook.createSheet("Segmento Rigido", 2);
-            WritableSheet sheet3 = workbook.createSheet("Pato. Flexible", 3);
-            WritableSheet sheet4 = workbook.createSheet("Pato. Rigído",4);
+            WritableSheet sheet1 = workbook.createSheet("Seg. Flex", 1);
+            WritableSheet sheet2 = workbook.createSheet("Seg. Rigi.", 2);
+            WritableSheet sheet3 = workbook.createSheet("Pato. Flex", 3);
+            WritableSheet sheet4 = workbook.createSheet("Pato. Rigi.",4);
 
 
-            //Hoja Carreteras
-                                //FF/CC
+            //Se da el nombre a las columnas de pendiendo de la hoja
+
+            //Hoja Carrreteras
             sheet.addCell(new Label(0, 0, "ID"));
             sheet.addCell(new Label(1, 0, "Nom. Carretera")); // column and row
             sheet.addCell(new Label(2, 0, "Cod. Carretera"));
@@ -110,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             sheet.addCell(new Label(4, 0, "Admon"));
             sheet.addCell(new Label(5, 0, "Levantado por"));
 
-            //Hoja Segmento Flexible
+            //Hoja Seg Flex
             sheet1.addCell(new Label(0, 0, "ID"));
             sheet1.addCell(new Label(1, 0, "Nom. Carretera"));
             sheet1.addCell(new Label(2, 0, "N° Calzadas"));
@@ -122,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             sheet1.addCell(new Label(8, 0, "Comentarios"));
             sheet1.addCell(new Label(9, 0, "Fecha"));
 
-            //Hoja Segmento Rigi
+            //Hoja Seg Rigi
             sheet2.addCell(new Label(0,0,"ID"));
             sheet2.addCell(new Label(1, 0, "Nom. Carretera"));
             sheet2.addCell(new Label(2, 0, "N° Calzadas"));
@@ -152,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
             sheet3.addCell(new Label(14,0,"Foto"));
 
 
-
             //Hoja Pato. Rigi
             sheet4.addCell(new Label(0,0,"ID"));
             sheet4.addCell(new Label(1,0,"ID Segmento"));
@@ -174,15 +179,13 @@ public class MainActivity extends AppCompatActivity {
             sheet4.addCell(new Label(17,0,"Nombre Foto"));
 
 
-
-
             if (cursor.moveToNext()) {
-
+                //Se Accede a la tabla carreteras
                 do {
 
                     int i = cursor.getPosition();
                     int il =i+1;
-                    //Campos Carreteras
+                    //Se seleccionan los campos de la tabla carreteras
                     String id = cursor.getString(cursor.getColumnIndex(Utilidades.CARRETERA.CAMPO_ID_CARRETERA));
                     String nombre = cursor.getString(cursor.getColumnIndex(Utilidades.CARRETERA.CAMPO_NOMBRE_CARRETERA));
                     String codCarretera = cursor.getString(cursor.getColumnIndex(Utilidades.CARRETERA.CAMPO_CODIGO_CARRETERA));
@@ -190,8 +193,7 @@ public class MainActivity extends AppCompatActivity {
                     String admon= cursor.getString(cursor.getColumnIndex(Utilidades.CARRETERA.CAMPO_ADMON_CARRETERA));
                     String levantado = cursor.getString(cursor.getColumnIndex(Utilidades.CARRETERA.CAMPO_LEVANTADO_CARRETERA));
 
-
-                    //Se Llenan las casillas Carreteras
+                    //Se Llenan las casillas de la hoja Carreteras, con los datos de la tabla carreteras
                     sheet.addCell(new Label(0, il, id));
                     sheet.addCell(new Label(1, il, nombre));
                     sheet.addCell(new Label(2, il, codCarretera));
@@ -201,18 +203,16 @@ public class MainActivity extends AppCompatActivity {
                 } while (cursor.moveToNext());
 
             }
-            //Toast.makeText(getApplicationContext(),"Lleno carreteras",Toast.LENGTH_SHORT).show();
 
-            //int ifs = 1;
 
             if (cursor1.moveToNext()) {
-
+                //Se Accede a la tabla SegmentoFlex
                 do {
 
                     int is = cursor1.getPosition();
                     int ils =is+1;
 
-                    /****Campos Segmento Flex****/
+                    //Se seleccionan los campos de la tabla SegmentoFlex
                     String id_seg_flex = cursor1.getString(cursor1.getColumnIndex(Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO));
                     String id_seg_flex_car = cursor1.getString(cursor1.getColumnIndex(Utilidades.SEGMENTOFLEX.CAMPO_NOMBRE_CARRETERA_SEGMENTO));
                     String nCalzadas_flex = cursor1.getString(cursor1.getColumnIndex(Utilidades.SEGMENTOFLEX.CAMPO_CALZADAS_SEGMENTO));
@@ -224,9 +224,7 @@ public class MainActivity extends AppCompatActivity {
                     String comentarios_flex = cursor1.getString(cursor1.getColumnIndex(Utilidades.SEGMENTOFLEX.CAMPO_COMENTARIOS));
                     String fecha_flex = cursor1.getString(cursor1.getColumnIndex(Utilidades.SEGMENTOFLEX.CAMPO_FECHA));
 
-                    //Toast.makeText(getApplicationContext(),"Va a llenar campos segmentos",Toast.LENGTH_SHORT).show();
-
-                    //Se Llenan las casillas Segmento Flex
+                    //Se Llenan las casillas de la hoja Seg Flex, con los campos de la tabla SegmentoFlex
                     sheet1.addCell(new Label(0, ils, id_seg_flex));
                     sheet1.addCell(new Label(1, ils, id_seg_flex_car));
                     sheet1.addCell(new Label(2, ils, nCalzadas_flex));
@@ -244,13 +242,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (cursor2.moveToNext()) {
-
+                //Se Accede a la tabla SegmentoRigi
                 do {
 
                     int isR = cursor2.getPosition();
                     int ilsR = isR + 1;
 
-                    //Campos Segmento Rigi
+                    //Se seleccionan los campos de la tabla SegmentoRigi
                     String id_seg_rigi = cursor2.getString(cursor2.getColumnIndex(Utilidades.SEGMENTORIGI.CAMPO_ID_SEGMENTO));
                     String id_seg_rigi_car = cursor2.getString(cursor2.getColumnIndex(Utilidades.SEGMENTORIGI.CAMPO_NOMBRE_CARRETERA_SEGMENTO));
                     String nCalzadas_rigi = cursor2.getString(cursor2.getColumnIndex(Utilidades.SEGMENTORIGI.CAMPO_CALZADAS_SEGMENTO));
@@ -262,10 +260,7 @@ public class MainActivity extends AppCompatActivity {
                     String comentarios_rigi = cursor2.getString(cursor2.getColumnIndex(Utilidades.SEGMENTORIGI.CAMPO_COMENTARIOS));
                     String fecha_rigi = cursor2.getString(cursor2.getColumnIndex(Utilidades.SEGMENTORIGI.CAMPO_FECHA));
 
-                    //boolean nomCarretera = id_seg_rigi.equals("");
-                    //if(nomCarretera==false) {
-
-                    //Se Llenan las casillas Segmento Rigi
+                    //Se Llenan las casillas de la hoja Seg Rigi, con los campos de la tabla SegmentoRigi
                     sheet2.addCell(new Label(0, ilsR, id_seg_rigi));
                     sheet2.addCell(new Label(1, ilsR, id_seg_rigi_car));
                     sheet2.addCell(new Label(2, ilsR, nCalzadas_rigi));
@@ -283,11 +278,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (cursor3.moveToNext()) {
-
+                //Se Accede a la tabla Pato. Flex
                 do {
 
                     int iPF = cursor3.getPosition();
                     int ilPF = iPF + 1;
+
+                    //Se seleccionan los campos de la tabla PatologiaFlex
 
                     String id_pato_flex = cursor3.getString(cursor3.getColumnIndex(Utilidades.PATOLOGIAFLEX.CAMPO_ID_PATOLOGIA));
                     String id_segmento_flex = cursor3.getString(cursor3.getColumnIndex(Utilidades.PATOLOGIAFLEX.CAMPO_ID_SEGMENTO_PATOLOGIA));
@@ -306,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
                     String nombrefoto_flex= cursor3.getString(cursor3.getColumnIndex(Utilidades.PATOLOGIAFLEX.CAMPO_NOMBRE_FOTO));
                     String tododanio_flex= cursor3.getString(cursor3.getColumnIndex(Utilidades.PATOLOGIAFLEX.CAMPO_FOTO_DANIO));
 
-
+                    //Se Llenan las casillas de la hoja Pato. Flex.., con los campos de la tabla PatologiaFlex
                     sheet3.addCell(new Label(0, ilPF, id_pato_flex));
                     sheet3.addCell(new Label(1, ilPF, id_segmento_flex));
                     sheet3.addCell(new Label(2, ilPF, nom_carretera_flex));
@@ -324,17 +321,16 @@ public class MainActivity extends AppCompatActivity {
                     sheet3.addCell(new Label(14, ilPF, nombrefoto_flex));
                     sheet3.addCell(new Label(15, ilPF, tododanio_flex));
 
-                    Toast.makeText(getApplicationContext(),"id Pato"+id_pato_flex,Toast.LENGTH_SHORT).show();
-
-
                 }while(cursor3.moveToNext());
             }
             if (cursor4.moveToNext()) {
-
+                //Se Accede a la tabla Pato. Rigi.
                 do {
 
                     int iPF = cursor4.getPosition();
                     int ilPF = iPF + 1;
+
+                    //Se seleccionan los campos de la tabla PatologiaRigi
 
                     String id_pato_Rigi = cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_ID_PATOLOGIA));
                     String id_segmento_Rigi = cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_ID_SEGMENTO_PATOLOGIA));
@@ -355,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
                     String aclaraciones_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_ACLARACIONES));
                     String nombrefoto_Rigi= cursor4.getString(cursor4.getColumnIndex(Utilidades.PATOLOGIARIGI.CAMPO_NOMBRE_FOTO));
 
-
+                    //Se Llenan las casillas de la hoja Pato. Rigi., con los campos de la tabla PatologiaRigi
                     sheet4.addCell(new Label(0, ilPF, id_pato_Rigi));
                     sheet4.addCell(new Label(1, ilPF, id_segmento_Rigi));
                     sheet4.addCell(new Label(2, ilPF, nom_carretera_Rigi));
@@ -375,21 +371,18 @@ public class MainActivity extends AppCompatActivity {
                     sheet4.addCell(new Label(16, ilPF, aclaraciones_Rigi));
                     sheet4.addCell(new Label(17, ilPF, nombrefoto_Rigi));
 
-
-                    Toast.makeText(getApplicationContext(),"id Pato"+id_pato_Rigi,Toast.LENGTH_SHORT).show();
-
-
                 }while(cursor4.moveToNext());
             }
 
-
-            //closing cursor
+            //Se cierra el acceso a las tablas de la base de datos
             cursor.close();
             cursor1.close();
             cursor2.close();
             cursor3.close();
             cursor4.close();
+            //Se escribe el libro
             workbook.write();
+            //Se cierra el libro
             workbook.close();
 
             Toast.makeText(getApplication(), "Se exporto el documento IVP.xls", Toast.LENGTH_SHORT).show();
@@ -397,7 +390,6 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(),"Entra al CATCH",Toast.LENGTH_SHORT).show();
         }
 
     }
