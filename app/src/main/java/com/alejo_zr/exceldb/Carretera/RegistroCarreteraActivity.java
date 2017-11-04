@@ -29,7 +29,6 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_carretera);
 
-
         spinnerAdrmonCarreteraRegistro = (MaterialSpinner) findViewById(R.id.spinnerAdrmonCarreteraRegistro) ;
 
         campoNombre = (EditText) findViewById(R.id.campoNombre);
@@ -49,8 +48,6 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position) {
-
-
                     case 0:
                         campoAdmon = "Concesión";
                         break;
@@ -93,7 +90,8 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
         }
         if(isValid){
             registrarCarretera();
-            Intent intent= new Intent(RegistroCarreteraActivity.this, ConsultarCarreteraActivity.class);
+            Intent intent= new Intent(RegistroCarreteraActivity.this, CarreteraActivity.class);
+            intent.putExtra("nom_carretera",campoNombre.getText().toString());
             startActivity(intent);
         }
     }

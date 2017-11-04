@@ -398,7 +398,6 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         values.put(Utilidades.PATOLOGIAFLEX.CAMPO_NOMBRE_FOTO, tv_foto_nombre.getText().toString());
         values.put(Utilidades.PATOLOGIAFLEX.CAMPO_FOTO_DANIO, tv_direccion_foto.getText().toString());
 
-
         db.update(Utilidades.PATOLOGIAFLEX.TABLA_PATOLOGIA,values,Utilidades.PATOLOGIAFLEX.CAMPO_ID_PATOLOGIA+"=?",parametros);
         Toast.makeText(getApplicationContext(),"Se edito el segmento",Toast.LENGTH_SHORT).show();
 

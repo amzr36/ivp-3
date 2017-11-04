@@ -78,25 +78,12 @@ public class EditarSegmentoFlexActivity extends AppCompatActivity {
             case R.id.btnEditarSegmentoActivityFlex:
                 editarSegmento();
                 break;
-            case R.id.btnEliminarSegmentoFlex:
-                eliminarSegmento();
-                break;
             case R.id.backEditarSegFlexActivity:
                 Intent intent = new Intent(EditarSegmentoFlexActivity.this,SegmentoFlexActivity.class);
                 intent.putExtra("id_segmento",tv_id_segmento_editarFlex.getText().toString());
                 startActivity(intent);
+                break;
         }
-    }
-
-    private void eliminarSegmento() {
-        SQLiteDatabase db=baseDatos.getWritableDatabase();
-        String[] parametros={tv_id_segmento_editarFlex.getText().toString()};
-        db.delete(Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO,Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+"=?",parametros);
-        Toast.makeText(getApplicationContext(),"Ya se Eliminó la carretera",Toast.LENGTH_LONG).show();
-        tv_id_segmento_editarFlex.setText("");
-        Intent intent = new Intent(EditarSegmentoFlexActivity.this,ConsultarSegmentoFlexActivity.class);
-        startActivity(intent);
-        db.close();
     }
 
     private void editarSegmento() {
@@ -118,8 +105,8 @@ public class EditarSegmentoFlexActivity extends AppCompatActivity {
 
         db.update(Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO,values,Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+"=?",parametros);
         Toast.makeText(getApplicationContext(),"Se edito el segmento",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(EditarSegmentoFlexActivity.this,ConsultarSegmentoFlexActivity.class);
-        intent.putExtra("tv_id_segmento",tv_id_segmento_editarFlex.getText().toString());
+        Intent intent = new Intent(EditarSegmentoFlexActivity.this,SegmentoFlexActivity.class);
+        intent.putExtra("id_segmento",tv_id_segmento_editarFlex.getText().toString());
         intent.putExtra("nom_carretera",tvNombre_Carretera_Segmento_EditarFlex.getText().toString());
         startActivity(intent);
         db.close();

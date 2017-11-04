@@ -352,8 +352,11 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),"Se registro el Daño: "+campoDanioPato.getText().toString(),Toast.LENGTH_SHORT).show();
         db.execSQL(insert);
-
         db.close();
+
+        Intent intent = new Intent(RegistroPatologiaFlexActivity.this,PatologiaFlexActivity.class);
+        intent.putExtra("tvIdDaño",tv_id_segmento_patologia_flex.getText().toString());
+        startActivity(intent);
 
     }
 

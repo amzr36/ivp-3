@@ -100,7 +100,7 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
                 intent = new Intent(RegistroSegmentoFlexActivity.this,RegistroSegmentoFlexEjemploActivity.class);
                 startActivity(intent);
             case R.id.backRegisSegFlexActivity:
-                intent = new Intent(RegistroSegmentoFlexActivity.this,ConsultarSegmentoFlexActivity.class);
+                intent = new Intent(RegistroSegmentoFlexActivity.this,SegmentoFlexActivity.class);
                 intent.putExtra("nom_carretera",tvNombre_Carretera_SegmentoFlex.getText().toString());
                 startActivity(intent);
                 break;

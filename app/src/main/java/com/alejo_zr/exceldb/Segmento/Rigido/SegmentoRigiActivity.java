@@ -126,7 +126,7 @@ public class SegmentoRigiActivity extends AppCompatActivity {
                 intent.putExtra("tv_nombre_carretera_segmento",tv_nombre_carretera_segmento.getText().toString());
                 intent.putExtra("tvnCalzadas" , tvnCalzadas.getText().toString());
                 intent.putExtra("tvnCarriles" , tvnCarriles.getText().toString());
-                intent.putExtra("tvanchoCarril", tvespesorLosa.getText().toString());
+                intent.putExtra("tvespesorLosa", tvespesorLosa.getText().toString());
                 intent.putExtra("tvanchoBerma", tvanchoBerma.getText().toString());
                 intent.putExtra("tvPRI" , tvPRI.getText().toString());
                 intent.putExtra("tvPRF" , tvPRF.getText().toString());

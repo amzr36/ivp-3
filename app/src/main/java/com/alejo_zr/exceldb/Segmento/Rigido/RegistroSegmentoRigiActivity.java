@@ -35,7 +35,6 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_segmento_rigi);
 
-
         campoNCalzadas = (EditText) findViewById(R.id.campoNCalzadasRigi);
         campoNCarriles = (EditText) findViewById(R.id.campoNCarrilesRigi);
         campoEspesorLosa = (EditText) findViewById(R.id.EspesorLosaSegmentoRigiActivity);
