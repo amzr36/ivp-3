@@ -16,4 +16,5 @@
     <dimen name="explicacion">16dp</dimen>
     <dimen name="icon">48dp</dimen>
     <dimen name="margen_toolbar">5dp</dimen>
+    <dimen name="mivp">70dp</dimen>
 </resources>

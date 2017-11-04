@@ -45,12 +45,37 @@
             android:text="@string/exportar"
             android:onClick="onClick"/>
 
-        <Button
+        <RelativeLayout
             android:id="@+id/btnManual"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ABRIR EL MANUAL"
-            android:onClick="onClick"/>
+            android:onClick="onClick"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/marginTop"
+            android:elevation="@dimen/cardview_default_elevation"
+            android:background="@color/disabled_color"
+            >
+
+            <ImageButton
+                android:id="@+id/imgBtn"
+                android:layout_width="@dimen/mivp"
+                android:layout_height="@dimen/mivp"
+                android:background="@drawable/mivp"
+                android:layout_gravity="center_horizontal"
+                android:elevation="@dimen/marginTop"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/abrir"
+                android:textSize="@dimen/subTitulo"
+                android:textStyle="bold"
+                android:layout_toRightOf="@id/imgBtn"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
+
 
     </LinearLayout>
 

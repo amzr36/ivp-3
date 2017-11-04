@@ -409,7 +409,6 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             }
 
             id = id + 1;
-
         }
 
         dbPR.close();
@@ -432,10 +431,12 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
         switch (view.getId()){
 
             case R.id.floabtnAddCarretera:
+                //Abre la actividad RegistroCarretera
                 intent = new Intent(ConsultarCarreteraActivity.this,RegistroCarreteraActivity.class);
                 startActivity(intent);
                 break;
             case R.id.backConsulCarreteraActivity:
+                //Se devuelve la actividad princioal
                 intent = new Intent(ConsultarCarreteraActivity.this,MainActivity.class);
                 startActivity(intent);
                 break;

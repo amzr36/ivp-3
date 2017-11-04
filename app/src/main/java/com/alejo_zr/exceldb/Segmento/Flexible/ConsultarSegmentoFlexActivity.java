@@ -153,10 +153,9 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
             boolean nomCarretera = tvnomCarretera_consultar_segmentoFlex.getText().toString().equals(listaSegmentos.get(i).getNombre_carretera());
             if(nomCarretera==true){
                 listaInformacionSegmentos.add("Carretera: "+listaSegmentos.get(i).getNombre_carretera()+" - PRI: "+listaSegmentos.get(i).getPri());
-                /*Se capturan los ID de los segmentos pertenecientes a la carretera,
-                    y se almacenan en un vector, al momento de ser seleccionado el segmento en el listview, la posición va a ser
-                    buscada en el vector y asi recupera el ID del segmento
-                 */
+                /*Se obtienen los ID de los segmentos de la carretera almacenándose estos en una lista,
+                    al seleccionarse el segmento deseado en el listview, la posición de este (1,2,3,...,n) sera con la cual se busca en la lista anteriormente mencioanda,
+                    recuperandose el ID del segmento */
                 listaIdSegmentos.add(listaSegmentos.get(i).getId_segmento()-1);
             }
         }
@@ -258,11 +257,13 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
         Intent intent;
         switch (view.getId()){
             case R.id.floabtnAddSegFlex:
+                //Abre la actividad RegistroSegmento, enviando el nombre de la carretera
                 intent = new Intent(ConsultarSegmentoFlexActivity.this,RegistroSegmentoFlexActivity.class);
                 intent.putExtra("nom_carretera",tvnomCarretera_consultar_segmentoFlex.getText().toString());
                 startActivity(intent);
                 break;
             case R.id.backConsulSegFlexActivity:
+                //Se devuelve a la actividad CarreteraActivity
                 intent = new Intent(ConsultarSegmentoFlexActivity.this,CarreteraActivity.class);
                 intent.putExtra("nom_carretera",tvnomCarretera_consultar_segmentoFlex.getText().toString());
                 startActivity(intent);
