@@ -60,8 +60,8 @@ public class CarreteraActivity extends AppCompatActivity {
             carretera= (Carretera) objetoEnviado.getSerializable("carretera");
             if(carretera!=null)
             {
-                //Si es enviado por ConsultarCarretera se recupera los datos de la carretera, mediante el ID
-                    //de esta
+                /*Si es enviado por ConsultarCarretera se recupera los datos de la carretera, mediante el ID
+                    de esta*/
                 tvIdCarretera.setText(carretera.getId().toString());
                 tvNomCarretera.setText(carretera.getNombreCarretera().toString());
                 tvNombreCarretera.setText(carretera.getNombreCarretera().toString());

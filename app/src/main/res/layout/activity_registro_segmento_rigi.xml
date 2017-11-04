@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.alejo_zr.exceldb.Segmento.Rigido.RegistroSegmentoRigiActivity">
 
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -90,6 +92,28 @@
                             android:textSize="@dimen/subTitulo"
                             android:layout_centerInParent="true"
                             android:visibility="visible"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageButton
+                            android:id="@+id/btnManualRegistroSegRigi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/mivp"/>
+                        <TextView
+                            android:id="@+id/ej_Segmento_Rigi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/ejemplo"
+                            android:textColor="@color/colorAccent"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/marginLeftTV"
+                            android:onClick="onClick"/>
 
                     </RelativeLayout>
 

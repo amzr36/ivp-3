@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class SegmentoFlexActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
     private TextView tv_nombre_carretera_segmento,tv_id_segmento, tvnCalzadas, tvnCarriles, tvanchoCarril, tvanchoBerma, tvPRI, tvPRF, tvComentarios,tvFechaSegmentoFlex;
     private ArrayList<SegmentoFlex> listaSegmentos;
     private ArrayList<PatoFlex> listaPatologiasFlex;
@@ -36,9 +37,8 @@ public class SegmentoFlexActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segmento_flex);
-        toolbar = (Toolbar) findViewById(R.id.toolbarSegmento);
-        setSupportActionBar(toolbar);
 
+        //Se enlazan los objetos con los views
         baseDatos=new BaseDatos(this);
         tv_nombre_carretera_segmento = (TextView) findViewById(R.id.tv_nombre_carretera_segmento_flex);
         tv_id_segmento = (TextView) findViewById(R.id.tv_id_segmentoFlex);
@@ -51,13 +51,14 @@ public class SegmentoFlexActivity extends AppCompatActivity {
         tvComentarios= (TextView) findViewById(R.id.tvComentariosFlex);
         tvFechaSegmentoFlex = (TextView) findViewById(R.id.tvFechaSegmentoFlex);
 
-
+        //Se recibe el segmento enviado
         Bundle segmentoEnviado=getIntent().getExtras();
         SegmentoFlex segmento=null;
 
         if(segmentoEnviado!=null){
             segmento = (SegmentoFlex) segmentoEnviado.getSerializable("segmento");
             if(segmento!=null){
+                //Si es enviado por ConsultarSegmentoFlex se recupera los datos del segmento de esta forma
                 tv_id_segmento.setText(segmento.getId_segmento().toString());
                 id_segmento = segmento.getId_segmento();
                 tv_nombre_carretera_segmento.setText(segmento.getNombre_carretera().toString());
@@ -71,6 +72,7 @@ public class SegmentoFlexActivity extends AppCompatActivity {
                 tvFechaSegmentoFlex.setText(segmento.getFecha().toString());
                 valoriS = segmento.getIs();
             }else{
+                //Si se envian los datos desde otra actividad se recuperan de esta otra forma
                 tv_id_segmento.setText(segmentoEnviado.getString("id_segmento"));
                 SQLiteDatabase db = baseDatos.getWritableDatabase();
                 String [] parametros = {tv_id_segmento.getText().toString()};
@@ -94,8 +96,6 @@ public class SegmentoFlexActivity extends AppCompatActivity {
                 tvFechaSegmentoFlex.setText(cursor.getString(9));
 
             }
-
-
         }
 
         consultarListaSegmentos();
@@ -134,24 +134,22 @@ public class SegmentoFlexActivity extends AppCompatActivity {
 
     private void agregarIS() {
 
+        SQLiteDatabase db = baseDatos.getWritableDatabase();
+        String[] parametros={tv_id_segmento.getText().toString()};
+        campoIS=new String(tv_nombre_carretera_segmento.getText().toString()+"-"+tv_id_segmento.getText().toString());
 
-            SQLiteDatabase db = baseDatos.getWritableDatabase();
-            String[] parametros={tv_id_segmento.getText().toString()};
-            campoIS=new String(tv_nombre_carretera_segmento.getText().toString()+"-"+tv_id_segmento.getText().toString());
-
-            ContentValues values = new ContentValues();
-            values.put(Utilidades.SEGMENTOFLEX.CAMPO_IS , campoIS);
-            db.update(Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO,values,Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+"=?",parametros);
-            editarIsPato();
-            db.close();
+        ContentValues values = new ContentValues();
+        values.put(Utilidades.SEGMENTOFLEX.CAMPO_IS , campoIS);
+        db.update(Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO,values,Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+"=?",parametros);
+        editarIsPato();
+        db.close();
     }
 
     public void onClick(View view) {
 
         Intent intent = null;
         switch (view.getId()) {
-
-
+            //Abre la actividad ConsultarPatologiaFlex
             case R.id.btnConsultarPatologiaFlex:
                 intent = new Intent(SegmentoFlexActivity.this, ConsultaPatologiaFlexActivity.class);
                 intent.putExtra("tv_id_segmento",tv_id_segmento.getText().toString());
@@ -161,7 +159,7 @@ public class SegmentoFlexActivity extends AppCompatActivity {
                 break;
 
             case R.id.btnEditarSegmentoFlex:
-
+            //Abre la actividad EditarSegmentoFlex
                 intent = new Intent (SegmentoFlexActivity.this, EditarSegmentoFlexActivity.class);
                 intent.putExtra("tv_id_segmento",tv_id_segmento.getText().toString());
                 intent.putExtra("tv_nombre_carretera_segmento",tv_nombre_carretera_segmento.getText().toString());

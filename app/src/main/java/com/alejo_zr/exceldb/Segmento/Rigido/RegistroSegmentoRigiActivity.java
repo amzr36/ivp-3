@@ -22,7 +22,7 @@ import java.util.Calendar;
 
 public class RegistroSegmentoRigiActivity extends AppCompatActivity {
 
-
+    //Se declaran las variables y objetos java
     private EditText campoNCalzadas, campoNCarriles, campoEspesorLosa, campoAnchoBerma, campoPRI, campoPRF, campoComentarios,campoFecha;
     private TextView tvNombre_Carretera_Segmento;
     private TextInputLayout input_camponCalzadas,input_campoNCarriles,input_campoEspesorLosa,input_campoAnchoBerma,input_campoPRI;
@@ -35,6 +35,7 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_segmento_rigi);
 
+        //Se enlazan los objetos con los views
         campoNCalzadas = (EditText) findViewById(R.id.campoNCalzadasRigi);
         campoNCarriles = (EditText) findViewById(R.id.campoNCarrilesRigi);
         campoEspesorLosa = (EditText) findViewById(R.id.EspesorLosaSegmentoRigiActivity);
@@ -52,7 +53,7 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
         input_campoAnchoBerma= (TextInputLayout) findViewById(R.id.input_campoAnchoBermaRigi);
         input_campoPRI= (TextInputLayout) findViewById(R.id.input_campoPRIRigi);
 
-
+        //Se recibe el nombre de la carretera
         Bundle bundle = getIntent().getExtras();
         String dato_nom = bundle.getString("nom_carretera").toString();
         tvNombre_Carretera_Segmento.setText(dato_nom);
@@ -62,7 +63,7 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
     }
 
     private void fechaActual() {
-
+        //Obtiene la fecha del sistema
         final Calendar c = Calendar.getInstance();
         ano = c.get(Calendar.YEAR);
         mes = c.get(Calendar.MONTH);
@@ -74,21 +75,36 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-
+        //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
         Intent intent = null;
         switch(view.getId()){
 
             case R.id.btnRegistroSegmentoRigi:
+                //Se verifica que los campos requeridos para realizar el registro esten diligenciados,
+                // si esto su cumple se abre la actividad SegmentoRigi, con los datos del semento
                 verificarDatos();
                 break;
             case R.id.btnFechaRegistroSegRigi:
+                //En caso de que el usuario quiera modificar la fecha proporcinada por el sistema, este la puede modificar
                 obtenerFecha();
                 break;
             case R.id.backRegisSegRigiActivity:
+                //Se devuelve a la actividad ConsultarSegmentoRigi
                 intent = new Intent(RegistroSegmentoRigiActivity.this,ConsultarSegmentoRigiActivity.class);
                 intent.putExtra("nom_carretera",tvNombre_Carretera_Segmento.getText().toString());
                 startActivity(intent);
                 break;
+            case R.id.btnManualRegistroSegRigi:
+            //Abre el MIVP
+            try{
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
+                startActivity(launchIntent);
+                break;
+            }catch (Exception e){
+                //De no tenerse instalado el manual mostrara el mensaje
+                Toast.makeText(getApplicationContext(),"INSTALE EL MANUAL PARA LA INSPECCIÓN VISUAL DE PAVIMENTOS",Toast.LENGTH_LONG).show();
+            }
+            break;
         }
 
 

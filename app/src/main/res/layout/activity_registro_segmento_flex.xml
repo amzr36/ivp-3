@@ -51,8 +51,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:layout_below="@id/toolbarRegisSegFlexActivity">
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/toolbarRegisSegFlexActivity"
+        android:layout_centerHorizontal="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -105,8 +106,6 @@
                         android:onClick="onClick"/>
 
                 </RelativeLayout>
-
-
 
                 <TextView
                     android:id="@+id/tvNumeroFlex"

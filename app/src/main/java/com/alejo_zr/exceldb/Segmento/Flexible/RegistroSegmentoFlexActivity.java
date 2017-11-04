@@ -70,7 +70,7 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
         tvNombre_Carretera_SegmentoFlex.setText(dato_nom);
         
         fechaActual();
-        cargarSegmentosFlex();
+        //cargarSegmentosFlex();
 
 
     }
