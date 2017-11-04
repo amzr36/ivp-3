@@ -26,6 +26,8 @@ import java.util.ArrayList;
 
 public class CarreteraActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
+
     private ArrayList<SegmentoFlex> listaSegmentosF;
     private ArrayList<SegmentoRigi> listaSegmentosR;
     private ArrayList<PatoFlex> listaPatologiasFlex;
@@ -41,7 +43,7 @@ public class CarreteraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carretera);
 
         baseDatos = new BaseDatos(this);
-
+        //Se enlazanlos objetos con los views
         tvIdCarretera = (TextView) findViewById(R.id.tvIdCarretera);
         tvNomCarretera = (TextView) findViewById(R.id.tvNomCarretera);
         tvNombreCarretera = (TextView) findViewById(R.id.tvNombreCarretera);
@@ -50,8 +52,7 @@ public class CarreteraActivity extends AppCompatActivity {
         tvAdmonCarretera = (TextView) findViewById(R.id.tvAdmonCarretera);
         tvLevantadoCarretera = (TextView) findViewById(R.id.tvLevantadoCarretera);
 
-
-
+        //Se recibe a carretera enviada
         Bundle objetoEnviado=getIntent().getExtras();
         Carretera carretera=null;
 
@@ -59,6 +60,8 @@ public class CarreteraActivity extends AppCompatActivity {
             carretera= (Carretera) objetoEnviado.getSerializable("carretera");
             if(carretera!=null)
             {
+                //Si es enviado por ConsultarCarretera se recupera los datos de la carretera, mediante el ID
+                    //de esta
                 tvIdCarretera.setText(carretera.getId().toString());
                 tvNomCarretera.setText(carretera.getNombreCarretera().toString());
                 tvNombreCarretera.setText(carretera.getNombreCarretera().toString());
@@ -67,6 +70,8 @@ public class CarreteraActivity extends AppCompatActivity {
                 tvAdmonCarretera.setText(carretera.getAdmon().toString());
                 tvLevantadoCarretera.setText(carretera.getLevantado().toString());
             }else{
+                //Si es enviado por otra actividad se recupera los datos de la carretera, mediante el nombre
+                    //de esta
                 nom_carretera = objetoEnviado.getString("nom_carretera");
                 SQLiteDatabase db = baseDatos.getWritableDatabase();
                 String[] parametros ={nom_carretera.toString()};
@@ -85,7 +90,6 @@ public class CarreteraActivity extends AppCompatActivity {
 
             }
 
-
         }
 
         cargarSegmentosFlex();
@@ -96,24 +100,25 @@ public class CarreteraActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-
+        //Al oprimir un boton entra a este metodo, y dependiendo del boton se selecciona el caso
         Intent intent = null;
         switch (view.getId()) {
 
             case R.id.btnSegmentoFlexible:
+                //Se abre la actividad ConsultarSegmentoFlex
                 intent = new Intent(CarreteraActivity.this, ConsultarSegmentoFlexActivity.class);
-
                 intent.putExtra("nom_carretera",tvNombreCarretera.getText().toString());
-
                 startActivity(intent);
                 break;
             case R.id.btnSegmentoRigido:
+                //Se abre la actividad ConsultarSegmentoRigi
                 intent = new Intent(CarreteraActivity.this, ConsultarSegmentoRigiActivity.class);
                 intent.putExtra("nom_carretera",tvNombreCarretera.getText().toString());
                 startActivity(intent);
                 break;
 
             case R.id.btnEditarCarretera:
+                //Se abre la actividad EditarCarretera, y se envian los datos de esta a la otra
                 intent = new Intent(CarreteraActivity.this,EditarCarreteraActivity.class);
                 intent.putExtra("id_carretera",tvIdCarretera.getText().toString());
                 intent.putExtra("nom_carretera",tvNombreCarretera.getText().toString());
@@ -125,9 +130,13 @@ public class CarreteraActivity extends AppCompatActivity {
                 break;
 
             case R.id.btnEliminarCarretera:
+                /* Se confirma por el usuario que desea eliminar la carretera, de ser confirmado no solo se
+                    eliminan los datos de la tabla carretera, si no de todas las otras tablas los campos que
+                    estén correlacionados con dicha carretera*/
                 confirmar();
                 break;
             case R.id.backCarreteraActivity:
+                //Se devuelve a la actividad ConsultarCarreteraActivity
                 intent = new Intent(CarreteraActivity.this,ConsultarCarreteraActivity.class);
                 startActivity(intent);
                 break;
