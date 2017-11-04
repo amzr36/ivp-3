@@ -19,6 +19,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class RegistroCarreteraActivity extends AppCompatActivity {
 
+    //Se Crean los objetos Java
     private EditText campoNombre,campoCodigo,campoTerrito,campoLevantado;
     private TextInputLayout inputLayoutNombre;
     private String[] AdmonCarreteraRegistro = {"Concesión", "MTTO Integral", "A.M.V."};
@@ -29,6 +30,8 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_carretera);
 
+        //Se enlazanlos objetos con los views
+
         spinnerAdrmonCarreteraRegistro = (MaterialSpinner) findViewById(R.id.spinnerAdrmonCarreteraRegistro) ;
 
         campoNombre = (EditText) findViewById(R.id.campoNombre);
@@ -38,13 +41,13 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
 
         inputLayoutNombre= (TextInputLayout) findViewById(R.id.input_layout_nombre);
 
-
+        //Se dan los valores al spinner
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line, AdmonCarreteraRegistro);
         spinnerAdrmonCarreteraRegistro.setAdapter(arrayAdapter);
 
 
         spinnerAdrmonCarreteraRegistro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
+        //De pendiendo de lo seleccionado en el spinner se le da valor al campoAdmon
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position) {
@@ -67,12 +70,15 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
+        //Al oprimir un boton entra a este metodo, y dependiendo del boton se selecciona el caso
         switch (view.getId())
         {
             case R.id.btnRegistro:
+                //Se verifican que los datos minomos que deben ser diligenciados, lo esten para realizar el registro
                 verficarCampo();
                 break;
             case R.id.tvEjemploCarretera:
+                //Se abre la activity CarreteraRegistroEjemploActivity
                 Intent intent = new Intent(RegistroCarreteraActivity.this, CarreteraRegistroEjemploActivity.class);
                 startActivity(intent);
                 break;
