@@ -25,6 +25,8 @@ import java.util.ArrayList;
 
 public class ConsultarCarreteraActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
+
     private ListView listViewCarreteras;
     private ArrayList<String> listaInformacion;
     private ArrayList<Carretera> listaCarreteras;
@@ -33,8 +35,7 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
     private ArrayList<PatoFlex> listaPatologiasFlex;
     private ArrayList<PatoRigi> listaPatologiasRigi;
 
-
-    BaseDatos baseDatos;
+    private BaseDatos baseDatos;
 
 
     @Override
@@ -44,13 +45,11 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
 
 
         baseDatos=new BaseDatos(this);
-
+        //Se enlazanlos objetos con los views
         listViewCarreteras= (ListView) findViewById(R.id.listViewCarretera);
 
-
         consultarListaCarreteras();
-        cargarSegmentosFlex();
-
+        //Se le asigna el diseño y la lista que va a cargar el listview
         ArrayAdapter adaptador=new ArrayAdapter(this,android.R.layout.simple_list_item_1,listaInformacion);
         listViewCarreteras.setAdapter(adaptador);
 
@@ -58,6 +57,7 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
 
+                //Al seleccionar un item de la lista, este toma su posición y la envia a CarreteraActivity
                 Carretera carretera=listaCarreteras.get(pos);
 
                 Intent intent=new Intent(ConsultarCarreteraActivity.this,CarreteraActivity.class);
@@ -72,6 +72,8 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
             }
         });
 
+
+        cargarSegmentosFlex();
         editarId();
 
     }
@@ -135,6 +137,8 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
 
     private void editarId() {
 
+        /*Al momento de ser eliminada una carretera, se carga esta actividad, y se actulizan los ID's de
+           todos los datos de la base de datos     */
         editarIdCarreteras();
         cargarSegmentosFlex();
         cargarSegmentosRigi();

@@ -19,7 +19,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class RegistroCarreteraActivity extends AppCompatActivity {
 
-    //Se Crean los objetos Java
+    //Se declaran las variables y objetos java
     private EditText campoNombre,campoCodigo,campoTerrito,campoLevantado;
     private TextInputLayout inputLayoutNombre;
     private String[] AdmonCarreteraRegistro = {"Concesión", "MTTO Integral", "A.M.V."};
