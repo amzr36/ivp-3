@@ -49,6 +49,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class RegistroPatologiaRigiActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
     private final String CARPETA_RAIZ="InventarioVial/";
     private final String RUTA_IMAGEN=CARPETA_RAIZ+"PavimentoRigido";
 
@@ -85,6 +86,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         }else{
             botonCargar.setEnabled(false);
         }
+        //Se enlazan los objetos con los views
         imagen= (ImageView) findViewById(R.id.imagenIdPatoRigiRegistro);
 
         btnRegistrarPatologia= (Button) findViewById(R.id.btnRegistroPatologia);
@@ -118,6 +120,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         input_campoSeveridad = (TextInputLayout) findViewById(R.id.input_campoSeveridadRigi);
         input_campoidFotoRigi = (TextInputLayout) findViewById(R.id.input_campoidFotoRigi);
 
+        //Se recibe el nombre de la carretera, y el ID del segmento
         Bundle bundle = getIntent().getExtras();
         String dato_nom_carretera = bundle.getString("nom_carretera_segmento");
         String id_segmento = bundle.getString("id_segmento");
@@ -126,8 +129,12 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         tv_id_segmento_patologia_Rigi.setText(id_segmento);
         campoIS = dato_is;
 
+        /*Se dan los spinners los datos que deben cargar, tanto como los tipos de deterioro,
+            y los tipos de severidades*/
+        //Spinner Patologias
         ArrayAdapter<String> arrayAdapterPato = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, tipoDanioRigi);
         spinnerPatoRigi.setAdapter(arrayAdapterPato);
+        //Spinner Severidades
         ArrayAdapter<String> arrayAdapterSeveridad = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, severidad);
         spinnerSeveridadPatoRigiRegistro.setAdapter(arrayAdapterSeveridad);
 
@@ -137,7 +144,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position) {
 
-
+                    //Dependiendo de lo seleccionado se determina el campoSeveridad
                     case 0:
                         campoSeveridad = "A";
                         break;
@@ -166,7 +173,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position){
-
+                    //Dependiendo del daño seleccionado, se determina el codigo asociado a ese deterioro
                     case 0:
                         campoDanioPatoRigi.setText(R.string.g_e);
                         break;
@@ -252,23 +259,33 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
 
 
     public void onClick(View view) {
-
+        //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
         switch (view.getId()){
 
             case R.id.btnRegistroPatologiaRigi:
+                /*Se verifica que los campos requeridos para realizar el registro esten diligenciados,
+                    si esto su cumple se abre la actividad PatologiaFlex, con los datos registrados*/
                 verificarDatosPatoRigi();
                 break;
             case R.id.btnDanioRigi:
+                //Se abre la camara, y se genera el Identificador para la foto
                 guardarFotografia();
                 break;
             case R.id.btnObtenerCoordenadasPatoRigi:
+                //Se obtienen las coordenadas mediante el GPS del celular
                 obtenerCoordenadas();
                 break;
+            case R.id.btnManualPatoFlex:
+                //Abre el MIVP
+                abrirManual();
+                break;
             case R.id.ej_Pato_Rigi:
+                //Abre la actividad RegistroPatologiaFlex
                 Intent intent = new Intent(RegistroPatologiaRigiActivity.this, RegistroPatologiaRigiEjemploActivity.class);
                 startActivity(intent);
                 break;
             case R.id.backRegisPatoRigiActivity:
+                //Se devuelve a la actividad ConsultaPatologiaRigi
                 intent = new Intent(RegistroPatologiaRigiActivity.this,ConsultaPatologiaRigiActivity.class);
                 intent.putExtra("tv_id_segmento",tv_id_segmento_patologia_Rigi.getText().toString());
                 intent.putExtra("tv_nombre_carretera_segmento",tv_nombre_carretera_patologia.getText().toString());
@@ -276,6 +293,11 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
                 break;
         }
 
+    }
+
+    private void abrirManual() {
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
+        startActivity(launchIntent);
     }
 
     private void verificarDatosPatoRigi() {

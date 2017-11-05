@@ -48,6 +48,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class RegistroPatologiaFlexActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
     private final String CARPETA_RAIZ="InventarioVial/";
     private final String RUTA_IMAGEN=CARPETA_RAIZ+"PavimentoFlexible/";
 
@@ -82,8 +83,8 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
         }else{
             botonCargar.setEnabled(false);
         }
+            //Se enlazan los objetos con los views
         imagen= (ImageView) findViewById(R.id.imagemId);
-
         spinnerSeveridadPatoFlexRegistro = (MaterialSpinner) findViewById(R.id.spinnerSeveridadPatoFlexRegistro);
         spinnerPatoFlex = (MaterialSpinner) findViewById(R.id.spinnerPatoFlex);
         campoCarrilPato = (EditText) findViewById(R.id.campoCarrilPatoFlex);
@@ -110,6 +111,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
         input_campoSeveridad = (TextInputLayout) findViewById(R.id.input_campoSeveridadFlex);
         input_campoidFotoFlex = (TextInputLayout) findViewById(R.id.input_campoidFotoFlex);
 
+        //Se recibe el nombre de la carretera, y el ID del segmento
         Bundle bundle = getIntent().getExtras();
         String dato_nom_carretera = bundle.getString("nom_carretera_segmento");
         String id_segmento = bundle.getString("id_segmento");
@@ -118,9 +120,12 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
         tv_id_segmento_patologia_flex.setText(id_segmento);
         campoIS = dato_is;
 
-
+        /*Se dan los spinners los datos que deben cargar, tanto como los tipos de deterioro,
+            y los tipos de severidades*/
+        //Spinner Patologias
         ArrayAdapter<String> arrayAdapterPato = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, tipoDanio);
         spinnerPatoFlex.setAdapter(arrayAdapterPato);
+        //Spinner Severidades
         ArrayAdapter<String> arrayAdapterSeveridad = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, severidad);
         spinnerSeveridadPatoFlexRegistro.setAdapter(arrayAdapterSeveridad);
 
@@ -129,6 +134,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                     switch (position) {
+                        //Dependiendo de lo seleccionado se determina el campoSeveridad
                         case 0:
                             campoSeveridad = "A";
                             break;
@@ -157,7 +163,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position){
-
+                    //Dependiendo del daño seleccionado, se determina el codigo asociado a ese deterioro
                     case 0:
                         campoDanioPato.setText(R.string.fisuras_fl_lt);
                         break;
@@ -250,27 +256,35 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
 
 
     public void onClick(View view) {
+        //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
         Intent intent = null;
         switch (view.getId()){
 
             case R.id.btnRegistroPatologia:
+                /*Se verifica que los campos requeridos para realizar el registro esten diligenciados,
+                    si esto su cumple se abre la actividad PatologiaFlex, con los datos registrados*/
                 verificarDatosPatoFlex();
                 break;
             case R.id.btnDanio:
+                //Se abre la camara, y se genera el Identificador para la foto
                 guardarFotografia();
                 tomarFotografia();
                 break;
             case R.id.btnObtenerCoordenadasPatoFlex:
+                //Se obtienen las coordenadas mediante el GPS del celular
                 obtenerCoordenadas();
                 break;
             case R.id.btnManualPatoFlex:
+                //Abre el MIVP
                 abrirManual();
                 break;
             case R.id.ej_Pato_Flex:
+                //Abre la actividad RegistroPatologiaFlex
                 intent = new Intent(RegistroPatologiaFlexActivity.this, RegistroPatologiaFlexEjemploActivity.class);
                 startActivity(intent);
                 break;
             case R.id.backRegistroPatoFlexActivity:
+                //Se devuelve a la actividad ConsultaPatologiaFlex
                 intent = new Intent(RegistroPatologiaFlexActivity.this,ConsultaPatologiaFlexActivity.class);
                 intent.putExtra("tv_id_segmento",tv_id_segmento_patologia_flex.getText().toString());
                 intent.putExtra("tv_nombre_carretera_segmento",tv_nombre_carretera_patologia.getText().toString());

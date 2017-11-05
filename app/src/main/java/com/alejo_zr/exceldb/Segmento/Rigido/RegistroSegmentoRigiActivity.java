@@ -80,8 +80,8 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
         switch(view.getId()){
 
             case R.id.btnRegistroSegmentoRigi:
-                //Se verifica que los campos requeridos para realizar el registro esten diligenciados,
-                // si esto su cumple se abre la actividad SegmentoRigi, con los datos del semento
+                /*Se verifica que los campos requeridos para realizar el registro esten diligenciados,
+                    si esto su cumple se abre la actividad SegmentoRigi, con los datos del semento*/
                 verificarDatos();
                 break;
             case R.id.btnFechaRegistroSegRigi:
