@@ -222,6 +222,10 @@ public class ConsultarSegmentoFlexActivity extends AppCompatActivity {
 
     private void editarIdPatoFlex() {
 
+        /* Al ser eliminado un segmento, igualmente se eliminan los daños registrados a este,
+        por lo que es necesario modificar los ID de las patologias existentes para que sigan teniendo una
+        numeración consecutiva
+         */
         SQLiteDatabase dbPF = baseDatos.getWritableDatabase();
         int id = 1;
         for (int i = 0; i < listaPatologiasFlex.size(); i++) {

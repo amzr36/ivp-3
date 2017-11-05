@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
     private ListView listViewPatologiasRigi;
     private ArrayList<String> listaInformacionPatologiasRigi;
     private ArrayList<PatoRigi> listaPatologiasRigi;
@@ -35,11 +36,13 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulta_patologia_rigi);
 
+        //Se enlazanlos objetos con los views
         baseDatos=new BaseDatos(this);
         listViewPatologiasRigi = (ListView) findViewById(R.id.listViewPatologiaRigi);
         tvnomCarretera_consultar_patoRigi = (TextView) findViewById(R.id.tvnomCarretera_consultar_patoRigi);
         tvIdSegmento_consultar_patoRigi = (TextView) findViewById(R.id.tvIdSegmento_consultar_patoRigi);
 
+        //Se recibe el nombre de la carretera y el ID del segmento
         Bundle bundle = getIntent().getExtras();
         String dato_nom = bundle.getString("tv_nombre_carretera_segmento").toString();
         String id_segmento = bundle.getString("tv_id_segmento").toString();
@@ -51,6 +54,7 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
 
         consultarListaPatologias();
 
+        //Se le asigna el diseño y la lista que va a cargar el listview
         ArrayAdapter adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1,listaInformacionPatologiasRigi);
         listViewPatologiasRigi.setAdapter(adaptador);
 
@@ -58,7 +62,7 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posS, long l) {
 
-
+                //Al seleccionar un item de la lista, este selecciona el ID del segmento y lo envia a SegmentoFlexActivity
                 PatoRigi patologia=listaPatologiasRigi.get(listaIdPatoRigi.get(posS));
                 Intent intent=new Intent(ConsultaPatologiaRigiActivity.this, PatologiaRigiActivity.class);
 
@@ -115,11 +119,12 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
 
     private void consultarListaPatologias() {
 
+        //Carga todas las patologías de pavimento rígido que se han registrado
         SQLiteDatabase db=baseDatos.getReadableDatabase();
 
         PatoRigi patoRigi=null;
         listaPatologiasRigi= new ArrayList<PatoRigi>();
-        //select * from carretera
+        //select * from PatoRigi
         Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA,null);
 
         while(cursor.moveToNext()){
@@ -153,6 +158,10 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
     }
     private void obtenerLista() {
 
+        /*Se filtran los deterioros asociados al segmento y a la carretera que se están consultando,
+        de tal manera no se mostraran en pantalla los que no pertenezcan a esta búsqueda*/
+
+
         listaInformacionPatologiasRigi = new ArrayList<String>();
         listaIdPatoRigi = new ArrayList<Integer>();
 
@@ -172,9 +181,11 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
+        //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
         Intent intent = null;
         switch (view.getId()){
             case R.id.floabtnAddPatoRigi:
+                //Abre la actividad RegistroPatologiaRigi, enviando el nombre de la carretera
                 intent = new Intent(ConsultaPatologiaRigiActivity.this, RegistroPatologiaRigiActivity.class);
                 intent.putExtra("id_segmento",tvIdSegmento_consultar_patoRigi.getText().toString());
                 intent.putExtra("nom_carretera_segmento",tvnomCarretera_consultar_patoRigi.getText().toString());
@@ -182,6 +193,7 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.backConsulPatoRigiActivity:
+                //Se devuelve a la actividad SegmentoRigi
             intent = new Intent(ConsultaPatologiaRigiActivity.this, SegmentoRigiActivity.class);
             intent.putExtra("id_segmento",tvIdSegmento_consultar_patoRigi.getText().toString());
             startActivity(intent);
