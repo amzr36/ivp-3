@@ -175,9 +175,13 @@ public class SegmentoFlexActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.btnEliminarSegmentoFlex:
+                /* Se confirma por el usuario que desea eliminar el segmento, de ser confirmado no solo se
+                    eliminan los datos de la tabla segmento, si no de todas las otras tablas los campos que
+                    estén correlacionados con dicha segmento*/
                 confirmar();
                 break;
             case R.id.backSegFlexActivity:
+                //Se devuelve a la actividad ConsultarSegmentoFlex
                 intent = new Intent (SegmentoFlexActivity.this, ConsultarSegmentoFlexActivity.class);
                 intent.putExtra("nom_carretera",tv_nombre_carretera_segmento.getText().toString());
                 startActivity(intent);

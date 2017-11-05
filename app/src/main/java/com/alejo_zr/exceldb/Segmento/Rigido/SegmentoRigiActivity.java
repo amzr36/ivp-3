@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 public class SegmentoRigiActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
     private BaseDatos baseDatos;
     private String campoIS,valoriS;
     private TextView tv_nombre_carretera_segmento,tv_id_segmento, tvnCalzadas, tvnCarriles, tvespesorLosa, tvanchoBerma,
@@ -34,6 +35,7 @@ public class SegmentoRigiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segmento_rigi);
 
+        //Se enlazan los objetos con los views
         baseDatos=new BaseDatos(this);
         tv_nombre_carretera_segmento = (TextView) findViewById(R.id.tv_nombre_carretera_segmento_Rigi);
         tv_id_segmento = (TextView) findViewById(R.id.tv_id_segmentoFlexRigi);
@@ -46,7 +48,7 @@ public class SegmentoRigiActivity extends AppCompatActivity {
         tvComentarios= (TextView) findViewById(R.id.tvComentariosRigi);
         tvFechaSegmentoRigi = (TextView) findViewById(R.id.tvFechaSegmentoRigi);
 
-
+        //Se recibe el segmento enviado
         Bundle segmentoEnviado=getIntent().getExtras();
         SegmentoRigi segmento=null;
 
@@ -54,6 +56,7 @@ public class SegmentoRigiActivity extends AppCompatActivity {
         if(segmentoEnviado!=null){
             segmento = (SegmentoRigi) segmentoEnviado.getSerializable("segmento");
             if(segmento!=null){
+                //Si es enviado por ConsultarSegmentoFlex se recupera los datos del segmento de esta forma
                 tv_id_segmento.setText(segmento.getId_segmento().toString());
                 tv_nombre_carretera_segmento.setText(segmento.getNombre_carretera().toString());
                 tvnCalzadas.setText(segmento.getnCalzadas().toString());
@@ -66,6 +69,7 @@ public class SegmentoRigiActivity extends AppCompatActivity {
                 tvFechaSegmentoRigi.setText(segmento.getFecha().toString());
                 valoriS = segmento.getIs();
             }else{
+                //Si se envian los datos desde otra actividad se recuperan de esta otra forma
                 tv_id_segmento.setText(segmentoEnviado.getString("id_segmento"));
                 SQLiteDatabase db = baseDatos.getWritableDatabase();
                 String [] parametros = {tv_id_segmento.getText().toString()};
@@ -113,6 +117,7 @@ public class SegmentoRigiActivity extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.btnConsultarPatologiaRigi:
+                //Abre la actividad ConsultarPatologiaRigi
                 intent = new Intent(SegmentoRigiActivity.this,ConsultaPatologiaRigiActivity.class);
                 intent.putExtra("tv_id_segmento",tv_id_segmento.getText().toString());
                 intent.putExtra("tv_nombre_carretera_segmento",tv_nombre_carretera_segmento.getText().toString());
@@ -121,6 +126,7 @@ public class SegmentoRigiActivity extends AppCompatActivity {
                 break;
 
             case R.id.btnEditarSegmentoRigi:
+                //Abre la actividad EditarSegmentoRigi
                 intent = new Intent (SegmentoRigiActivity.this, EditarSegmentoRigiActivity.class);
                 intent.putExtra("tv_id_segmento",tv_id_segmento.getText().toString());
                 intent.putExtra("tv_nombre_carretera_segmento",tv_nombre_carretera_segmento.getText().toString());
@@ -135,9 +141,13 @@ public class SegmentoRigiActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.btnEliminarSegmentoRigi:
+                /* Se confirma por el usuario que desea eliminar el segmento, de ser confirmado no solo se
+                eliminan los datos de la tabla segmento, si no de todas las otras tablas los campos que
+                estén correlacionados con dicha segmento*/
                 confirmar();
                 break;
             case R.id.backSegRigiActivity:
+                //Se devuelve a la actividad ConsultarSegmentoRigi
                 intent = new Intent (SegmentoRigiActivity.this, ConsultarSegmentoRigiActivity.class);
                 intent.putExtra("nom_carretera",tv_nombre_carretera_segmento.getText().toString());
                 startActivity(intent);
@@ -164,7 +174,7 @@ public class SegmentoRigiActivity extends AppCompatActivity {
     }
 
     public void cancelar() {
-        //finish();
+        finish();
     }
     private void eliminarSegRigi() {
         SQLiteDatabase db = baseDatos.getWritableDatabase();
