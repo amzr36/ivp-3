@@ -49,6 +49,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class EditarPatologiaFlexActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
     private final String CARPETA_RAIZ="InventarioVial/";
     private final String RUTA_IMAGEN=CARPETA_RAIZ+"PavimentoFlexible";
 
@@ -58,13 +59,13 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
     private ImageButton botonCargar;
     private ImageView imagen;
     private String path;
-    private String idFotoFlex,campoSeveridad;
+    private String idFotoFlex;
     private BaseDatos baseDatos;
     private MaterialSpinner spinnerPatoFlex,spinnerSeveridadPatoFlexRegistro;
     private TextView tv_idDanio,tv_nombre_carretera_patologia,tv_id_segmento_patologia_flex,tv_direccion_foto,tv_idFotoFlex,tv_foto_nombre,ej_Pato_Flex;
     private TextInputLayout input_campoAbscisaFlex,input_campoCarrilPato,input_campoDanioPato,input_campoLargoDanio,input_campoAnchoDanio,input_campoSeveridad,
             input_campoidFotoFlex;
-    private EditText campoCarrilPato, campoDanioPato, campoLargoDanio, campoAnchoDanio, campoLargoRepa, campoAnchoRepa, campoAclaracion,campoAbscisaFlex,
+    private EditText campoCarrilPato, campoDanioPato, campoLargoDanio, campoAnchoDanio, campoLargoRepa, campoAnchoRepa,campoSeveridad, campoAclaracion,campoAbscisaFlex,
             campoLatitudPatoFlex,campoLongitudPatoFlex;
     private String[] tipoDanio = {"Fisuras longitudinales y transversales", "Fisura longitudinal en junta de construcción",
             "Fisuras por reflexión de juntas o grietas en placas de concreto", "Fisuras en medialuna", "Fisuras de borde", "Fisuras en bloque", "Piel de cocotrilo",
@@ -80,6 +81,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
 
         baseDatos = new BaseDatos(this);
 
+        //Se enlazan los objetos con los views
         imagen= (ImageView) findViewById(R.id.imagenPatoFlexEditar);
         spinnerSeveridadPatoFlexRegistro = (MaterialSpinner) findViewById(R.id.spinnerSeveridadPatoFlexEditar);
         spinnerPatoFlex = (MaterialSpinner) findViewById(R.id.spinnerPatoFlexEditar);
@@ -92,6 +94,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         campoAnchoDanio = (EditText) findViewById(R.id.campoAnchoDanioFlexEditar);
         campoLargoRepa = (EditText) findViewById(R.id.campoLargoRepaFlexEditar);
         campoAnchoRepa = (EditText) findViewById(R.id.campoAnchoRepaFlexEditar);
+        campoSeveridad = (EditText) findViewById(R.id.campoSeveridadEditarPatoFlex);
         campoAclaracion = (EditText) findViewById(R.id.campoAclaracionesFlexEditar);
 
         tv_nombre_carretera_patologia = (TextView) findViewById(R.id.tv_nombre_carretera_patologia_flexEditar);
@@ -110,6 +113,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         input_campoidFotoFlex = (TextInputLayout) findViewById(R.id.input_campoidFotoFlexEditar);
         tv_idFotoFlex.setText(".");
 
+        //Se recibe el nombre de la carretera, y el ID del segmento
         Bundle bundle = getIntent().getExtras();
         String abscisa = bundle.getString("tvAbscisa");
         String latitud = bundle.getString("tvLatitud");
@@ -135,6 +139,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         campoDanioPato.setText(danio);
         campoLargoDanio.setText(larDanio);
         campoAnchoDanio.setText(anchoDanio);
+        campoSeveridad.setText(seve);
         campoLargoRepa.setText(larRepa);
         campoAnchoRepa.setText(anchoRepa);
         campoAclaracion.setText(aclaraciones);
@@ -144,9 +149,12 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         tv_idDanio.setText(idDaño);
         tv_foto_nombre.setText(nombreFoto);
 
-
+        /*Se dan los spinners los datos que deben cargar, tanto como los tipos de deterioro,
+                    y los tipos de severidades*/
+        //Spinner Patologias
         ArrayAdapter<String> arrayAdapterPato = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, tipoDanio);
         spinnerPatoFlex.setAdapter(arrayAdapterPato);
+        //Spinner Severidades
         ArrayAdapter<String> arrayAdapterSeveridad = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, severidad);
         spinnerSeveridadPatoFlexRegistro.setAdapter(arrayAdapterSeveridad);
 
@@ -155,21 +163,20 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position) {
+                    //Dependiendo de lo seleccionado se determina el campoSeveridad
                     case 0:
-                        campoSeveridad = "A";
+                        campoSeveridad.setText("A");
                         break;
                     case 1:
-                        campoSeveridad = "M";
+                        campoSeveridad.setText("M");
                         break;
                     case 2:
-                        campoSeveridad = "B";
+                        campoSeveridad.setText("B");
                         break;
                     case 3:
-                        campoSeveridad="N.A";
+                        campoSeveridad.setText("N.A.");
                         break;
-                    default:
-                        campoSeveridad="";
-                        break;
+
                 }
             }
             @Override
@@ -184,6 +191,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position){
 
+                    //Dependiendo del daño seleccionado, se determina el codigo asociado a ese deterioro
                     case 0:
                         campoDanioPato.setText(R.string.fisuras_fl_lt);
 
@@ -296,28 +304,36 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
     }
     public void onClick(View view) {
 
+        //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
         Intent intent = null;
 
         switch (view.getId()){
 
             case R.id.btnEditarPatologiaFlex:
+                /*Se verifica que los campos requeridos para realizar el registro estén diligenciados,
+                    si esto su cumple se realiza la modificación de l apatología*/
                 verificarDatosPatoFlex();
                 break;
             case R.id.btnFotoFlexEditar:
+                //Se abre la camara, y se genera un nuevo identificador para la foto
                 guardarFotografia();
                 tomarFotografia();
                 break;
             case R.id.btnObtenerCoordenadasPatoFlexEditar:
+                //Se obtienen las coordenadas mediante el GPS del celular
                 obtenerCoordenadas();
                 break;
             case R.id.btnManualPatoFlexEditar:
+                //Se obtienen las coordenadas mediante el GPS del celular
                 abrirManual();
                 break;
             case R.id.ej_Pato_FlexEditar:
+                //Abre la actividad RegistroPatologiaFlexEjemplo
                 intent = new Intent(EditarPatologiaFlexActivity.this, RegistroPatologiaFlexEjemploActivity.class);
                 startActivity(intent);
                 break;
             case R.id.backPatoFlexEditarActivity:
+                //Se devuelve a la actividad PatologiaFlex
                 intent = new Intent(EditarPatologiaFlexActivity.this,PatologiaFlexActivity.class);
                 intent.putExtra("tvIdDaño",tv_idDanio.getText().toString());
                 startActivity( intent);
@@ -352,7 +368,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         }else{
             input_campoDanioPato.setErrorEnabled(false);
         }
-        if(campoSeveridad.trim().isEmpty()){
+        if(campoSeveridad.getText().toString().trim().isEmpty()){
             input_campoSeveridad.setError("Ingrese la severidad");
             isValid=false;
         }else{
@@ -389,7 +405,7 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
         values.put(Utilidades.PATOLOGIAFLEX.CAMPO_LONGITUD, campoLongitudPatoFlex.getText().toString());
         values.put(Utilidades.PATOLOGIAFLEX.CAMPO_CARRIL_PATOLOGIA  , campoCarrilPato.getText().toString());
         values.put(Utilidades.PATOLOGIAFLEX.CAMPO_DANIO_PATOLOGIA, campoDanioPato.getText().toString());
-        values.put(Utilidades.PATOLOGIAFLEX.CAMPO_SEVERIDAD, campoSeveridad);
+        values.put(Utilidades.PATOLOGIAFLEX.CAMPO_SEVERIDAD, campoSeveridad.getText().toString());
         values.put(Utilidades.PATOLOGIAFLEX.CAMPO_LARGO_PATOLOGIA  , campoLargoDanio.getText().toString());
         values.put(Utilidades.PATOLOGIAFLEX.CAMPO_ANCHO_PATOLOGIA, campoAnchoDanio.getText().toString());
         values.put(Utilidades.PATOLOGIAFLEX.CAMPO_LARGO_REPARACION, campoLargoRepa.getText().toString());

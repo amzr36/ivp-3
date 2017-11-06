@@ -292,20 +292,27 @@
                     android:hint="@string/codPato"/>
             </android.support.design.widget.TextInputLayout>
 
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/spinnerSeveridadPatoRigiEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ms_floatingLabelColor="@color/colorAccent"
+                app:ms_floatingLabelText="@string/severidad"
+                app:ms_hint="@string/severidad"
+                app:ms_multiline="true" />
+
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_campoSeveridadRigiEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHighlight="@color/colorAccent">
 
-                <fr.ganfra.materialspinner.MaterialSpinner
-                    android:id="@+id/spinnerSeveridadPatoRigiEditar"
+                <EditText
+                    android:id="@+id/campoSeveridadEditarPatoRigi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ms_floatingLabelColor="@color/colorAccent"
-                    app:ms_floatingLabelText="@string/severidad"
-                    app:ms_hint="@string/severidad"
-                    app:ms_multiline="true" />
+                    android:hint="@string/severidad"/>
+
             </android.support.design.widget.TextInputLayout>
 
 

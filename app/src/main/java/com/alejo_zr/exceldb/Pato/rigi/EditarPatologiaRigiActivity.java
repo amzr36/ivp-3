@@ -32,7 +32,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,17 +57,17 @@ public class EditarPatologiaRigiActivity extends AppCompatActivity {
 
     private BaseDatos baseDatos;
     private Button btnRegistrarPatologia;
-    private ImageButton botonCargar;
+
     private ImageView imagen;
-    private String path,seve;
-    private String idFotoRigi,campoSeveridad,campoIS;
+    private String path;
+    private String idFotoRigi,campoIS;
 
     private MaterialSpinner spinnerPatoRigi,spinnerSeveridadPatoRigiRegistro;
     private TextView tv_idDanio,tv_nombre_carretera_patologia,tv_id_segmento_patologia_Rigi,tv_foto_danio,tv_direccionFoto,tv_foto_nombre,ej_Pato_Rigi;
     private TextInputLayout input_campoAbscisaRigi,input_campoDanioPatoRigi,input_campoLargoDanio,input_campoAnchoDanio,input_campoSeveridad,
             input_campoidFotoRigi;
     private EditText campoNumeroLosa,campoLetraLosa,campoLargoLosa,campoAnchoLosa, campoDanioPatoRigi, campoLargoDanio,
-            campoAnchoDanio, campoLargoRepa, campoAnchoRepa, campoAclaracion,campoAbscisaRigi,campoLatitudPatoRigi,campoLongitudPatoRigi;
+            campoAnchoDanio, campoLargoRepa, campoAnchoRepa,campoSeveridad, campoAclaracion,campoAbscisaRigi,campoLatitudPatoRigi,campoLongitudPatoRigi;
     private String[] tipoDanioRigi = { "Grieta de esquina", "Grieta longitudinal",
             "Grieta Transversal", "Grieta en los extremos de los pasadores", "Grieta en bloque", "Grieta en pozos y sumideros", "separacion de juntas longitudinales",
             "Deterioro de sello", "Desportillamiento de juntas", "Descascaramiento", "Desintegracion", "Baches", "Pulimiento", "Escalonamiento de juntas longitudinales y transversale",
@@ -102,6 +101,7 @@ public class EditarPatologiaRigiActivity extends AppCompatActivity {
         campoAnchoDanio = (EditText) findViewById(R.id.campoAnchoDanioRigiEditar);
         campoLargoRepa = (EditText) findViewById(R.id.campoLargoRepaRigiEditar);
         campoAnchoRepa = (EditText) findViewById(R.id.campoAnchoRepaRigiEditar);
+        campoSeveridad = (EditText) findViewById(R.id.campoSeveridadEditarPatoRigi);
         campoAclaracion = (EditText) findViewById(R.id.campoAclaracionesRigiEditar);
         tv_nombre_carretera_patologia = (TextView) findViewById(R.id.tv_nombre_carretera_patologia_RigiEditar);
         tv_id_segmento_patologia_Rigi = (TextView) findViewById(R.id.tv_id_segmento_patologia_Rigi_Editar);
@@ -142,7 +142,7 @@ public class EditarPatologiaRigiActivity extends AppCompatActivity {
         campoLargoLosa.setText(cursor.getString(8));
         campoAnchoLosa.setText(cursor.getString(9));
         campoDanioPatoRigi.setText(cursor.getString(10));
-        seve =cursor.getString(11);
+        campoSeveridad.setText(cursor.getString(11));
         campoLargoDanio.setText(cursor.getString(12));
         campoAnchoDanio.setText(cursor.getString(13));
         campoLargoRepa.setText(cursor.getString(14));
@@ -164,20 +164,18 @@ public class EditarPatologiaRigiActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position) {
                     case 0:
-                        campoSeveridad = "A";
+                        campoSeveridad.setText("A");
                         break;
                     case 1:
-                        campoSeveridad = "M";
+                        campoSeveridad.setText("M");
                         break;
                     case 2:
-                        campoSeveridad = "B";
+                        campoSeveridad.setText("B");
                         break;
                     case 3:
-                        campoSeveridad="N.A";
+                        campoSeveridad.setText("N.A.");
                         break;
-                    default:
-                        campoSeveridad="";
-                        break;
+
                 }
             }
             @Override
@@ -340,7 +338,7 @@ public class EditarPatologiaRigiActivity extends AppCompatActivity {
         }else{
             input_campoDanioPatoRigi.setErrorEnabled(false);
         }
-        if(campoSeveridad.trim().isEmpty()){
+        if(campoSeveridad.getText().toString().trim().isEmpty()){
             input_campoSeveridad.setError("Ingrese la severidad");
             isValid=false;
         }else{
@@ -380,7 +378,7 @@ public class EditarPatologiaRigiActivity extends AppCompatActivity {
         values.put(Utilidades.PATOLOGIARIGI.CAMPO_LARGO_LOSA  , campoLargoLosa.getText().toString());
         values.put(Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_LOSA  , campoAnchoLosa.getText().toString());
         values.put(Utilidades.PATOLOGIARIGI.CAMPO_DANIO_PATOLOGIA, campoDanioPatoRigi.getText().toString());
-        values.put(Utilidades.PATOLOGIARIGI.CAMPO_SEVERIDAD, campoSeveridad);
+        values.put(Utilidades.PATOLOGIARIGI.CAMPO_SEVERIDAD, campoSeveridad.getText().toString());
         values.put(Utilidades.PATOLOGIARIGI.CAMPO_LARGO_PATOLOGIA  , campoLargoDanio.getText().toString());
         values.put(Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_PATOLOGIA, campoAnchoDanio.getText().toString());
         values.put(Utilidades.PATOLOGIARIGI.CAMPO_LARGO_REPARACION, campoLargoRepa.getText().toString());

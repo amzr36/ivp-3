@@ -261,8 +261,8 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
         switch (view.getId()){
 
             case R.id.btnRegistroPatologia:
-                /*Se verifica que los campos requeridos para realizar el registro esten diligenciados,
-                    si esto su cumple se abre la actividad PatologiaFlex, con los datos registrados*/
+                /*Se verifica que los campos requeridos para realizar el registro estén diligenciados,
+                    si esto su cumple se realiza el registro*/
                 verificarDatosPatoFlex();
                 break;
             case R.id.btnDanio:
@@ -279,7 +279,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
                 abrirManual();
                 break;
             case R.id.ej_Pato_Flex:
-                //Abre la actividad RegistroPatologiaFlex
+                //Abre la actividad RegistroPatologiaFlexEjemplo
                 intent = new Intent(RegistroPatologiaFlexActivity.this, RegistroPatologiaFlexEjemploActivity.class);
                 startActivity(intent);
                 break;
@@ -368,10 +368,21 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
         db.execSQL(insert);
         db.close();
 
-        Intent intent = new Intent(RegistroPatologiaFlexActivity.this,PatologiaFlexActivity.class);
-        intent.putExtra("tvIdDaño",tv_id_segmento_patologia_flex.getText().toString());
-        startActivity(intent);
+        limpiarDatos();
 
+    }
+
+    private void limpiarDatos() {
+        campoAbscisaFlex.setText("");
+        campoLatitudPatoFlex.setText("");
+        campoLongitudPatoFlex.setText("");
+        campoLargoDanio.setText("");
+        campoAnchoDanio.setText("");
+        campoLargoRepa.setText("");
+        campoAnchoRepa.setText("");
+        campoAclaracion.setText("");
+        tv_foto_danio.setText("");
+        tv_idFotoFlex.setText("");
     }
 
     private void guardarFotografia() {
