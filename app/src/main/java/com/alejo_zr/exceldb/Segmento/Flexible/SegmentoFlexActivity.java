@@ -103,6 +103,77 @@ public class SegmentoFlexActivity extends AppCompatActivity {
         cargarDañosFlex();
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        //Se enlazan los objetos con los views
+        baseDatos=new BaseDatos(this);
+        tv_nombre_carretera_segmento = (TextView) findViewById(R.id.tv_nombre_carretera_segmento_flex);
+        tv_id_segmento = (TextView) findViewById(R.id.tv_id_segmentoFlex);
+        tvnCalzadas = (TextView) findViewById(R.id.tvnCalzadasFlex);
+        tvnCarriles= (TextView) findViewById(R.id.tvnCarrilesFlex);
+        tvanchoCarril= (TextView) findViewById(R.id.tvanchoCarril);
+        tvanchoBerma= (TextView) findViewById(R.id.tvanchoBermaFlex);
+        tvPRI= (TextView) findViewById(R.id.tvPRIFlex);
+        tvPRF= (TextView) findViewById(R.id.tvPRFFlex);
+        tvComentarios= (TextView) findViewById(R.id.tvComentariosFlex);
+        tvFechaSegmentoFlex = (TextView) findViewById(R.id.tvFechaSegmentoFlex);
+
+        //Se recibe el segmento enviado
+        Bundle segmentoEnviado=getIntent().getExtras();
+        SegmentoFlex segmento=null;
+
+        if(segmentoEnviado!=null){
+            segmento = (SegmentoFlex) segmentoEnviado.getSerializable("segmento");
+            if(segmento!=null){
+                //Si es enviado por ConsultarSegmentoFlex se recupera los datos del segmento de esta forma
+                tv_id_segmento.setText(segmento.getId_segmento().toString());
+                id_segmento = segmento.getId_segmento();
+                tv_nombre_carretera_segmento.setText(segmento.getNombre_carretera().toString());
+                tvnCalzadas.setText(segmento.getnCalzadas().toString());
+                tvnCarriles.setText(segmento.getnCarriles().toString());
+                tvanchoCarril.setText(segmento.getAnchoCarril().toString());
+                tvanchoBerma.setText(segmento.getAnchoBerma().toString());
+                tvPRI.setText(segmento.getPri().toString());
+                tvPRF.setText(segmento.getPrf().toString());
+                tvComentarios.setText(segmento.getComentarios().toString());
+                tvFechaSegmentoFlex.setText(segmento.getFecha().toString());
+                valoriS = segmento.getIs();
+            }else{
+                //Si se envian los datos desde otra actividad se recuperan de esta otra forma
+                tv_id_segmento.setText(segmentoEnviado.getString("id_segmento"));
+                SQLiteDatabase db = baseDatos.getWritableDatabase();
+                String [] parametros = {tv_id_segmento.getText().toString()};
+
+                Cursor cursor = db.rawQuery("SELECT "+Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_NOMBRE_CARRETERA_SEGMENTO+","+
+                        Utilidades.SEGMENTOFLEX.CAMPO_CALZADAS_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_CARRILES_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_ANCHO_CARRIL+","+
+                        Utilidades.SEGMENTOFLEX.CAMPO_ANCHO_BERMA+","+Utilidades.SEGMENTOFLEX.CAMPO_PRI_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_PRF_SEGMENTO+","+
+                        Utilidades.SEGMENTOFLEX.CAMPO_COMENTARIOS+","+Utilidades.SEGMENTOFLEX.CAMPO_FECHA+" FROM "+Utilidades.SEGMENTOFLEX.TABLA_SEGMENTO+
+                        " WHERE "+Utilidades.SEGMENTOFLEX.CAMPO_ID_SEGMENTO+"=?",parametros);
+
+                cursor.moveToFirst();
+                tv_id_segmento.setText(cursor.getString(0));
+                tv_nombre_carretera_segmento.setText(cursor.getString(1));
+                tvnCalzadas.setText(cursor.getString(2));
+                tvnCarriles.setText(cursor.getString(3));
+                tvanchoCarril.setText(cursor.getString(4));
+                tvanchoBerma.setText(cursor.getString(5));
+                tvPRI.setText(cursor.getString(6));
+                tvPRF.setText(cursor.getString(7));
+                tvComentarios.setText(cursor.getString(8));
+                tvFechaSegmentoFlex.setText(cursor.getString(9));
+
+            }
+        }
+
+        consultarListaSegmentos();
+        agregarIS();
+        cargarDañosFlex();
+
+    }
+
+
     private void consultarListaSegmentos() {
 
         SQLiteDatabase db = baseDatos.getReadableDatabase();

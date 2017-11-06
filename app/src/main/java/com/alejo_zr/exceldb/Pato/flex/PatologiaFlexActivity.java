@@ -23,6 +23,7 @@ import com.alejo_zr.exceldb.utilidades.Utilidades;
 
 public class PatologiaFlexActivity extends AppCompatActivity {
 
+    //Se declaran las variables y objetos java
     private final String CARPETA_RAIZ="InventarioVial/";
     private final String RUTA_IMAGEN=CARPETA_RAIZ+"PavimentoFlexible/";
 
@@ -40,6 +41,7 @@ public class PatologiaFlexActivity extends AppCompatActivity {
 
         baseDatos = new BaseDatos(this);
 
+        //Se enlazan los objetos con los views
         tvNombreCarreteraPatologiaActivity = (TextView) findViewById(R.id.tvNombreCarreteraPatologiaFlexActivity);
         tvAbscisaPatoFlexActivity = (TextView) findViewById(R.id.tvAbscisaPatoFlexActivity);
         tvLatPatoFlexActivity= (TextView) findViewById(R.id.tvLatPatoFlexActivity);
@@ -60,13 +62,14 @@ public class PatologiaFlexActivity extends AppCompatActivity {
 
         imgPatoFlex = (ImageView) findViewById(R.id.imgDanio_PatoFlex) ;
 
-
+        //Se recibe la patología enviada
         Bundle patologiaEnviado=getIntent().getExtras();
         PatoFlex patoFlex=null;
 
         if(patologiaEnviado!=null){
             patoFlex = (PatoFlex) patologiaEnviado.getSerializable("patologia");
             if(patoFlex!=null){
+                //Si es enviado por ConsultarPatologiaFlex se recupera los datos del segmento de esta forma
                 tvAbscisaPatoFlexActivity.setText(patoFlex.getAbscisa().toString());
                 tvLatPatoFlexActivity.setText(patoFlex.getLatitud().toString());
                 tvLongFlexActivity.setText(patoFlex.getLongitud().toString());
@@ -84,6 +87,7 @@ public class PatologiaFlexActivity extends AppCompatActivity {
                 tvIdDaño.setText(patoFlex.getId_patoFlex().toString());
                 tvDireccionPatoFlex.setText(patoFlex.getFoto().toString());
             }else{
+                //Si se envian los datos desde otra actividad se recuperan de esta otra forma
                 tvIdDaño.setText(patologiaEnviado.getString("tvIdDaño"));
                 SQLiteDatabase db = baseDatos.getWritableDatabase();
                 String [] parametros = {tvIdDaño.getText().toString()};
@@ -123,8 +127,8 @@ public class PatologiaFlexActivity extends AppCompatActivity {
         obtenerFotoPatoFlex();
     }
 
-    protected void onStart() {
-        super.onStart();
+    protected void onRestart() {
+        super.onRestart();
 
         baseDatos = new BaseDatos(this);
 
