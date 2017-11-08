@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.SegmentoFlex;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
@@ -120,6 +121,10 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
                 //Se devuelve a la actividad ConsultarSegmentoFlex
                 intent = new Intent(RegistroSegmentoFlexActivity.this,ConsultarSegmentoFlexActivity.class);
                 intent.putExtra("nom_carretera",tvNombre_Carretera_SegmentoFlex.getText().toString());
+                startActivity(intent);
+                break;
+            case R.id.homeRegisSegFlexActivity:
+                intent = new Intent(RegistroSegmentoFlexActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
         }

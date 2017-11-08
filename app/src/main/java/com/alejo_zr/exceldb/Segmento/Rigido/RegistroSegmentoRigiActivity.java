@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
 
@@ -94,12 +95,16 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
                 intent.putExtra("nom_carretera",tvNombre_Carretera_Segmento.getText().toString());
                 startActivity(intent);
                 break;
+            case R.id.homeRegisSegRigiActivity:
+                intent = new Intent(RegistroSegmentoRigiActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
             case R.id.btnManualRegistroSegRigi:
             //Abre el MIVP
             try{
                 Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
                 startActivity(launchIntent);
-                break;
+
             }catch (Exception e){
                 //De no tenerse instalado el manual mostrara el mensaje
                 Toast.makeText(getApplicationContext(),"INSTALE EL MANUAL PARA LA INSPECCIÓN VISUAL DE PAVIMENTOS",Toast.LENGTH_LONG).show();

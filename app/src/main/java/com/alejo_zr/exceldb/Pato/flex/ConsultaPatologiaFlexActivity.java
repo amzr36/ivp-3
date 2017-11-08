@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.Segmento.Flexible.SegmentoFlexActivity;
 import com.alejo_zr.exceldb.entidades.PatoFlex;
@@ -220,6 +221,10 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
                 intent = new Intent(ConsultaPatologiaFlexActivity.this, SegmentoFlexActivity.class);
                 intent.putExtra("id_segmento",tvIdSegmento_consultar_patoflex.getText().toString());
                 startActivity(intent);
+            case R.id.homeConsulPatoFlexActivity:
+                intent = new Intent(ConsultaPatologiaFlexActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
 
         }
     }

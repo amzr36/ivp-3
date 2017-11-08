@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
 
@@ -81,6 +82,10 @@ public class EditarSegmentoFlexActivity extends AppCompatActivity {
             case R.id.backEditarSegFlexActivity:
                 Intent intent = new Intent(EditarSegmentoFlexActivity.this,SegmentoFlexActivity.class);
                 intent.putExtra("id_segmento",tv_id_segmento_editarFlex.getText().toString());
+                startActivity(intent);
+                break;
+            case R.id.homeEditarSegFlexActivity:
+                intent = new Intent(EditarSegmentoFlexActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
         }

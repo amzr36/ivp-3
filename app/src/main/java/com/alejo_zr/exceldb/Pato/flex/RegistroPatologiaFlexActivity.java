@@ -36,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
 
@@ -290,13 +291,23 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
                 intent.putExtra("tv_nombre_carretera_segmento",tv_nombre_carretera_patologia.getText().toString());
                 startActivity(intent);
                 break;
+            case R.id.homeRegistroPatoFlexctivity:
+                intent = new Intent(RegistroPatologiaFlexActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
         }
 
     }
 
     private void abrirManual() {
-        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
-        startActivity(launchIntent);
+        try{
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
+            startActivity(launchIntent);
+
+        }catch (Exception e){
+            //De no tenerse instalado el manual mostrara el mensaje
+            Toast.makeText(getApplicationContext(),R.string.instale,Toast.LENGTH_LONG).show();
+        }
     }
 
     private void verificarDatosPatoFlex() {

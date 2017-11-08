@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
 
@@ -102,6 +103,10 @@ public class EditarSegmentoRigiActivity extends AppCompatActivity {
             case R.id.backEditarSegRigiActivity:
                 Intent intent = new Intent(EditarSegmentoRigiActivity.this,SegmentoRigiActivity.class);
                 intent.putExtra("id_segmento",id);
+                startActivity(intent);
+                break;
+            case R.id.homeEditarSegRigiActivity:
+                intent = new Intent(EditarSegmentoRigiActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
         }

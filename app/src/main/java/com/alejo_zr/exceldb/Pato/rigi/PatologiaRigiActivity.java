@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.PatoRigi;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
@@ -251,6 +252,10 @@ public class PatologiaRigiActivity extends AppCompatActivity {
                 intent = new Intent(PatologiaRigiActivity.this,ConsultaPatologiaRigiActivity.class);
                 intent.putExtra("tv_id_segmento",tvIdSegmento.getText().toString());
                 intent.putExtra("tv_nombre_carretera_segmento",tvNombreCarreteraPatologiaActivity.getText().toString());
+                startActivity(intent);
+                break;
+            case R.id.homePatoRigiActivity:
+                intent = new Intent(PatologiaRigiActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
 

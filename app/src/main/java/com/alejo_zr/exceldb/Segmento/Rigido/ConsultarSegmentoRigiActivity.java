@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
 import com.alejo_zr.exceldb.Carretera.CarreteraActivity;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.PatoRigi;
 import com.alejo_zr.exceldb.entidades.SegmentoRigi;
@@ -265,6 +266,10 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
                 //Se devuelve a la actividad CarreteraActivity
                 intent = new Intent(ConsultarSegmentoRigiActivity.this,CarreteraActivity.class);
                 intent.putExtra("nom_carretera",tvnomCarretera_consultar_segmentoRigi.getText().toString());
+                startActivity(intent);
+                break;
+            case R.id.homeConsulSegRigiActivity:
+                intent = new Intent(ConsultarSegmentoRigiActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
         }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.Pato.rigi.ConsultaPatologiaRigiActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.PatoRigi;
@@ -150,6 +151,10 @@ public class SegmentoRigiActivity extends AppCompatActivity {
                 //Se devuelve a la actividad ConsultarSegmentoRigi
                 intent = new Intent (SegmentoRigiActivity.this, ConsultarSegmentoRigiActivity.class);
                 intent.putExtra("nom_carretera",tv_nombre_carretera_segmento.getText().toString());
+                startActivity(intent);
+                break;
+            case R.id.homeSegRigiActivity:
+                intent = new Intent(SegmentoRigiActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
 

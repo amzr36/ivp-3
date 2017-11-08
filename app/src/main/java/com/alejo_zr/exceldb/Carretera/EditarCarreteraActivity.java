@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.PatoFlex;
 import com.alejo_zr.exceldb.entidades.SegmentoFlex;
@@ -46,7 +47,6 @@ public class EditarCarreteraActivity extends AppCompatActivity {
         campoAdmonEditar = (EditText) findViewById(R.id.campoAdmonEditar);
         campoLevantadoEditar = (EditText) findViewById(R.id.campoLevantadoEditar);
         tvEditarNombreCarretera = (TextView) findViewById(R.id.tvEditarNombreCarretera);
-
 
         //Se toman los datos de la carretera
         Bundle bundle = getIntent().getExtras();
@@ -166,8 +166,10 @@ public class EditarCarreteraActivity extends AppCompatActivity {
             case R.id.btnEliminarCarretera:
                 eliminarCarretera();
                 break;
-
-
+            case R.id.homeEditarCarreteraActivity:
+                Intent intent = new Intent(EditarCarreteraActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 

@@ -37,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
 
@@ -337,6 +338,10 @@ public class EditarPatologiaFlexActivity extends AppCompatActivity {
                 intent = new Intent(EditarPatologiaFlexActivity.this,PatologiaFlexActivity.class);
                 intent.putExtra("tvIdDaño",tv_idDanio.getText().toString());
                 startActivity( intent);
+                break;
+            case R.id.homeConsulCarreteraActivity:
+                intent = new Intent(EditarPatologiaFlexActivity.this, MainActivity.class);
+                startActivity(intent);
                 break;
 
 

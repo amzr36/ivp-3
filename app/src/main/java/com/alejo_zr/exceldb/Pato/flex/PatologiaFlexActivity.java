@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.entidades.PatoFlex;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
@@ -243,6 +244,11 @@ public class PatologiaFlexActivity extends AppCompatActivity {
                 intent = new Intent(PatologiaFlexActivity.this,ConsultaPatologiaFlexActivity.class);
                 intent.putExtra("tv_id_segmento",tvIdSegmento.getText().toString());
                 intent.putExtra("tv_nombre_carretera_segmento",tvNombreCarreteraPatologiaActivity.getText().toString());
+                startActivity(intent);
+                break;
+
+            case R.id.homePatoFlexActivity:
+                intent = new Intent(PatologiaFlexActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
 

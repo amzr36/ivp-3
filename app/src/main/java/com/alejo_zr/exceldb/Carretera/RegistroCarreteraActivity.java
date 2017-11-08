@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.utilidades.Utilidades;
 
@@ -70,9 +71,27 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
+        Intent intent = null;
         //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
         switch (view.getId())
         {
+            case R.id.backCarreteraActivity:
+                //Se devuelvo a la actividad principal
+                intent = new Intent(RegistroCarreteraActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnManualCarretera:
+                //Abre el MIVP
+                try{
+                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.alejo_zr.manual");
+                    startActivity(launchIntent);
+
+                }catch (Exception e){
+                    //De no tenerse instalado el manual mostrara el mensaje
+                    Toast.makeText(getApplicationContext(),R.string.instale,Toast.LENGTH_LONG).show();
+                }
+                break;
+
             case R.id.btnRegistro:
                 //Se verifica que los campos requeridos para realizar el registro esten diligenciados,
                 // si esto su cumple se abre la actividad CarreteraActivity, con los datos de la carretera
@@ -80,7 +99,11 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
                 break;
             case R.id.tvEjemploCarretera:
                 //Se abre la activity CarreteraRegistroEjemploActivity
-                Intent intent = new Intent(RegistroCarreteraActivity.this, CarreteraRegistroEjemploActivity.class);
+                intent = new Intent(RegistroCarreteraActivity.this, CarreteraRegistroEjemploActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.homeRegistroCarreteraActivity:
+                intent = new Intent(RegistroCarreteraActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
         }

@@ -1,110 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/marginTop"
     tools:context="com.alejo_zr.exceldb.Carretera.RegistroCarreteraActivity">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarRegistroCarreteraActivity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/backRegistroCarreteraActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_atras"
+                android:tint="@color/toolbar"
+                android:onClick="onClick"/>
+
+            <ImageView
+                android:id="@+id/homeRegistroCarreteraActivity"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:background="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/backRegistroCarreteraActivity"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/homeRegistroCarreteraActivity"
+                android:layout_marginLeft="@dimen/margen_toolbar"
+                android:text="@string/regisCarretera"
+                android:textSize="@dimen/subTitulo"
+                android:textColor="@color/toolbar"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_below="@id/toolbarRegistroCarreteraActivity">
 
-        <TextView
-            android:id="@+id/tvEjemploCarretera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ejemplo"
-            android:layout_gravity="right"
-            android:textColor="@color/ejemplo"
-            android:onClick="onClick"/>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_nombre"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHighlight="@color/colorAccent"
-            >
-            <EditText
-                android:id="@+id/campoNombre"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btnManualCarretera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mivp"
+                    android:elevation="5dp"
+                    android:onClick="onClick"
+                    />
+
+                <TextView
+                    android:id="@+id/tvEjemploCarretera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ejemplo"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/ejemplo"
+                    android:onClick="onClick"/>
+
+            </RelativeLayout>
+
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_nombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/nombre"/>
+                android:textColorHighlight="@color/colorAccent"
+                >
+                <EditText
+                    android:id="@+id/campoNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nombre"/>
 
-        </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHighlight="@color/colorAccent"
-            >
-
-            <EditText
-                android:id="@+id/campoCodigo"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/codigo"/>
-        </android.support.design.widget.TextInputLayout>
+                android:textColorHighlight="@color/colorAccent"
+                >
+
+                <EditText
+                    android:id="@+id/campoCodigo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/codigo"/>
+            </android.support.design.widget.TextInputLayout>
 
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHighlight="@color/colorAccent"
-            >
-            <EditText
-                android:id="@+id/campoTerritorial"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/territorial"/>
+                android:textColorHighlight="@color/colorAccent"
+                >
+                <EditText
+                    android:id="@+id/campoTerritorial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/territorial"/>
 
-        </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHighlight="@color/colorAccent"
-            >
-
-            <fr.ganfra.materialspinner.MaterialSpinner
-                android:id="@+id/spinnerAdrmonCarreteraRegistro"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:ms_floatingLabelText="@string/adminstracion"
-                app:ms_hint="@string/adminstracion"
-                app:ms_floatingLabelColor="@color/colorAccent"
-                app:ms_multiline="true"/>
+                android:textColorHighlight="@color/colorAccent"
+                >
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spinnerAdrmonCarreteraRegistro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ms_floatingLabelText="@string/adminstracion"
+                    app:ms_hint="@string/adminstracion"
+                    app:ms_floatingLabelColor="@color/colorAccent"
+                    app:ms_multiline="true"/>
 
 
-        </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHighlight="@color/colorAccent"
-            >
-
-            <EditText
-                android:id="@+id/campoLevantado"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/levantado"/>
+                android:textColorHighlight="@color/colorAccent"
+                >
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/campoLevantado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/levantado"/>
 
-        <Button
-            android:id="@+id/btnRegistro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/regis"
-            android:layout_marginTop="30dp"
-            android:onClick="onClick"/>
+            </android.support.design.widget.TextInputLayout>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regis"
+                android:layout_marginTop="30dp"
+                android:onClick="onClick"/>
 
-</ScrollView>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

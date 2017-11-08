@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.Segmento.Rigido.SegmentoRigiActivity;
 import com.alejo_zr.exceldb.entidades.PatoRigi;
@@ -197,6 +198,10 @@ public class ConsultaPatologiaRigiActivity extends AppCompatActivity {
             intent = new Intent(ConsultaPatologiaRigiActivity.this, SegmentoRigiActivity.class);
             intent.putExtra("id_segmento",tvIdSegmento_consultar_patoRigi.getText().toString());
             startActivity(intent);
+            case R.id.homeConsulPatoRigiActivity:
+                intent = new Intent(ConsultaPatologiaRigiActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
+import com.alejo_zr.exceldb.MainActivity;
 import com.alejo_zr.exceldb.R;
 import com.alejo_zr.exceldb.Segmento.Flexible.ConsultarSegmentoFlexActivity;
 import com.alejo_zr.exceldb.Segmento.Rigido.ConsultarSegmentoRigiActivity;
@@ -138,6 +139,10 @@ public class CarreteraActivity extends AppCompatActivity {
             case R.id.backCarreteraActivity:
                 //Se devuelve a la actividad ConsultarCarreteraActivity
                 intent = new Intent(CarreteraActivity.this,ConsultarCarreteraActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.homeConsulCarreteraActivity:
+                intent = new Intent(CarreteraActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
         }

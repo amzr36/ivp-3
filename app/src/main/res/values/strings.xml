@@ -87,34 +87,8 @@
     <string name="datos_pato">Datos Patología</string>
     <string name="editarPato">Editar Patología</string>
     <string name="abrir">Abrir Manual</string>
-
-    <string-array name="dañosPatoFlex">
-        <item>Fisuras Longitudinales y transversales</item>
-        <item>Fisura longitudinal en junta de construcción</item>
-        <item>Fisuras por reflexión de juntas o grietas en placas de concret</item>
-        <item>Fisuras en medialuna</item>
-        <item>"fisura_borde"</item>
-        <item>Fisuras de borde</item>
-        <item>Fisuras en bloque</item>
-        <item>Piel de cocodrilo</item>
-        <item>Fisuración por desplazamiento de capas</item>
-        <item>Fisuración incipiente</item>
-        <item>Ondulación</item>
-        <item>Abultamiento</item>
-        <item>Hundimiento</item>
-        <item>Ahuellamiento</item>
-        <item>Descascaramiento </item>
-        <item>Baches</item>
-        <item>Parche</item>
-        <item>Desgaste superficial</item>
-        <item>Perdida de agregado</item>
-        <item>Pulimento del agregado</item>
-        <item>Cabezas duras</item>
-        <item>Exudación</item>
-        <item>Surcos</item>
-        <item>Corrimiento vertical de la berma</item>
-        <item></item>
-    </string-array>
+    <string name="instale">INSTALE EL MANUAL PARA LA INSPECCIÓN VISUAL DE PAVIMENTOS (M.I.V.P.),</string>
+    <string name="regisCarretera">Registro Carretera</string>
 
 
     <!--Daños Pavimento Flexible!-->

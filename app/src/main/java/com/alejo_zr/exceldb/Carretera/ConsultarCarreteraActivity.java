@@ -440,6 +440,10 @@ public class ConsultarCarreteraActivity extends AppCompatActivity {
                 intent = new Intent(ConsultarCarreteraActivity.this,MainActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.homeConsulCarreteraActivity:
+                intent = new Intent(ConsultarCarreteraActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 }
