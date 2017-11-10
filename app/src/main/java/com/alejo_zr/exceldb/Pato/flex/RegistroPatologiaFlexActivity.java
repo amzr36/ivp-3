@@ -269,8 +269,8 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
             case R.id.btnDanio:
                 //Se abre la camara, y se genera el Identificador para la foto
                 Toast.makeText(getApplicationContext(),"Ponga un objeto para darle esacala a la foto",Toast.LENGTH_SHORT).show();
-                tomarFotografia();
                 guardarFotografia();
+                tomarFotografia();
 
                 break;
             case R.id.btnObtenerCoordenadasPatoFlex:

@@ -2,6 +2,7 @@ package com.alejo_zr.exceldb.Segmento.Rigido;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -27,6 +28,7 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
     private EditText campoNCalzadas, campoNCarriles, campoEspesorLosa, campoAnchoBerma, campoPRI, campoPRF, campoComentarios,campoFecha;
     private TextView tvNombre_Carretera_Segmento;
     private TextInputLayout input_camponCalzadas,input_campoNCarriles,input_campoEspesorLosa,input_campoAnchoBerma,input_campoPRI;
+    private String id_seg_rigi;
 
     private  int dia, mes, ano;
 
@@ -185,10 +187,19 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
                 +campoComentarios.getText().toString()+"' , '"+campoFecha.getText().toString()+"')";
 
         db.execSQL(insert);
-        Toast.makeText(getApplicationContext(),R.string.regisSeg,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),R.string.segRegis,Toast.LENGTH_SHORT).show();
+        BaseDatos baseDatos = new BaseDatos(this);
+        final Cursor cursor = baseDatos.getSegmentoRigi();
 
+        if(cursor.moveToNext()){
+            do{
+                id_seg_rigi = cursor.getString(cursor.getColumnIndex(Utilidades.SEGMENTORIGI.CAMPO_ID_SEGMENTO));
+            }while (cursor.moveToNext());
+
+        }
         db.close();
-
-
+        Intent intent = new Intent(RegistroSegmentoRigiActivity.this,SegmentoRigiActivity.class);
+        intent.putExtra("id_segmento",id_seg_rigi);
+        startActivity(intent);
     }
 }

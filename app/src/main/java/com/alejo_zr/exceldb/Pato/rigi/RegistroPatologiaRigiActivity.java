@@ -379,6 +379,25 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         db.execSQL(insert);
 
         db.close();
+        limpiarDatos();
+
+    }
+
+    private void limpiarDatos() {
+        campoAbscisaRigi.setText("");
+        campoLatitudPatoRigi.setText("");
+        campoLongitudPatoRigi.setText("");
+        campoNumeroLosa.setText("");
+        campoLetraLosa.setText("");
+        campoDanioPatoRigi.setText("");
+        campoSeveridad = "";
+        campoLargoDanio.setText("");
+        campoAnchoDanio.setText("");
+        campoLargoRepa.setText("");
+        campoAnchoRepa.setText("");
+        campoAclaracion.setText("");
+        tv_idFotoRigi.setText("");
+        tv_foto_nombre.setText("");
 
     }
 
