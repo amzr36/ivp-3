@@ -40,7 +40,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/homeRegisPatoRigiActivity"
                 android:layout_marginLeft="@dimen/margen_toolbar"
-                android:text="@string/consulPato"
+                android:text="@string/registroPato"
                 android:textSize="@dimen/subTitulo"
                 android:textColor="@color/toolbar"/>
 
@@ -463,9 +463,6 @@
         </LinearLayout>
 
     </ScrollView>
-
-
-
 
 
 </RelativeLayout>

@@ -6,65 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.alejo_zr.exceldb.Segmento.Rigido.RegistroSegmentoRigiEjemploActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbarRegisSegRigiEjemActivity"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:id="@+id/backRegisSegRigiEjemActivity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/ic_atras"
-                    android:tint="@color/toolbar"
-                    android:onClick="onClick"/>
-
-                <ImageView
-                    android:id="@+id/homeRegisSegRigiEjemActivity"
-                    android:layout_width="@dimen/icon"
-                    android:layout_height="@dimen/icon"
-                    android:background="@mipmap/ic_launcher"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/backRegisSegRigiEjemActivity"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/homeRegisSegRigiEjemActivity"
-                    android:layout_marginLeft="@dimen/margen_toolbar"
-                    android:text="@string/regisSeg"
-                    android:textSize="@dimen/subTitulo"
-                    android:textColor="@color/toolbar"/>
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.Toolbar>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbarRegisSegRigiEjemActivity">
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_margin="@dimen/activity_horizontal_margin"
-                android:layout_below="@id/toolbarRegisSegRigiEjemActivity">
+                >
 
                 <LinearLayout
                     android:id="@+id/llRegistroSegmentoRigiEjem"
@@ -88,7 +42,7 @@
                             android:id="@+id/tvNombre_Carretera_SegmentoRigiEjem"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Amacayu"
+                            android:text="@string/amacayu"
                             android:textStyle="bold"
                             android:textSize="@dimen/subTitulo"
                             android:layout_centerInParent="true"
@@ -96,27 +50,7 @@
 
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
 
-                        <ImageButton
-                            android:id="@+id/btnManualRegistroSegRigiEjem"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/mivp"/>
-                        <TextView
-                            android:id="@+id/ej_Segmento_RigiEjem"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="@string/ejemplo"
-                            android:textColor="@color/colorAccent"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/marginLeftTV"
-                            android:onClick="onClick"/>
-
-                    </RelativeLayout>
 
                     <TextView
                         android:id="@+id/tvNumeroRigiEjem"
@@ -333,4 +267,4 @@
 
     </RelativeLayout>
 
-</RelativeLayout>
+

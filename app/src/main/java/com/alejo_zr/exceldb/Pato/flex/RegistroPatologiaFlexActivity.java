@@ -268,8 +268,10 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
                 break;
             case R.id.btnDanio:
                 //Se abre la camara, y se genera el Identificador para la foto
-                guardarFotografia();
+                Toast.makeText(getApplicationContext(),"Ponga un objeto para darle esacala a la foto",Toast.LENGTH_SHORT).show();
                 tomarFotografia();
+                guardarFotografia();
+
                 break;
             case R.id.btnObtenerCoordenadasPatoFlex:
                 //Se obtienen las coordenadas mediante el GPS del celular
@@ -460,7 +462,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
         }
         startActivityForResult(intent,COD_FOTO);
 
-        ////
+
     }
 
     @Override

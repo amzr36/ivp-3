@@ -10,8 +10,13 @@ import android.widget.Toast;
 import com.alejo_zr.exceldb.Carretera.ConsultarCarreteraActivity;
 import com.alejo_zr.exceldb.Carretera.RegistroCarreteraActivity;
 
+import java.io.FileNotFoundException;
+
 public class MainActivity extends AppCompatActivity {
 
+    private final String NOMBRE_CARPETA="probandoNOmbre/";
+    private final String GENERADOS = "pdf/";
+    private final static String NOMBRE_DOCUMENTO = "prueba.pdf";
     private final String CARPETA_RAIZ="InventarioVial/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BaseDatos conn = new BaseDatos(this);
-        //conn.insertData();
+
 
     }
 
-    public void onClick(View view){
+    public void onClick(View view) throws FileNotFoundException {
         //Al oprimir un boton entra a este metodo, y dependiendo del selecionado se selecciona el caso
         Intent intent = null;
         switch (view.getId()){
@@ -64,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         dialogFragment.show(getSupportFragmentManager(),"dialogoexportar");
 
     }
+
+
 
 
 }

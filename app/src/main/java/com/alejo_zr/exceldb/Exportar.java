@@ -81,6 +81,7 @@ public class Exportar  extends android.support.v4.app.DialogFragment{
         if(isValid){
             exportar();
             dismiss();
+
         }
     }
 

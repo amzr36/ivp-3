@@ -61,8 +61,8 @@
     <string name="anchocarril">Ancho carril(m)</string>
     <string name="anchoberma">Ancho berma(m)</string>
     <string name="seleccioneDanio">Seleccione el tipo de daño</string>
-    <string name="editarSegmento">EDITAR SEGMENTO</string>
-    <string name="editarCarretera">Editar CARRETERA</string>
+    <string name="editarSegmento">Editar Segmento</string>
+    <string name="editarCarretera">Editar Carretera</string>
     <string name="validarNCalzadas">Ingrese el numero de calzadas</string>
     <string name="validarNCarriles">Ingrese el numero de carriles</string>
     <string name="validarAnchoCarril">Ingrese el ancho del carril</string>
@@ -89,7 +89,7 @@
     <string name="abrir">Abrir Manual</string>
     <string name="instale">INSTALE EL MANUAL PARA LA INSPECCIÓN VISUAL DE PAVIMENTOS (M.I.V.P.),</string>
     <string name="regisCarretera">Registro Carretera</string>
-
+    <string name="amacayu">Amacayu</string>
 
     <!--Daños Pavimento Flexible!-->
     <string name="fisuras_long_transversales">Fisuras Longitudinales y transversales</string>

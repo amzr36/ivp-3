@@ -270,6 +270,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
                 break;
             case R.id.btnDanioRigi:
                 //Se abre la camara, y se genera el Identificador para la foto
+                Toast.makeText(getApplicationContext(),"Ponga un objeto para darle esacala a la foto",Toast.LENGTH_SHORT).show();
                 guardarFotografia();
                 break;
             case R.id.btnObtenerCoordenadasPatoRigi:
