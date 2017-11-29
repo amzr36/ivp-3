@@ -29,10 +29,10 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
     //Se declaran las variables y objetos java
     private BaseDatos baseDatos;
     private ArrayList<SegmentoFlex> listaSegmentosF;
-    private EditText campoNCalzadas, campoNCarriles, campoAnchoCarril, campoAnchoBerma, campoPRI, campoPRF, campoComentarios,campoFecha;
+    private EditText campoNCalzadas, campoNCarriles, campoAnchoCarril, campoAnchoBerma, campoKmPriFlex,campoMPriFlex,campoKmPrfFlex,campoMPrfFlex,campoComentarios,campoFecha;
     private TextView tvNombre_Carretera_SegmentoFlex,ej_Segmento_Flex;
     private TextInputLayout input_camponCalzadas,input_campoNCarriles,input_campoAnchoCarril,input_campoAnchoBerma,input_campoPRI;
-    private String id_seg_flex;
+    private String id_seg_flex,pri,prf;
     private Integer id_segmento;
 
     private  int dia, mes, ano;
@@ -49,8 +49,12 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
         campoNCarriles = (EditText) findViewById(R.id.campoNCarrilesFlex);
         campoAnchoCarril = (EditText) findViewById(R.id.campoAnchoCarrilFlex);
         campoAnchoBerma = (EditText) findViewById(R.id.campoAnchoBermaFlex);
-        campoPRI = (EditText) findViewById(R.id.campoPRIFlex);
-        campoPRF = (EditText) findViewById(R.id.campoPRFFlex);
+
+        campoKmPriFlex = (EditText) findViewById(R.id.campoKmPriFlex);
+        campoMPriFlex  = (EditText) findViewById(R.id.campoMPriFlex);
+        campoKmPrfFlex = (EditText) findViewById(R.id.campoKmPrfFlex);
+        campoMPrfFlex  = (EditText) findViewById(R.id.campoMPrfFlex);
+
         campoComentarios = (EditText) findViewById(R.id.campoComentariosFlex);
         campoFecha = (EditText) findViewById(R.id.campoFechaSegmentoFlexRegistro);
 
@@ -174,7 +178,7 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
         }else{
             input_campoAnchoBerma.setErrorEnabled(false);
         }
-        if(campoPRI.getText().toString().trim().isEmpty()){
+        if(campoMPriFlex.getText().toString().trim().isEmpty()){
             input_campoPRI.setError("Ingrese el PRI");
             isValid=false;
         }else{
@@ -216,6 +220,9 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
 
     private void registrarSegmento() {
 
+        pri = "K"+campoKmPriFlex.getText().toString()+"+"+campoMPriFlex.getText().toString();
+        prf = "K"+campoKmPrfFlex.getText().toString()+"+"+campoMPrfFlex.getText().toString();
+
         BaseDatos bd=new BaseDatos(this);
 
         SQLiteDatabase db=bd.getWritableDatabase();
@@ -226,7 +233,7 @@ public class RegistroSegmentoFlexActivity extends AppCompatActivity {
                 +Utilidades.SEGMENTOFLEX.CAMPO_PRF_SEGMENTO+","+Utilidades.SEGMENTOFLEX.CAMPO_COMENTARIOS+","+Utilidades.SEGMENTOFLEX.CAMPO_FECHA+")" +
                 " VALUES ('"+tvNombre_Carretera_SegmentoFlex.getText().toString()+"' , '"
                 +campoNCalzadas.getText().toString()+"' , '"+campoNCarriles.getText().toString()+"' , '"+campoAnchoCarril.getText().toString()+"' , '"
-                +campoAnchoBerma.getText().toString()+"' , '"+campoPRI.getText().toString()+"' , '"+campoPRF.getText().toString()+"' , '"
+                +campoAnchoBerma.getText().toString()+"' , '"+pri+"' , '"+prf+"' , '"
                 +campoComentarios.getText().toString()+"' , '"+campoFecha.getText().toString()+"')";
 
         db.execSQL(insert);

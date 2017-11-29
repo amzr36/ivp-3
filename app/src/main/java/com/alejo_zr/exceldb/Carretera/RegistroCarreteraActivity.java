@@ -2,6 +2,7 @@ package com.alejo_zr.exceldb.Carretera;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
@@ -26,6 +28,7 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
     private String[] AdmonCarreteraRegistro = {"Concesión", "MTTO Integral", "A.M.V."};
     private MaterialSpinner spinnerAdrmonCarreteraRegistro;
     private String campoAdmon;
+    private ImageButton btnHermes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +107,11 @@ public class RegistroCarreteraActivity extends AppCompatActivity {
                 break;
             case R.id.homeRegistroCarreteraActivity:
                 intent = new Intent(RegistroCarreteraActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnHermes:
+                Uri uri = Uri.parse("http://hermes.invias.gov.co/carreteras/");
+                intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;
         }

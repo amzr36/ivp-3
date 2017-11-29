@@ -25,10 +25,11 @@ import java.util.Calendar;
 public class RegistroSegmentoRigiActivity extends AppCompatActivity {
 
     //Se declaran las variables y objetos java
-    private EditText campoNCalzadas, campoNCarriles, campoEspesorLosa, campoAnchoBerma, campoPRI, campoPRF, campoComentarios,campoFecha;
-    private TextView tvNombre_Carretera_Segmento;
+    private EditText campoNCalzadas, campoNCarriles, campoEspesorLosa, campoAnchoBerma,campoKmPriRigi,campoMPriRigi,campoKmPrfRigi,campoMPrfRigi,
+            campoComentarios,campoFecha;
+    private TextView tvNombre_Carretera_Segmento,campoPRI, campoPRF;
     private TextInputLayout input_camponCalzadas,input_campoNCarriles,input_campoEspesorLosa,input_campoAnchoBerma,input_campoPRI;
-    private String id_seg_rigi;
+    private String id_seg_rigi,pri,prf;
 
     private  int dia, mes, ano;
 
@@ -43,8 +44,12 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
         campoNCarriles = (EditText) findViewById(R.id.campoNCarrilesRigi);
         campoEspesorLosa = (EditText) findViewById(R.id.EspesorLosaSegmentoRigiActivity);
         campoAnchoBerma = (EditText) findViewById(R.id.campoAnchoBermaRigi);
-        campoPRI = (EditText) findViewById(R.id.campoPRIRigi);
-        campoPRF = (EditText) findViewById(R.id.campoPRFRigi);
+
+        campoKmPriRigi = (EditText) findViewById(R.id.campoKmPriRigi);
+        campoMPriRigi  = (EditText) findViewById(R.id.campoMPriRigi);
+        campoKmPrfRigi = (EditText) findViewById(R.id.campoKmPrfRigi);
+        campoMPrfRigi  = (EditText) findViewById(R.id.campoMPrfRigi);
+
         campoComentarios = (EditText) findViewById(R.id.campoComentariosRigi);
         campoFecha = (EditText) findViewById(R.id.campoFechaSegmentoRigiRegistro);
 
@@ -158,13 +163,12 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
         }else{
             input_campoAnchoBerma.setErrorEnabled(false);
         }
-        if(campoPRI.getText().toString().trim().isEmpty()){
+        if(campoMPriRigi.getText().toString().trim().isEmpty()){
             input_campoPRI.setError("Ingrese el PRI");
             isValid=false;
         }else{
             input_campoPRI.setErrorEnabled(false);
         }
-
 
         if(isValid){
             registrarSegmento();
@@ -172,6 +176,10 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
     }
 
     private void registrarSegmento() {
+
+
+        pri = "K"+campoKmPriRigi.getText().toString()+"+"+campoMPriRigi.getText().toString();
+        prf = "K"+campoKmPrfRigi.getText().toString()+"+"+campoMPrfRigi.getText().toString();
 
         BaseDatos bd=new BaseDatos(this);
 
@@ -183,7 +191,7 @@ public class RegistroSegmentoRigiActivity extends AppCompatActivity {
                 +Utilidades.SEGMENTORIGI.CAMPO_PRF_SEGMENTO+","+Utilidades.SEGMENTORIGI.CAMPO_COMENTARIOS+","+Utilidades.SEGMENTORIGI.CAMPO_FECHA+")" +
                 " VALUES ('"+tvNombre_Carretera_Segmento.getText().toString()+"' , '"
                 +campoNCalzadas.getText().toString()+"' , '"+campoNCarriles.getText().toString()+"' , '"+campoEspesorLosa.getText().toString()+"' , '"
-                +campoAnchoBerma.getText().toString()+"' , '"+campoPRI.getText().toString()+"' , '"+campoPRF.getText().toString()+"' , '"
+                +campoAnchoBerma.getText().toString()+"' , '"+pri+"' , '"+prf+"' , '"
                 +campoComentarios.getText().toString()+"' , '"+campoFecha.getText().toString()+"')";
 
         db.execSQL(insert);

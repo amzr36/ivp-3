@@ -120,18 +120,69 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/marginTopTV">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_campoAbscisaRigi"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColorHighlight="@color/colorAccent">
-                    <EditText
-                        android:id="@+id/campoAbscisaRigi"
+                    android:orientation="vertical">
+
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="@string/abscisa"/>
-                </android.support.design.widget.TextInputLayout>
+                        android:layout_height="wrap_content"
+                        android:text="@string/abscisa"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitulo"
+                        android:gravity="center_horizontal"/>
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_campoAbscisaRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHighlight="@color/colorAccent">
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:id="@+id/kPR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="K"
+                            android:textStyle="bold"
+                            android:textSize="20dp"
+                            android:layout_centerVertical="true"/>
+
+                        <EditText
+                            android:id="@+id/campoKmPRigi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/kPR"
+                            android:hint="km"/>
+                        <TextView
+                            android:id="@+id/masPR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+"
+                            android:textStyle="bold"
+                            android:textSize="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@id/campoKmPRigi"/>
+                        <EditText
+                            android:id="@+id/campoMPRigi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/masPR"
+                            android:hint="m"/>
+
+
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btnObtenerCoordenadasPatoRigi"
@@ -180,6 +231,13 @@
                         />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/datos_losa"
+                android:textStyle="bold"
+                android:textSize="@dimen/subTitulo"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -430,6 +488,7 @@
             <TextView
                 android:id="@+id/tv_direccion_foto_rigi"
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
                 android:text="direccion foto"
                 android:visibility="invisible"/>

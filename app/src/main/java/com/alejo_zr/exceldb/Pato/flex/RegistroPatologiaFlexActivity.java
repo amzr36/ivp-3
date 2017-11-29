@@ -59,14 +59,14 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
     private ImageButton botonCargar;
     private ImageView imagen;
     private String path;
-    private String idFotoFlex,campoSeveridad,campoIS;
+    private String idFotoFlex,campoSeveridad,campoIS,abscisa;
 
     private MaterialSpinner spinnerPatoFlex,spinnerSeveridadPatoFlexRegistro;
     private TextView tv_nombre_carretera_patologia,tv_id_segmento_patologia_flex,tv_foto_danio,tv_idFotoFlex,tv_foto_nombre,ej_Pato_Flex;
     private TextInputLayout input_campoAbscisaFlex,input_campoCarrilPato,input_campoDanioPato,input_campoLargoDanio,input_campoAnchoDanio,input_campoSeveridad,
             input_campoidFotoFlex;
     private EditText campoCarrilPato, campoDanioPato, campoLargoDanio, campoAnchoDanio, campoLargoRepa, campoAnchoRepa, campoAclaracion,campoAbscisaFlex,
-            campoLatitudPatoFlex,campoLongitudPatoFlex;
+            campoLatitudPatoFlex,campoLongitudPatoFlex,campoKmPFlex,campoMPFlex;
     private String[] tipoDanio = {"Fisuras longitudinales y transversales", "Fisura longitudinal en junta de construcción",
             "Fisuras por reflexión de juntas o grietas en placas de concreto", "Fisuras en medialuna", "Fisuras de borde", "Fisuras en bloque", "Piel de cocodrilo",
             "Fisuración por desplazamiento de capas", "Fisuración incipiente", "Ondulación", "Abultamiento", "Hundimiento", "Ahuellamiento", "Descascaramiento",
@@ -88,6 +88,8 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
         imagen= (ImageView) findViewById(R.id.imagemId);
         spinnerSeveridadPatoFlexRegistro = (MaterialSpinner) findViewById(R.id.spinnerSeveridadPatoFlexRegistro);
         spinnerPatoFlex = (MaterialSpinner) findViewById(R.id.spinnerPatoFlex);
+        campoKmPFlex = (EditText) findViewById(R.id.campoKmPFlex);
+        campoMPFlex = (EditText) findViewById(R.id.campoMPFlex);
         campoCarrilPato = (EditText) findViewById(R.id.campoCarrilPatoFlex);
         campoDanioPato = (EditText) findViewById(R.id.campoDanioPatoFlex);
         campoLargoDanio = (EditText) findViewById(R.id.campoLargoDanioFlex);
@@ -103,7 +105,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
         tv_foto_danio = (TextView) findViewById(R.id.tv_foto_danio);
         tv_idFotoFlex = (TextView) findViewById(R.id.tv_idFotoFlex);
         tv_foto_nombre = (TextView) findViewById(R.id.tv_foto_nombre);
-            ej_Pato_Flex = (TextView) findViewById(R.id.ej_Pato_Flex);
+        ej_Pato_Flex = (TextView) findViewById(R.id.ej_Pato_Flex);
         input_campoAbscisaFlex = (TextInputLayout) findViewById(R.id.input_campoAbscisaFlex);
         input_campoCarrilPato = (TextInputLayout) findViewById(R.id.input_campoCarrilPatoFlex);
         input_campoDanioPato = (TextInputLayout) findViewById(R.id.input_campoDanioPatoFlex);
@@ -268,7 +270,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
                 break;
             case R.id.btnDanio:
                 //Se abre la camara, y se genera el Identificador para la foto
-                Toast.makeText(getApplicationContext(),"Ponga un objeto para darle esacala a la foto",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Ponga un objeto para darle escala a la foto",Toast.LENGTH_LONG).show();
                 guardarFotografia();
                 tomarFotografia();
 
@@ -314,7 +316,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
 
     private void verificarDatosPatoFlex() {
         boolean isValid = true;
-        if(campoAbscisaFlex.getText().toString().trim().isEmpty()){
+        if(campoMPFlex.getText().toString().trim().isEmpty()){
             input_campoAbscisaFlex.setError("Ingrese la abscisa");
             isValid=false;
         }else{
@@ -359,6 +361,8 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
 
     private void registrarPatoFlex() {
 
+        abscisa = "K"+campoKmPFlex.getText().toString()+"+"+campoMPFlex.getText().toString();
+
         BaseDatos bd=new BaseDatos(this);
 
         SQLiteDatabase db=bd.getWritableDatabase();
@@ -371,7 +375,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
                 +"," +Utilidades.PATOLOGIAFLEX.CAMPO_ANCHO_REPARACION+","+Utilidades.PATOLOGIAFLEX.CAMPO_ACLARACIONES+","+Utilidades.PATOLOGIAFLEX.CAMPO_NOMBRE_FOTO+","
                 +Utilidades.PATOLOGIAFLEX.CAMPO_FOTO_DANIO+","+Utilidades.PATOLOGIAFLEX.CAMPO_IS+")" +
                 " VALUES ('"+tv_nombre_carretera_patologia.getText().toString()+"' , '"+tv_id_segmento_patologia_flex.getText().toString()+"' , '"+
-                campoAbscisaFlex.getText().toString()+"' , '"+campoLatitudPatoFlex.getText().toString()+"' , '"+campoLongitudPatoFlex.getText().toString()+"' , '"
+                abscisa+"' , '"+campoLatitudPatoFlex.getText().toString()+"' , '"+campoLongitudPatoFlex.getText().toString()+"' , '"
                 +campoCarrilPato.getText().toString()+"' , '"+campoDanioPato.getText().toString()+"' , '"+campoSeveridad+"' , '"
                 +campoLargoDanio.getText().toString()+"' , '"+campoAnchoDanio.getText().toString()+"' , '"+campoLargoRepa.getText().toString()+"' , '"
                 +campoAnchoRepa.getText().toString()+"' , '"+campoAclaracion.getText().toString()+"' , '"+tv_foto_nombre.getText().toString()+"' , '"
@@ -386,7 +390,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
     }
 
     private void limpiarDatos() {
-        campoAbscisaFlex.setText("");
+        campoMPFlex.setText("");
         campoLatitudPatoFlex.setText("");
         campoLongitudPatoFlex.setText("");
         campoLargoDanio.setText("");
@@ -611,7 +615,7 @@ public class RegistroPatologiaFlexActivity extends AppCompatActivity {
 
         @Override
         public void onProviderDisabled(String provider) {
-            // Este metodo se ejecuta cuando el GPS es desactivado
+            // Este metodo se ejecuta cuando el GPS esta desactivado
             Toast.makeText(getApplicationContext(),"GPS DESACTIVADO",Toast.LENGTH_SHORT).show();
         }
 

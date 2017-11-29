@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alejo_zr.exceldb.BaseDatos;
 import com.alejo_zr.exceldb.Carretera.CarreteraActivity;
@@ -172,7 +171,7 @@ public class ConsultarSegmentoRigiActivity extends AppCompatActivity {
             String idS = new String("" + idCarretera);
             if (modulo != 1) {
                 ContentValues values = new ContentValues();
-                Toast.makeText(getApplicationContext(), "id" + id + "idS" + idCarretera + "M" + modulo, Toast.LENGTH_SHORT).show();
+
                 String[] parametros = {idS};
                 String carreteraId;
                 carreteraId = ("" + id);

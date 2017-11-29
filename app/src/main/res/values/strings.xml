@@ -80,8 +80,8 @@
     <string name="ej_carretera_territorial">Cundinamarca</string>
     <string name="ej_registro_carretera">Ejemplo Registro Carretera</string>
     <string name="letra_losa">Letra losa</string>
-    <string name="largo_losa">Largo losa</string>
-    <string name="ancho_losa">Ancho losa</string>
+    <string name="largo_losa">Largo losa(m)</string>
+    <string name="ancho_losa">Ancho losa(m)</string>
     <string name="gps">Active el GPS</string>
     <string name="placa">Placa</string>
     <string name="datos_pato">Datos Patología</string>
@@ -90,6 +90,9 @@
     <string name="instale">INSTALE EL MANUAL PARA LA INSPECCIÓN VISUAL DE PAVIMENTOS (M.I.V.P.),</string>
     <string name="regisCarretera">Registro Carretera</string>
     <string name="amacayu">Amacayu</string>
+    <string name="losa_dimen">Dimensiones de la losa (m) </string>
+    <string name="no_placa"> N° placa </string>
+    <string name="datos_losa">Datos Losa</string>
 
     <!--Daños Pavimento Flexible!-->
     <string name="fisuras_long_transversales">Fisuras Longitudinales y transversales</string>
@@ -197,8 +200,6 @@
     <string name="db">DB</string>
     <string name="separacion_berma_pavimento">Separación entre la berma y el pavimento</string>
     <string name="sb">SB</string>
-    <string name="losa_dimen">Dimensiones de la losa (m) </string>
-    <string name="no_placa"> No placa </string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

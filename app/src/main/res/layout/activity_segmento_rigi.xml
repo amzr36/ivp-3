@@ -251,34 +251,50 @@
                 android:layout_marginTop="@dimen/marginTopTV"
                 android:layout_below="@id/llAnchoRigi">
 
-                <TextView
-                    android:id="@+id/tvpriRigi"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/pri"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/tvPRIRigi"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvpriRigi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pri"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/tvPRIRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeftTV"
+                        android:hint="@string/vacio"/>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/marginLeftTV"
-                    android:hint="@string/vacio"/>
-                <TextView
-                    android:id="@+id/tvprfRigi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/prf"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/tvPRFRigi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/marginLeftTV"
-                    android:hint="@string/vacio"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvprfRigi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/prf"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/tvPRFRigi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeftTV"
+                        android:hint="@string/vacio"/>
+
+                </LinearLayout>
+
+
+
 
             </LinearLayout>
 

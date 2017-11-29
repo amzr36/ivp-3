@@ -242,12 +242,12 @@ public class SegmentoRigiActivity extends AppCompatActivity {
 
     private void eliminarDañosRigi() {
         SQLiteDatabase db = baseDatos.getWritableDatabase();
-        Toast.makeText(getApplicationContext(),"Eliminar daños flex",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Se eliminó el segmento",Toast.LENGTH_SHORT).show();
         for (int i=0; i<listaPatologiasRigi.size();i++){
             boolean IdSegmento = tv_id_segmento.getText().toString().equals(""+listaPatologiasRigi.get(i).getId_segmento_patoRigi());
-            Toast.makeText(getApplicationContext(),"id_segmento "+tv_id_segmento.getText().toString()+"get Id segmento"+listaPatologiasRigi.get(i).getId_segmento_patoRigi(),Toast.LENGTH_SHORT).show();
+
             if(IdSegmento==true){
-                Toast.makeText(getApplicationContext(),"entra if",Toast.LENGTH_SHORT).show();
+
                 String[] parametrosDF={tv_id_segmento.getText().toString()};
                 db.delete(Utilidades.PATOLOGIARIGI.TABLA_PATOLOGIA,Utilidades.PATOLOGIARIGI.CAMPO_ID_SEGMENTO_PATOLOGIA+"=?",parametrosDF);
             }

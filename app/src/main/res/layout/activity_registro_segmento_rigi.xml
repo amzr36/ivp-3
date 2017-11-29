@@ -10,7 +10,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbarRegisSegRigiActivity"
             android:layout_width="match_parent"
@@ -240,32 +243,134 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <android.support.design.widget.TextInputLayout
-                            android:id="@+id/input_campoPRIRigi"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                            <EditText
-                                android:id="@+id/campoPRIRigi"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/pri"
+                                android:textSize="@dimen/subTitulo"
+                                android:textStyle="bold"
+                                android:layout_gravity="center_horizontal"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/input_campoPRIRigi"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/pri" />
-                        </android.support.design.widget.TextInputLayout>
+                                android:layout_weight="1">
+                            </android.support.design.widget.TextInputLayout>
 
-                        <android.support.design.widget.TextInputLayout
-                            android:id="@+id/input_campoPRFRigi"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-                            <EditText
-                                android:id="@+id/campoPRFRigi"
+                            <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/prf" />
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                >
+                                <TextView
+                                    android:id="@+id/kpriRigi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="K"
+                                    android:textStyle="bold"
+                                    android:textSize="20dp"
+                                    android:layout_centerVertical="true"/>
 
-                        </android.support.design.widget.TextInputLayout>
+                                <EditText
+                                    android:id="@+id/campoKmPriRigi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@id/kpriRigi"
+                                    android:hint="km"/>
+                                <TextView
+                                    android:id="@+id/masPR"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="+"
+                                    android:textStyle="bold"
+                                    android:textSize="20dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@id/campoKmPriRigi"/>
+                                <EditText
+                                    android:id="@+id/campoMPriRigi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@id/masPR"
+                                    android:hint="m"/>
+
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/prf"
+                                android:textSize="@dimen/subTitulo"
+                                android:textStyle="bold"
+                                android:layout_gravity="center_horizontal"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/input_campoPRFRigi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                >
+                                <TextView
+                                    android:id="@+id/kprfRigi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="K"
+                                    android:textStyle="bold"
+                                    android:textSize="20dp"
+                                    android:layout_centerVertical="true"/>
+
+                                <EditText
+                                    android:id="@+id/campoKmPrfRigi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@id/kprfRigi"
+                                    android:hint="km"/>
+                                <TextView
+                                    android:id="@+id/masPRf"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="+"
+                                    android:textStyle="bold"
+                                    android:textSize="20dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@id/campoKmPrfRigi"/>
+                                <EditText
+                                    android:id="@+id/campoMPrfRigi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@id/masPRf"
+                                    android:hint="m"/>
+
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
 
                     </LinearLayout>
 

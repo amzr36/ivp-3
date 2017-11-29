@@ -145,7 +145,6 @@ public class ConsultaPatologiaFlexActivity extends AppCompatActivity {
             patoFlex.setAclaraciones(cursor.getString(13));
             patoFlex.setNombreFoto(cursor.getString(14));
             patoFlex.setFoto(cursor.getString(15));
-
             listaPatologiasFlex.add(patoFlex);
 
         }

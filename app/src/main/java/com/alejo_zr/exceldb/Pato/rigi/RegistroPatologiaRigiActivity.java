@@ -61,14 +61,14 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
     private ImageButton botonCargar;
     private ImageView imagen;
     private String path;
-    private String idFotoRigi,campoSeveridad,campoIS;
+    private String idFotoRigi,campoSeveridad,campoIS,abscisa;
 
     private MaterialSpinner spinnerPatoRigi,spinnerSeveridadPatoRigiRegistro;
-    private TextView tv_nombre_carretera_patologia,tv_id_segmento_patologia_Rigi,tv_direccion_foto,tv_idFotoRigi,tv_foto_nombre,ej_Pato_Rigi;
-    private TextInputLayout input_campoAbscisaRigi,input_campoCarrilPato,input_campoDanioPatoRigi,input_campoLargoDanio,input_campoAnchoDanio,input_campoSeveridad,
-            input_campoidFotoRigi;
-    private EditText campoNumeroLosa,campoLetraLosa,campoLargoLosa,campoAnchoLosa, campoDanioPatoRigi, campoLargoDanio, campoAnchoDanio, campoLargoRepa, campoAnchoRepa, campoAclaracion,campoAbscisaRigi,
-            campoLatitudPatoRigi,campoLongitudPatoRigi;
+    private TextView tv_nombre_carretera_patologia,tv_id_segmento_patologia_Rigi,tv_direccion_foto,tv_idFotoRigi,tv_foto_nombre,ej_Pato_Rigi,campoAbscisaRigi;
+    private TextInputLayout input_campoAbscisaRigi,input_campoNumeroLosaPatoRigi,input_campoLetraLosaPatoRigi,input_campoLargoLosaPatoRigi,input_campoAnchoLosaPatoRigi
+            ,input_campoDanioPatoRigi,input_campoAnchoDanio,input_campoLargoDanio,input_campoSeveridad,input_campoidFotoRigi;
+    private EditText campoNumeroLosa,campoLetraLosa,campoLargoLosa,campoAnchoLosa, campoDanioPatoRigi, campoLargoDanio, campoAnchoDanio, campoLargoRepa, campoAnchoRepa, campoAclaracion,
+            campoLatitudPatoRigi,campoLongitudPatoRigi,campoKmPRigi,campoMPRigi;
     private String[] tipoDanioRigi = { "Grieta de esquina", "Grieta longitudinal",
             "Grieta Transversal", "Grieta en los extremos de los pasadores", "Grieta en bloque", "Grieta en pozos y sumideros", "separacion de juntas longitudinales",
             "Deterioro de sello", "Desportillamiento de juntas", "Descascaramiento", "Desintegracion", "Baches", "Pulimiento", "Escalonamiento de juntas longitudinales y transversale",
@@ -94,7 +94,12 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
 
         spinnerSeveridadPatoRigiRegistro = (MaterialSpinner) findViewById(R.id.spinnerSeveridadPatoRigiRegistro);
         spinnerPatoRigi = (MaterialSpinner) findViewById(R.id.spinnerPatoRigi);
-        campoAbscisaRigi = (EditText) findViewById(R.id.campoAbscisaRigi);
+
+        campoKmPRigi = (EditText) findViewById(R.id.campoKmPRigi);
+        campoMPRigi  = (EditText) findViewById(R.id.campoMPRigi);
+
+        campoAbscisaRigi = (TextView) findViewById(R.id.campoAbscisaRigi);
+
         campoLatitudPatoRigi = (EditText) findViewById(R.id.campoLatitudPatoRigi);
         campoLongitudPatoRigi = (EditText) findViewById(R.id.campolongitudPatoRigi);
         campoNumeroLosa = (EditText)findViewById(R.id.campoNumeroLosa);
@@ -115,6 +120,12 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         tv_foto_nombre = (TextView) findViewById(R.id.tv_foto_nombreRigi);
         ej_Pato_Rigi = (TextView) findViewById(R.id.ej_Pato_Rigi);
         input_campoAbscisaRigi = (TextInputLayout) findViewById(R.id.input_campoAbscisaRigi);
+
+
+        input_campoNumeroLosaPatoRigi = (TextInputLayout) findViewById(R.id.input_campoNumeroLosaPatoRigi);
+        input_campoLetraLosaPatoRigi= (TextInputLayout) findViewById(R.id.input_campoLetraLosaPatoRigi);
+        input_campoLargoLosaPatoRigi = (TextInputLayout) findViewById(R.id.input_campoLargoLosaPatoRigi);
+        input_campoAnchoLosaPatoRigi = (TextInputLayout) findViewById(R.id.input_campoAnchoLosaPatoRigi);
         input_campoDanioPatoRigi = (TextInputLayout) findViewById(R.id.input_campoDanioPatoRigi);
         input_campoLargoDanio = (TextInputLayout) findViewById(R.id.input_campoLargoDanioRigi);
         input_campoAnchoDanio = (TextInputLayout) findViewById(R.id.input_campoAnchoDanioRigi);
@@ -129,7 +140,6 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
         tv_nombre_carretera_patologia.setText(dato_nom_carretera);
         tv_id_segmento_patologia_Rigi.setText(id_segmento);
         campoIS = dato_is;
-
         /*Se dan los spinners los datos que deben cargar, tanto como los tipos de deterioro,
             y los tipos de severidades*/
         //Spinner Patologias
@@ -314,13 +324,36 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
 
     private void verificarDatosPatoRigi() {
         boolean isValid = true;
-        if(campoAbscisaRigi.getText().toString().trim().isEmpty()){
+        if(campoMPRigi.getText().toString().trim().isEmpty()){
             input_campoAbscisaRigi.setError("Ingrese la abscisa");
             isValid=false;
         }else{
             input_campoAbscisaRigi.setErrorEnabled(false);
         }
-
+        if(campoNumeroLosa.getText().toString().trim().isEmpty()){
+            input_campoNumeroLosaPatoRigi.setError("Ingrese el # de la placa");
+            isValid=false;
+        }else{
+            input_campoNumeroLosaPatoRigi.setErrorEnabled(false);
+        }
+        if(campoLetraLosa.getText().toString().trim().isEmpty()){
+            input_campoLetraLosaPatoRigi.setError("Ingrese la letra placa");
+            isValid=false;
+        }else{
+            input_campoLetraLosaPatoRigi.setErrorEnabled(false);
+        }
+        if(campoLargoLosa.getText().toString().trim().isEmpty()){
+            input_campoLargoLosaPatoRigi.setError("Ingrese el largo de la losa");
+            isValid=false;
+        }else{
+            input_campoLargoLosaPatoRigi.setErrorEnabled(false);
+        }
+        if(campoAnchoLosa.getText().toString().trim().isEmpty()){
+            input_campoAnchoLosaPatoRigi.setError("Ingrese el ancho de la losa");
+            isValid=false;
+        }else{
+            input_campoAnchoLosaPatoRigi.setErrorEnabled(false);
+        }
         if(campoDanioPatoRigi.getText().toString().trim().isEmpty()){
             input_campoDanioPatoRigi.setError("Seleccion el daño");
             isValid=false;
@@ -354,7 +387,12 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
 
     private void registrarPatoRigi() {
 
+
+        abscisa = "K"+campoKmPRigi.getText().toString()+"+"+campoMPRigi.getText().toString();
+
+
         BaseDatos bd=new BaseDatos(this);
+
 
         SQLiteDatabase db=bd.getWritableDatabase();
 
@@ -368,7 +406,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
                 +"," + Utilidades.PATOLOGIARIGI.CAMPO_ANCHO_REPARACION+","+ Utilidades.PATOLOGIARIGI.CAMPO_ACLARACIONES+","+ Utilidades.PATOLOGIARIGI.CAMPO_NOMBRE_FOTO+","
                 + Utilidades.PATOLOGIARIGI.CAMPO_FOTO_DANIO+","+Utilidades.PATOLOGIARIGI.CAMPO_IS+")" +
                 " VALUES ('"+tv_nombre_carretera_patologia.getText().toString()+"' , '"+tv_id_segmento_patologia_Rigi.getText().toString()+"' , '"+
-                campoAbscisaRigi.getText().toString()+"' , '"+campoLatitudPatoRigi.getText().toString()+"' , '"+campoLongitudPatoRigi.getText().toString()+"' , '"
+                abscisa+"' , '"+campoLatitudPatoRigi.getText().toString()+"' , '"+campoLongitudPatoRigi.getText().toString()+"' , '"
                 +campoNumeroLosa.getText().toString()+"' , '"+campoLetraLosa.getText().toString()+"' , '"+campoLargoLosa.getText().toString()+"' , '"+campoAnchoLosa.getText().toString()+"' , '"
                 +campoDanioPatoRigi.getText().toString()+"' , '"+campoSeveridad+"' , '"
                 +campoLargoDanio.getText().toString()+"' , '"+campoAnchoDanio.getText().toString()+"' , '"+campoLargoRepa.getText().toString()+"' , '"
@@ -384,7 +422,7 @@ public class RegistroPatologiaRigiActivity extends AppCompatActivity {
     }
 
     private void limpiarDatos() {
-        campoAbscisaRigi.setText("");
+        campoMPRigi.setText("");
         campoLatitudPatoRigi.setText("");
         campoLongitudPatoRigi.setText("");
         campoNumeroLosa.setText("");

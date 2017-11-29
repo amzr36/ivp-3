@@ -220,19 +220,24 @@ public class PatologiaFlexActivity extends AppCompatActivity {
 
     private void obtenerFotoPatoFlex() {
 
-        MediaScannerConnection.scanFile(this, new String[]{path}, null,
-                new MediaScannerConnection.OnScanCompletedListener() {
-                    @Override
-                    public void onScanCompleted(String path, Uri uri) {
-                        Log.i("Ruta de almacenamiento","Path: "+path);
-                    }
-                });
+        try{
+            MediaScannerConnection.scanFile(this, new String[]{path}, null,
+                    new MediaScannerConnection.OnScanCompletedListener() {
+                        @Override
+                        public void onScanCompleted(String path, Uri uri) {
+                            Log.i("Ruta de almacenamiento","Path: "+path);
+                        }
+                    });
 
-        Bitmap bitmap= BitmapFactory.decodeFile(path);
-        int alto=300;//alto en pixeles
-        int ancho=350;//ancho en pixeles
-        bitmap = Bitmap.createScaledBitmap(bitmap,alto,ancho,true);
-        imgPatoFlex.setImageBitmap(bitmap);
+            Bitmap bitmap= BitmapFactory.decodeFile(path);
+            int alto=300;//alto en pixeles
+            int ancho=350;//ancho en pixeles
+            bitmap = Bitmap.createScaledBitmap(bitmap,alto,ancho,true);
+            imgPatoFlex.setImageBitmap(bitmap);
+        }catch(Exception e){
+
+        }
+
     }
 
     public void onClick (View view){
