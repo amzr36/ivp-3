@@ -124,7 +124,9 @@
         <activity
             android:name=".Pato.rigi.EditarPatologiaRigiActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Segmento.Rigido.RegistroSegmentoRigiEjemploActivity"></activity>
+        <activity android:name=".Segmento.Rigido.RegistroSegmentoRigiEjemploActivity" />
+        <activity android:name=".ManualUsuario"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

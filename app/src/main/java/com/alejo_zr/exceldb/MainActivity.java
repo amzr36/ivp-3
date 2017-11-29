@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),R.string.instale,Toast.LENGTH_LONG).show();
                 }
                 break;
+            case R.id.btnManualUsuario:
+                intent = new Intent(MainActivity.this,ManualUsuario.class);
+                break;
             }
 
         if(intent != null){

@@ -93,6 +93,7 @@
     <string name="losa_dimen">Dimensiones de la losa (m) </string>
     <string name="no_placa"> N° placa </string>
     <string name="datos_losa">Datos Losa</string>
+    <string name="manual_usuario">Manual del usuario</string>
 
     <!--Daños Pavimento Flexible!-->
     <string name="fisuras_long_transversales">Fisuras Longitudinales y transversales</string>

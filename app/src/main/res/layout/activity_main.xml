@@ -21,12 +21,21 @@
             android:textStyle="bold"/>
 
         <Button
+            android:id="@+id/btnManualUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/manual_usuario"
+            android:onClick="onClick"
+            android:layout_marginTop="@dimen/marginTopTV"
+            />
+
+        <Button
             android:id="@+id/btnRegistroCarretera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/regis"
             android:onClick="onClick"
-            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginTop="@dimen/marginTopTV"
             />
         <Button
             android:id="@+id/btnConsultarCarretera"
@@ -34,14 +43,14 @@
             android:layout_height="wrap_content"
             android:text="@string/consul"
             android:onClick="onClick"
-            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginTop="@dimen/marginTopTV"
             />
 
         <Button
             android:id="@+id/btnExportar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginTop="@dimen/marginTopTV"
             android:text="@string/exportar"
             android:onClick="onClick"/>
 
@@ -51,7 +60,7 @@
             android:layout_height="wrap_content"
             android:onClick="onClick"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginTop="@dimen/marginTopTV"
             >
 
             <ImageButton
@@ -74,6 +83,23 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Desarrollado por:"
+            android:textStyle="bold|italic"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ing. Alejandro Mauricio Zorrilla Ramírez"
+            android:textStyle="bold|italic"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ing. Julian David Sanchez Nieto"
+            android:textStyle="bold|italic"/>
 
     </LinearLayout>
 
